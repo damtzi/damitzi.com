@@ -9,6 +9,10 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/cloudflare": "^12.6.2",
     "astro": "^5.12.8"
+  },
+  "devDependencies": {
+    "wrangler": "^4.27.0"
   }
 }

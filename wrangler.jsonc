@@ -1,0 +1,11 @@
+{
+    "$schema": "node_modules/wrangler/config-schema.json",
+    "name": "damitzi.com",
+    "main": "./dist/_worker.js/index.js",
+    "assets": {
+        "directory": "./dist",
+        "binding": "ASSETS",
+    },
+    // Update to today's date
+    "compatibility_date": "2025-08-02",
+}
