@@ -1,1 +1,13 @@
 @import "tailwindcss";
+@import "./animation.css";
+
+@theme inline {
+    --color-pure-blue: #0007fb;
+    --color-baby-powder: #fdfffc;
+    --color-licorice: #1c110a;
+
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
