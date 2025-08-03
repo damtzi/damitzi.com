@@ -1,0 +1,89 @@
+<script lang="ts">
+    import { Moon, Sun } from "@lucide/svelte";
+    import { gsap } from "gsap";
+    import { onMount } from "svelte";
+
+    // Svelte 5 reactive state
+    let theme = $state<"light" | "dark" | "system">("light");
+    let moonIcon: HTMLElement;
+    let sunIcon: HTMLElement;
+
+    // Effect to initialize theme from DOM
+    $effect(() => {
+        if (typeof document !== "undefined") {
+            const isDarkMode =
+                document.documentElement.classList.contains("dark");
+            theme = isDarkMode ? "dark" : "light";
+        }
+    });
+
+    // Effect to apply theme changes
+    $effect(() => {
+        if (typeof document !== "undefined" && typeof window !== "undefined") {
+            const isDark =
+                theme === "dark" ||
+                (theme === "system" &&
+                    window.matchMedia("(prefers-color-scheme: dark)").matches);
+
+            document.documentElement.classList[isDark ? "add" : "remove"](
+                "dark",
+            );
+        }
+    });
+
+    const handleClick = () => {
+        const newTheme = theme === "light" ? "dark" : "light";
+        theme = newTheme;
+
+        // GSAP animation
+        const currentIcon = theme === "dark" ? moonIcon : sunIcon;
+        const nextIcon = theme === "dark" ? sunIcon : moonIcon;
+
+        if (currentIcon && nextIcon) {
+            gsap.timeline()
+                .to(currentIcon, {
+                    y: 32,
+                    duration: 0.3,
+                    ease: "power2.out",
+                })
+                .to(
+                    nextIcon,
+                    {
+                        y: -32,
+                        duration: 0.3,
+                        ease: "power2.out",
+                    },
+                    "-=0.15",
+                ); // Start second animation 0.15s before first one ends
+        }
+
+        // Alternative rotation animation like the original
+        const container = document.querySelector(".theme-toggle-container");
+        if (container) {
+            gsap.to(container, {
+                rotation: newTheme === "dark" ? 180 : -180,
+                duration: 0.4,
+                ease: "back.out(1.7)",
+            });
+        }
+    };
+</script>
+
+<button
+    type="button"
+    onclick={handleClick}
+    aria-label="Toggle Theme"
+    class="hover:cursor-pointer theme-toggle-container"
+>
+    <div class="relative w-6 h-6">
+        {#if theme === "light"}
+            <div bind:this={moonIcon}>
+                <Moon class="w-6 h-6" />
+            </div>
+        {:else}
+            <div bind:this={sunIcon}>
+                <Sun class="w-6 h-6" />
+            </div>
+        {/if}
+    </div>
+</button>
