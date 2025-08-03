@@ -1,0 +1,33 @@
+---
+import { getCollection, render } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import Prose from "@/components/prose.astro";
+import Breadcrumbs from "@/components/shared/breadcrumbs.astro";
+import Layout from "@/layouts/base-layout.astro";
+
+export interface Props {
+    recipe: CollectionEntry<"recipes">;
+}
+
+export const getStaticPaths = async () => {
+    const recipes = await getCollection("recipes");
+    return recipes.map((recipe) => ({
+        params: { slug: recipe.data.slug },
+        props: { recipe },
+    }));
+};
+
+const { recipe } = Astro.props;
+const { Content } = await render(recipe);
+---
+
+<Layout title={`damitzi | ${recipe.data.title}`}>
+    <article class="flex flex-col gap-2">
+        <h1 class="text-2xl font-serif font-medium">{recipe.data.title}</h1>
+        <Breadcrumbs />
+        <p class="lead">{recipe.data.content}</p>
+        <Prose>
+            <Content />
+        </Prose>
+    </article>
+</Layout>

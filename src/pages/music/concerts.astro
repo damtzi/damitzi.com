@@ -1,0 +1,30 @@
+---
+import { getCollection } from "astro:content";
+import Arrow from "@/components/shared/arrow.astro";
+import Breadcrumbs from "@/components/shared/breadcrumbs.astro";
+import BaseLayout from "@/layouts/base-layout.astro";
+import { dateFormatter } from "@/lib/utils";
+
+const concerts = await getCollection("concerts");
+---
+
+<BaseLayout title="damitzi | my concerts">
+    <div class="flex flex-col gap-4">
+        <h1 class="text-2xl font-serif font-medium">My concerts</h1>
+        <Breadcrumbs />
+        <ul class="space-y-2 w-fit">
+            {
+                concerts.map((concert) => (
+                    <li class="flex items-center group gap-2">
+                        <Arrow />
+                        {concert.data.artist},{" "}
+                        {dateFormatter(concert.data.date)} @{" "}
+                        {concert.data.location}{" "}
+                        {concert.data.festival &&
+                            `[${concert.data.festival} Festival]`}
+                    </li>
+                ))
+            }
+        </ul>
+    </div>
+</BaseLayout>
