@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@astrojs/cloudflare": "^12.6.2",
+    "@astrojs/mdx": "^4.3.3",
     "@astrojs/svelte": "^7.1.0",
     "@fontsource-variable/hanken-grotesk": "^5.2.6",
     "@fontsource-variable/lora": "^5.2.6",
@@ -23,6 +24,7 @@
     "typescript": "^5.9.2"
   },
   "devDependencies": {
+    "@tailwindcss/typography": "^0.5.16",
     "wrangler": "^4.27.0"
   }
 }
