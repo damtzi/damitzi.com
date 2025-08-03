@@ -1,0 +1,37 @@
+<script is:inline>
+    const getThemePreference = () => {
+        // check for stored theme preference in localStorage
+        if (
+            typeof localStorage !== "undefined" &&
+            localStorage.getItem("theme")
+        ) {
+            return localStorage.getItem("theme");
+        }
+        // default to user's system preference
+        return window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light";
+    };
+
+    // apply theme preference
+    const isDark = getThemePreference() === "dark";
+    document.documentElement.classList[isDark ? "add" : "remove"]("dark");
+
+    // monitor theme preference changes
+    if (typeof localStorage !== "undefined") {
+        const observer = new MutationObserver(() => {
+            const isDark = document.documentElement.classList.contains("dark");
+            localStorage.setItem("theme", isDark ? "dark" : "light");
+        });
+        observer.observe(document.documentElement, {
+            attributes: true,
+            attributeFilter: ["class"],
+        });
+    }
+
+    // run on view transitions navigation
+    document.addEventListener("astro:after-swap", function () {
+        if (localStorage.getItem("theme") === "dark")
+            document.documentElement.classList.toggle("dark", true);
+    });
+</script>
