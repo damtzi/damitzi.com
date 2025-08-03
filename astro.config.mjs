@@ -3,6 +3,8 @@ import { defineConfig } from 'astro/config';
 import cloudflare from '@astrojs/cloudflare';
 import tailwindcss from '@tailwindcss/vite';
 
+import svelte from '@astrojs/svelte';
+
 // https://astro.build/config
 export default defineConfig({
   output: 'static',
@@ -12,8 +14,8 @@ export default defineConfig({
   }),
 
   vite: {
-    // @ts-expect-error
-    // see issue: https://github.com/withastro/astro/issues/14030
     plugins: [tailwindcss()],
   },
+
+  integrations: [svelte()],
 });
