@@ -1,19 +1,25 @@
 ---
-const { url, title, internal } = Astro.props;
+interface Props {
+    href: string;
+    title: string;
+    internal?: boolean;
+}
+
+const { href, title, internal } = Astro.props;
 ---
 
 {
     internal ? (
         <a
-            href={url}
-            class="transition-colors duration-150 ease-out hover:text-pure-blue hover:cursor-pointer underline decoration-pure-blue decoration-2"
+            href={href}
+            class="text-gray-400 transition-colors duration-150 ease-out hover:text-pure-blue hover:cursor-pointer"
         >
             {title}
         </a>
     ) : (
         <a
-            href={url}
-            class="transition-colors duration-150 ease-out hover:text-pure-blue hover:cursor-pointer underline decoration-pure-blue decoration-2"
+            href={href}
+            class="text-gray-400 transition-colors duration-150 ease-out hover:text-pure-blue hover:cursor-pointer"
             target="_blank"
             rel="noopener noreferrer"
         >
