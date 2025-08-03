@@ -1,7 +1,6 @@
 <script lang="ts">
     import { Moon, Sun } from "@lucide/svelte";
     import { gsap } from "gsap";
-    import { onMount } from "svelte";
 
     // Svelte 5 reactive state
     let theme = $state<"light" | "dark" | "system">("light");
@@ -61,7 +60,7 @@
         const container = document.querySelector(".theme-toggle-container");
         if (container) {
             gsap.to(container, {
-                rotation: newTheme === "dark" ? 180 : -180,
+                rotation: "+=180",
                 duration: 0.4,
                 ease: "back.out(1.7)",
             });
@@ -75,15 +74,13 @@
     aria-label="Toggle Theme"
     class="hover:cursor-pointer theme-toggle-container"
 >
-    <div class="relative w-6 h-6">
-        {#if theme === "light"}
-            <div bind:this={moonIcon}>
-                <Moon class="w-6 h-6" />
-            </div>
-        {:else}
-            <div bind:this={sunIcon}>
-                <Sun class="w-6 h-6" />
-            </div>
-        {/if}
-    </div>
+    {#if theme === "light"}
+        <div bind:this={moonIcon}>
+            <Moon class="size-6" />
+        </div>
+    {:else}
+        <div bind:this={sunIcon}>
+            <Sun class="size-6" />
+        </div>
+    {/if}
 </button>

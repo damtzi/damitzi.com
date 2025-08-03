@@ -1,24 +1,22 @@
 ---
 import { Image } from "astro:assets";
-import pureBlueImg from "../assets/0007fb.png";
-// import { ThemeToggle } from "./theme-toggle";
+import PureBlueImg from "@/assets/0007fb.png";
+import ThemeToggle from "@/components/theme-toggle.svelte";
 ---
 
-<nav class="flex items-center justify-between font-ibm">
+<nav class="flex items-center justify-between">
     <div class="flex items-center gap-2">
         <Image
-            src={pureBlueImg}
+            src={PureBlueImg}
             alt="Pure blue, hex code #0007FB."
-            class="rounded-full"
+            class="rounded-full hover:scale-110 transition-transform duration-300"
             width={36}
             height={36}
         />
         <div class="flex flex-col">
             <span>Damian Tziamtzis</span>
-            <span class="text-black/50 dark:text-off-white/60"
-                >Web Developer</span
-            >
+            <span class="text-gray-400">Frontend Engineer</span>
         </div>
     </div>
-    <!-- <ThemeToggle client:load /> -->
+    <ThemeToggle client:load />
 </nav>

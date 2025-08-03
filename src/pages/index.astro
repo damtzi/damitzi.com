@@ -1,11 +1,47 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import BaseLayout from "@/layouts/base-layout.astro";
+import Link from "@/components/shared/link.astro";
+import Arrow from "@/components/shared/arrow.astro";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const socialLinks = [
+    { href: "https://github.com/damtzi", text: "github" },
+    { href: "https://bsky.app/profile/damitzi.bsky.social", text: "bluesky" },
+    { href: "https://www.instagram.com/damitzi__", text: "instagram" },
+    { href: "https://www.discogs.com/user/damitzi__", text: "discogs" },
+    { href: "https://www.strava.com/athletes/108759547", text: "strava" },
+    { href: "mailto:damian.tziamtzis@gmail.com", text: "email" },
+];
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<BaseLayout title="damitzi">
+    <div class="flex flex-col gap-8">
+        <div class="flex flex-col gap-2">
+            <h2 class="text-2xl font-serif font-medium">About me</h2>
+
+            <p>
+                I work as a frontend engineer at <Link
+                    href="https://secretarium.com/"
+                    title="Secretarium"
+                />. I specialise in building and maintaining user interfaces for
+                websites and web applications. In my spare time I'm watching the
+                NBA, listening to <Link href="/music" title="music" internal />,
+                and baking <Link href="/bread" title="bread" internal />.
+            </p>
+        </div>
+
+        <div class="flex flex-col gap-2">
+            <h2 class="text-2xl font-serif font-medium">Socials</h2>
+            <p>You can find me on:</p>
+            <ul class="flex flex-col gap-2 w-fit">
+                {
+                    socialLinks.map((link) => (
+                        <li class="flex items-center group gap-2">
+                            <Arrow />
+                            <Link href={link.href} title={link.text} />
+                        </li>
+                    ))
+                }
+            </ul>
+        </div>
+    </div>
+</BaseLayout>
