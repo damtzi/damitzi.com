@@ -1,0 +1,102 @@
+---
+import { Image } from "astro:assets";
+import Breadcrumbs from "@/components/shared/breadcrumbs.astro";
+import BaseLayout from "@/layouts/base-layout.astro";
+import { getDiscogsCollection } from "@/lib/discogs";
+import { slugify } from "@/lib/utils";
+
+export const getStaticPaths = async () => {
+    const data = await getDiscogsCollection();
+
+    return data.releases.map((release) => ({
+        params: { slug: slugify(release.basic_information.title) },
+        props: { release },
+    }));
+};
+
+const { release } = Astro.props;
+---
+
+<BaseLayout title={`damitzi | ${release.basic_information.title}`}>
+    <div class="flex flex-col gap-2">
+        <h1 class="text-2xl font-serif font-medium">
+            {release.basic_information.title}
+        </h1>
+        <Breadcrumbs />
+        <div class="flex flex-col md:flex-row gap-8">
+            <Image
+                src={release.basic_information.cover_image}
+                alt={`Vinyl cover for ${release.basic_information.title}`}
+                width={400}
+                height={400}
+                class="rounded-xs shadow-lg"
+                transition:name={`playlist ${release.basic_information.id + "_a"} image`}
+            />
+            <div class="flex flex-col gap-4">
+                <div class="flex flex-col">
+                    <span class="text-sm text-gray-500">
+                        Album
+                    </span>
+                    <span class="font-medium">
+                        {release.basic_information.title}
+                    </span>
+                </div>
+
+                <div class="flex flex-col">
+                    <span class="text-sm text-gray-500">
+                        Artist
+                    </span>
+                    <span class="font-medium">
+                        {
+                            release.basic_information.artists
+                                .map((artist) => artist.name)
+                                .join(", ")
+                        }
+                    </span>
+                </div>
+
+                <div class="flex flex-col">
+                    <span class="text-sm text-gray-500">
+                        Label
+                    </span>
+                    <span class="font-medium">
+                        {
+                            release.basic_information.labels
+                                .map((label) => label.name)
+                                .join(", ")
+                        }
+                    </span>
+                </div>
+
+                <div class="flex flex-col">
+                    <span class="text-sm text-gray-500">
+                        Format
+                    </span>
+                    <span class="font-medium">
+                        {release.basic_information.formats[0].name} - {
+                            release.basic_information.formats[0].text
+                        }
+                    </span>
+                </div>
+
+                <div class="flex flex-col">
+                    <span class="text-sm text-gray-500">
+                        Year
+                    </span>
+                    <span class="font-medium">
+                        {release.basic_information.year}
+                    </span>
+                </div>
+
+                <div class="flex flex-col">
+                    <span class="text-sm text-gray-500">
+                        Genres
+                    </span>
+                    <span class="font-medium">
+                        {release.basic_information.genres.join(", ")}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</BaseLayout>

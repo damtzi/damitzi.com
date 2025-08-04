@@ -7,7 +7,7 @@ import BaseLayout from "@/layouts/base-layout.astro";
 import { slugify } from "@/lib/utils";
 import { getDiscogsCollection } from "@/lib/discogs";
 
-const collection = await getDiscogsCollection();
+const data = await getDiscogsCollection();
 ---
 
 <BaseLayout title="damitzi | vinyls">
@@ -16,7 +16,7 @@ const collection = await getDiscogsCollection();
         <Breadcrumbs />
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-10">
             {
-                collection.releases.map((release) => (
+                data.releases.map((release) => (
                     <a
                         href={`/music/vinyls/${slugify(release.basic_information.title)}`}
                         class="relative group"
@@ -26,7 +26,7 @@ const collection = await getDiscogsCollection();
                             alt={release.basic_information.title}
                             width={200}
                             height={200}
-                            class="hover:scale-105 transition-transform duration-300 rounded-xs relative z-10 aspect-square"
+                            class="hover:scale-105 hover:cursor-pointer transition-transform duration-300 rounded-xs relative z-10 aspect-square"
                             transition:name={`playlist ${release.id + "_a"} image`}
                         />
                         <Image
