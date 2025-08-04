@@ -1,7 +1,14 @@
 ---
+import { Image } from "astro:assets";
+import VinylPng from "@/assets/black-vinyl.png";
+import CdPng from "@/assets/clear-cd.png";
 import BaseLayout from "@/layouts/base-layout.astro";
 import Link from "@/components/shared/link.astro";
 import Arrow from "@/components/shared/arrow.astro";
+import RunCard from "@/components/run-card.astro";
+import { slugify } from "@/lib/utils";
+import { getStravaActivity } from "@/lib/strava";
+import { getDiscogsCollection } from "@/lib/discogs";
 
 const socialLinks = [
     { href: "https://github.com/damtzi", text: "github" },
@@ -11,6 +18,17 @@ const socialLinks = [
     { href: "https://www.strava.com/athletes/108759547", text: "strava" },
     { href: "mailto:damian.tziamtzis@gmail.com", text: "email" },
 ];
+
+const activities = await getStravaActivity();
+const vinyls = await getDiscogsCollection();
+
+// Sort by date_added in descending order (most recent first) and take the first 4
+const recentVinyls = vinyls.releases
+    .sort(
+        (a, b) =>
+            new Date(b.date_added).getTime() - new Date(a.date_added).getTime(),
+    )
+    .slice(0, 4);
 ---
 
 <BaseLayout title="damitzi">
@@ -19,14 +37,88 @@ const socialLinks = [
             <h2 class="text-2xl font-serif font-medium">About me</h2>
 
             <p>
-                I work as a frontend engineer at <Link
+                I am a frontend engineer based in Gdynia, specializing in
+                building and maintaining user interfaces for websites and web
+                applications. Currently, I'm working on <Link
+                    href="https://klave.com/"
+                    title="Klave"
+                /> at <Link
                     href="https://secretarium.com/"
                     title="Secretarium"
-                />. I specialise in building and maintaining user interfaces for
-                websites and web applications. In my spare time I'm watching the
-                NBA, listening to <Link href="/music" title="music" internal />,
-                and baking <Link href="/bread" title="bread" internal />.
+                />, crafting intuitive and secure frontends that prioritise
+                privacy and security at every step.
+                <br />
+                <br />
+                In my spare time, I am keeping up with the NBA, listening to <Link
+                    href="/music"
+                    title="music"
+                    internal
+                />, running, and baking <Link
+                    href="/bread"
+                    title="bread"
+                    internal
+                />.
             </p>
+        </div>
+
+        <div class="flex flex-col gap-2">
+            <h2 class="text-2xl font-serif font-medium">Recent runs</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {
+                    activities
+                        .filter((activity) => activity.type === "Run")
+                        .slice(0, 4)
+                        .map((activity) => (
+                            <RunCard
+                                date={activity.start_date_local}
+                                distance={activity.distance}
+                                movingTime={activity.moving_time}
+                            />
+                        ))
+                }
+            </div>
+        </div>
+
+        <div class="flex flex-col gap-2">
+            <h2 class="text-2xl font-serif font-medium">Recent pickups</h2>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-10">
+                {
+                    recentVinyls.map((release) => (
+                        <a
+                            href={`/music/vinyls/${slugify(release.basic_information.title)}`}
+                            class="relative group"
+                        >
+                            <Image
+                                src={release.basic_information.cover_image}
+                                alt={release.basic_information.title}
+                                width={200}
+                                height={200}
+                                class="hover:scale-105 hover:cursor-pointer hover:shadow transition-all duration-300 rounded-xs shadow-lg relative z-10 aspect-square"
+                                transition:name={`playlist ${release.id + "_a"} image`}
+                            />
+                            <Image
+                                src={
+                                    release.basic_information.formats
+                                        .map((format) => format.name)
+                                        .find((name) => name === "Vinyl")
+                                        ? VinylPng
+                                        : CdPng
+                                }
+                                alt={
+                                    release.basic_information.formats
+                                        .map((format) => format.name)
+                                        .find((name) => name === "Vinyl")
+                                        ? "A black vinyl record"
+                                        : "A clear CD"
+                                }
+                                width={200}
+                                height={200}
+                                class="absolute top-0 group-hover:translate-x-10 transition-transform duration-300 z-0"
+                            />
+                        </a>
+                    ))
+                }
+            </div>
         </div>
 
         <div class="flex flex-col gap-2">
