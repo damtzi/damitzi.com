@@ -43,7 +43,7 @@ const years = Object.keys(concertsByYear)
                         </h2>
                         <ul class="space-y-2 w-full">
                             {concertsByYear[year].map((concert) => (
-                                <li class="flex items-center justify-between group">
+                                <li class="flex flex-col md:flex-row md:items-center md:justify-between group">
                                     <span>{concert.data.artist}</span>
                                     <span>
                                         {dateFormatter(concert.data.date)} @{" "}

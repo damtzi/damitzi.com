@@ -14,7 +14,7 @@ const breadcrumbPaths = segments.map((segment, index) => {
 breadcrumbPaths.unshift({ name: "home", href: "/" });
 ---
 
-<nav aria-label="Breadcrumb" class="py-3">
+<nav aria-label="Breadcrumb" class="hidden md:block py-3">
     <ol class="flex flex-wrap items-center text-sm">
         {
             breadcrumbPaths.map((path, index) => (
