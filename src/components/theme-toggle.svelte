@@ -7,12 +7,22 @@
     let moonIcon: HTMLElement;
     let sunIcon: HTMLElement;
 
-    // Effect to initialize theme from DOM
+    // Effect to initialize theme from localStorage and DOM
     $effect(() => {
-        if (typeof document !== "undefined") {
-            const isDarkMode =
-                document.documentElement.classList.contains("dark");
-            theme = isDarkMode ? "dark" : "light";
+        if (
+            typeof document !== "undefined" &&
+            typeof localStorage !== "undefined"
+        ) {
+            // First check localStorage for saved preference
+            const savedTheme = localStorage.getItem("theme");
+            if (savedTheme === "dark" || savedTheme === "light") {
+                theme = savedTheme;
+            } else {
+                // Fallback to DOM classes if no localStorage value
+                const isDarkMode =
+                    document.documentElement.classList.contains("dark");
+                theme = isDarkMode ? "dark" : "light";
+            }
         }
     });
 
@@ -27,6 +37,11 @@
             document.documentElement.classList[isDark ? "add" : "remove"](
                 "dark",
             );
+
+            // Save to localStorage
+            if (typeof localStorage !== "undefined") {
+                localStorage.setItem("theme", isDark ? "dark" : "light");
+            }
         }
     });
 
