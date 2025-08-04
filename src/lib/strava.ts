@@ -2,7 +2,7 @@ import type { Activity, StravaAuthResponse } from "@/lib/types";
 
 export async function getStravaActivity(): Promise<Activity[]> {
     const stravaAuthResponse = await fetch(
-        `https://www.strava.com/oauth/token?client_id=${process.env.STRAVA_CLIENT_ID}&client_secret=${process.env.STRAVA_CLIENT_SECRET}&refresh_token=${process.env.STRAVA_REFRESH_TOKEN}&grant_type=refresh_token`,
+        `https://www.strava.com/oauth/token?client_id=${import.meta.env.STRAVA_CLIENT_ID}&client_secret=${import.meta.env.STRAVA_CLIENT_SECRET}&refresh_token=${import.meta.env.STRAVA_REFRESH_TOKEN}&grant_type=refresh_token`,
         {
             method: "POST",
         },
