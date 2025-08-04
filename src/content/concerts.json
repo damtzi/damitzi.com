@@ -8,10 +8,17 @@
     },
     {
         "artist": "Alt-J",
-        "date": "2013-07-01",
+        "date": "2015-07-01",
         "location": "Gdynia, PL",
         "festival": "Opener",
         "id": "alt-j-07-2015"
+    },
+    {
+        "artist": "Alt-J",
+        "date": "2017-08-18",
+        "location": "Krakow, PL",
+        "festival": "Live",
+        "id": "alt-j-08-2017"
     },
     {
         "artist": "Amine",
@@ -282,7 +289,7 @@
     {
         "artist": "Travis Scott",
         "date": "2017-08-18",
-        "location": "Gdynia, PL",
+        "location": "Krakow, PL",
         "festival": "Live",
         "id": "travis-scott-08-2017"
     },
