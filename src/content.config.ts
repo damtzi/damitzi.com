@@ -14,7 +14,7 @@ const concerts = defineCollection({
     loader: file('src/content/concerts.json'),
     schema: z.object({
         artist: z.string(),
-        date: z.string().transform((dateString) => new Date(dateString)),
+        date: z.string().transform(dateString => new Date(dateString)),
         location: z.string(),
         festival: z.string().optional(),
         id: z.string()

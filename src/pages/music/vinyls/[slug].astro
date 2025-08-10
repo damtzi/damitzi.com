@@ -1,16 +1,16 @@
 ---
-import { Image } from "astro:assets";
-import Breadcrumbs from "@/components/shared/breadcrumbs.astro";
-import BaseLayout from "@/layouts/base-layout.astro";
-import { getDiscogsCollection } from "@/lib/discogs";
-import { slugify } from "@/lib/utils";
+import { Image } from 'astro:assets';
+import Breadcrumbs from '@/components/shared/breadcrumbs.astro';
+import BaseLayout from '@/layouts/base-layout.astro';
+import { getDiscogsCollection } from '@/lib/discogs';
+import { slugify } from '@/lib/utils';
 
 export const getStaticPaths = async () => {
     const data = await getDiscogsCollection();
 
-    return data.releases.map((release) => ({
+    return data.releases.map(release => ({
         params: { slug: slugify(release.basic_information.title) },
-        props: { release },
+        props: { release }
     }));
 };
 
@@ -30,7 +30,7 @@ const { release } = Astro.props;
                 width={400}
                 height={400}
                 class="rounded-xs shadow-lg"
-                transition:name={`playlist ${release.basic_information.id + "_a"} image`}
+                transition:name={`playlist ${release.basic_information.id + '_a'} image`}
             />
             <div class="flex flex-col gap-4">
                 <div class="flex flex-col">
@@ -49,8 +49,8 @@ const { release } = Astro.props;
                     <span class="font-medium">
                         {
                             release.basic_information.artists
-                                .map((artist) => artist.name)
-                                .join(", ")
+                                .map(artist => artist.name)
+                                .join(', ')
                         }
                     </span>
                 </div>
@@ -62,8 +62,8 @@ const { release } = Astro.props;
                     <span class="font-medium">
                         {
                             release.basic_information.labels
-                                .map((label) => label.name)
-                                .join(", ")
+                                .map(label => label.name)
+                                .join(', ')
                         }
                     </span>
                 </div>
@@ -93,7 +93,7 @@ const { release } = Astro.props;
                         Genres
                     </span>
                     <span class="font-medium">
-                        {release.basic_information.genres.join(", ")}
+                        {release.basic_information.genres.join(', ')}
                     </span>
                 </div>
             </div>

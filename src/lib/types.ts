@@ -159,138 +159,138 @@ export type ReleaseResponse = {
 };
 
 export type DiscogsRelease = {
-  id: number;
-  status: string;
-  year: number;
-  resource_url: string;
-  uri: string;
-  artists: DiscogsArtist[];
-  artists_sort: string;
-  labels: DiscogsLabel[];
-  series: any[]; // No data provided, keep as any[]
-  companies: DiscogsCompany[];
-  formats: DiscogsFormat[];
-  data_quality: string;
-  community: DiscogsCommunity;
-  format_quantity: number;
-  date_added: string; // ISO 8601 string
-  date_changed: string; // ISO 8601 string
-  num_for_sale: number;
-  lowest_price: number;
-  master_id: number;
-  master_url: string;
-  title: string;
-  country: string;
-  released: string; // Date string YYYY-MM-DD
-  notes: string;
-  released_formatted: string;
-  identifiers: DiscogsIdentifier[];
-  videos: DiscogsVideo[];
-  genres: string[];
-  styles: string[];
-  tracklist: DiscogsTrack[];
-  extraartists: DiscogsExtraArtist[];
-  images: DiscogsImage[];
-  thumb: string;
-  estimated_weight: number;
-  blocked_from_sale: boolean;
-  is_offensive: boolean;
+    id: number;
+    status: string;
+    year: number;
+    resource_url: string;
+    uri: string;
+    artists: DiscogsArtist[];
+    artists_sort: string;
+    labels: DiscogsLabel[];
+    series: any[]; // No data provided, keep as any[]
+    companies: DiscogsCompany[];
+    formats: DiscogsFormat[];
+    data_quality: string;
+    community: DiscogsCommunity;
+    format_quantity: number;
+    date_added: string; // ISO 8601 string
+    date_changed: string; // ISO 8601 string
+    num_for_sale: number;
+    lowest_price: number;
+    master_id: number;
+    master_url: string;
+    title: string;
+    country: string;
+    released: string; // Date string YYYY-MM-DD
+    notes: string;
+    released_formatted: string;
+    identifiers: DiscogsIdentifier[];
+    videos: DiscogsVideo[];
+    genres: string[];
+    styles: string[];
+    tracklist: DiscogsTrack[];
+    extraartists: DiscogsExtraArtist[];
+    images: DiscogsImage[];
+    thumb: string;
+    estimated_weight: number;
+    blocked_from_sale: boolean;
+    is_offensive: boolean;
 };
 
 export type DiscogsArtist = {
-  id: number;
-  name: string;
-  anv: string;
-  join: string;
-  role: string;
-  tracks: string;
-  resource_url: string;
-  thumbnail_url?: string;
+    id: number;
+    name: string;
+    anv: string;
+    join: string;
+    role: string;
+    tracks: string;
+    resource_url: string;
+    thumbnail_url?: string;
 };
 
 export type DiscogsLabel = {
-  id: number;
-  name: string;
-  catno: string;
-  entity_type: string;
-  entity_type_name: string;
-  resource_url: string;
-  thumbnail_url?: string;
+    id: number;
+    name: string;
+    catno: string;
+    entity_type: string;
+    entity_type_name: string;
+    resource_url: string;
+    thumbnail_url?: string;
 };
 
 export type DiscogsCompany = {
-  id: number;
-  name: string;
-  catno: string;
-  entity_type: string;
-  entity_type_name: string;
-  resource_url: string;
-  thumbnail_url?: string;
+    id: number;
+    name: string;
+    catno: string;
+    entity_type: string;
+    entity_type_name: string;
+    resource_url: string;
+    thumbnail_url?: string;
 };
 
 export type DiscogsFormat = {
-  name: string;
-  qty: string;
-  descriptions: string[];
-  text?: string;
+    name: string;
+    qty: string;
+    descriptions: string[];
+    text?: string;
 };
 
 export type DiscogsCommunity = {
-  have: number;
-  want: number;
-  rating: {
-    count: number;
-    average: number;
-  };
-  submitter: {
-    username: string;
-    resource_url: string;
-  };
-  contributors: {
-    username: string;
-    resource_url: string;
-  }[];
-  data_quality: string;
-  status: string;
+    have: number;
+    want: number;
+    rating: {
+        count: number;
+        average: number;
+    };
+    submitter: {
+        username: string;
+        resource_url: string;
+    };
+    contributors: {
+        username: string;
+        resource_url: string;
+    }[];
+    data_quality: string;
+    status: string;
 };
 
 export type DiscogsIdentifier = {
-  type: string;
-  value: string;
-  description?: string;
+    type: string;
+    value: string;
+    description?: string;
 };
 
 export type DiscogsVideo = {
-  uri: string;
-  title: string;
-  description: string;
-  duration: number;
-  embed: boolean;
+    uri: string;
+    title: string;
+    description: string;
+    duration: number;
+    embed: boolean;
 };
 
 export type DiscogsTrack = {
-  position: string;
-  type_: string;
-  title: string;
-  duration: string;
-  extraartists: DiscogsExtraArtist[];
+    position: string;
+    type_: string;
+    title: string;
+    duration: string;
+    extraartists: DiscogsExtraArtist[];
 };
 
 export type DiscogsExtraArtist = {
-  id: number;
-  name: string;
-  anv: string;
-  join: string;
-  role: string;
-  tracks: string;
-  resource_url: string;
+    id: number;
+    name: string;
+    anv: string;
+    join: string;
+    role: string;
+    tracks: string;
+    resource_url: string;
 };
 
 export type DiscogsImage = {
-  type: "primary" | "secondary";
-  uri: string;
-  resource_url: string;
-  uri150: string;
-  width: number;
-  height: number;
+    type: 'primary' | 'secondary';
+    uri: string;
+    resource_url: string;
+    uri150: string;
+    width: number;
+    height: number;
 };

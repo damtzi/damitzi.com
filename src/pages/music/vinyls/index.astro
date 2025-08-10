@@ -1,11 +1,11 @@
 ---
-import { Image } from "astro:assets";
-import VinylPng from "@/assets/black-vinyl.png";
-import CdPng from "@/assets/clear-cd.png";
-import Breadcrumbs from "@/components/shared/breadcrumbs.astro";
-import BaseLayout from "@/layouts/base-layout.astro";
-import { slugify } from "@/lib/utils";
-import { getDiscogsCollection } from "@/lib/discogs";
+import { Image } from 'astro:assets';
+import VinylPng from '@/assets/black-vinyl.png';
+import CdPng from '@/assets/clear-cd.png';
+import Breadcrumbs from '@/components/shared/breadcrumbs.astro';
+import BaseLayout from '@/layouts/base-layout.astro';
+import { slugify } from '@/lib/utils';
+import { getDiscogsCollection } from '@/lib/discogs';
 
 const data = await getDiscogsCollection();
 ---
@@ -16,7 +16,7 @@ const data = await getDiscogsCollection();
         <Breadcrumbs />
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 md:gap-10">
             {
-                data.releases.map((release) => (
+                data.releases.map(release => (
                     <a
                         href={`/music/vinyls/${slugify(release.basic_information.title)}`}
                         class="relative group"
@@ -27,22 +27,22 @@ const data = await getDiscogsCollection();
                             width={200}
                             height={200}
                             class="hover:scale-105 hover:cursor-pointer transition-transform duration-300 rounded-xs relative z-10 aspect-square"
-                            transition:name={`playlist ${release.id + "_a"} image`}
+                            transition:name={`playlist ${release.id + '_a'} image`}
                         />
                         <Image
                             src={
                                 release.basic_information.formats
-                                    .map((format) => format.name)
-                                    .find((name) => name === "Vinyl")
+                                    .map(format => format.name)
+                                    .find(name => name === 'Vinyl')
                                     ? VinylPng
                                     : CdPng
                             }
                             alt={
                                 release.basic_information.formats
-                                    .map((format) => format.name)
-                                    .find((name) => name === "Vinyl")
-                                    ? "A black vinyl record"
-                                    : "A clear CD"
+                                    .map(format => format.name)
+                                    .find(name => name === 'Vinyl')
+                                    ? 'A black vinyl record'
+                                    : 'A clear CD'
                             }
                             width={200}
                             height={200}

@@ -1,19 +1,19 @@
 ---
-import { getCollection, render } from "astro:content";
-import type { CollectionEntry } from "astro:content";
-import Prose from "@/components/prose.astro";
-import Breadcrumbs from "@/components/shared/breadcrumbs.astro";
-import Layout from "@/layouts/base-layout.astro";
+import { getCollection, render } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import Prose from '@/components/prose.astro';
+import Breadcrumbs from '@/components/shared/breadcrumbs.astro';
+import Layout from '@/layouts/base-layout.astro';
 
 export interface Props {
-    recipe: CollectionEntry<"recipes">;
+    recipe: CollectionEntry<'recipes'>;
 }
 
 export const getStaticPaths = async () => {
-    const recipes = await getCollection("recipes");
-    return recipes.map((recipe) => ({
+    const recipes = await getCollection('recipes');
+    return recipes.map(recipe => ({
         params: { slug: recipe.data.slug },
-        props: { recipe },
+        props: { recipe }
     }));
 };
 

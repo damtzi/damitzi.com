@@ -9,16 +9,16 @@ import mdx from '@astrojs/mdx';
 
 // https://astro.build/config
 export default defineConfig({
-  output: 'static',
-  site: 'https://damitzi.com',
+    output: 'static',
+    site: 'https://damitzi.com',
 
-  adapter: cloudflare({
-      imageService: 'compile'
-  }),
+    adapter: cloudflare({
+        imageService: 'compile'
+    }),
 
-  vite: {
-    plugins: [tailwindcss()],
-  },
+    vite: {
+        plugins: [tailwindcss()]
+    },
 
-  integrations: [svelte(), mdx()],
+    integrations: [svelte(), mdx()]
 });

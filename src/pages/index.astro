@@ -1,22 +1,22 @@
 ---
-import { Image } from "astro:assets";
-import VinylPng from "@/assets/black-vinyl.png";
-import CdPng from "@/assets/clear-cd.png";
-import BaseLayout from "@/layouts/base-layout.astro";
-import Link from "@/components/shared/link.astro";
-import Arrow from "@/components/shared/arrow.astro";
-import RunCard from "@/components/run-card.astro";
-import { slugify } from "@/lib/utils";
-import { getStravaActivity } from "@/lib/strava";
-import { getDiscogsCollection } from "@/lib/discogs";
+import { Image } from 'astro:assets';
+import VinylPng from '@/assets/black-vinyl.png';
+import CdPng from '@/assets/clear-cd.png';
+import BaseLayout from '@/layouts/base-layout.astro';
+import Link from '@/components/shared/link.astro';
+import Arrow from '@/components/shared/arrow.astro';
+import RunCard from '@/components/run-card.astro';
+import { slugify } from '@/lib/utils';
+import { getStravaActivity } from '@/lib/strava';
+import { getDiscogsCollection } from '@/lib/discogs';
 
 const socialLinks = [
-    { href: "https://github.com/damtzi", text: "github" },
-    { href: "https://bsky.app/profile/damitzi.bsky.social", text: "bluesky" },
-    { href: "https://www.instagram.com/damitzi__", text: "instagram" },
-    { href: "https://www.discogs.com/user/damitzi__", text: "discogs" },
-    { href: "https://www.strava.com/athletes/108759547", text: "strava" },
-    { href: "mailto:damian.tziamtzis@gmail.com", text: "email" },
+    { href: 'https://github.com/damtzi', text: 'github' },
+    { href: 'https://bsky.app/profile/damitzi.bsky.social', text: 'bluesky' },
+    { href: 'https://www.instagram.com/damitzi__', text: 'instagram' },
+    { href: 'https://www.discogs.com/user/damitzi__', text: 'discogs' },
+    { href: 'https://www.strava.com/athletes/108759547', text: 'strava' },
+    { href: 'mailto:damian.tziamtzis@gmail.com', text: 'email' }
 ];
 
 const activities = await getStravaActivity();
@@ -26,7 +26,7 @@ const vinyls = await getDiscogsCollection();
 const recentVinyls = vinyls.releases
     .sort(
         (a, b) =>
-            new Date(b.date_added).getTime() - new Date(a.date_added).getTime(),
+            new Date(b.date_added).getTime() - new Date(a.date_added).getTime()
     )
     .slice(0, 4);
 ---
@@ -39,25 +39,38 @@ const recentVinyls = vinyls.releases
             <p>
                 I am a frontend engineer based in Gdynia, specializing in
                 building and maintaining user interfaces for websites and web
-                applications. Currently, I'm working on <Link
+                applications. Currently, I'm working on
+                {' '}
+                <Link
                     href="https://klave.com/"
                     title="Klave"
-                /> at <Link
+                />
+                {' '}
+                at
+                {' '}
+                <Link
                     href="https://secretarium.com/"
                     title="Secretarium"
-                />, crafting intuitive and secure frontends that prioritise
+                />
+                , crafting intuitive and secure frontends that prioritise
                 privacy and security at every step.
                 <br />
                 <br />
-                In my spare time, I am keeping up with the NBA, listening to <Link
+                In my spare time, I am keeping up with the NBA, listening to
+                {' '}
+                <Link
                     href="/music"
                     title="music"
                     internal
-                />, running, and baking <Link
+                />
+                , running, and baking
+                {' '}
+                <Link
                     href="/bread"
                     title="bread"
                     internal
-                />.
+                />
+                .
             </p>
         </div>
 
@@ -66,9 +79,9 @@ const recentVinyls = vinyls.releases
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {
                     activities
-                        .filter((activity) => activity.type === "Run")
+                        .filter(activity => activity.type === 'Run')
                         .slice(0, 4)
-                        .map((activity) => (
+                        .map(activity => (
                             <RunCard
                                 date={activity.start_date_local}
                                 distance={activity.distance}
@@ -83,7 +96,7 @@ const recentVinyls = vinyls.releases
             <h2 class="text-2xl font-serif font-medium">Recent pickups</h2>
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 md:gap-10">
                 {
-                    recentVinyls.map((release) => (
+                    recentVinyls.map(release => (
                         <a
                             href={`/music/vinyls/${slugify(release.basic_information.title)}`}
                             class="relative group"
@@ -94,22 +107,22 @@ const recentVinyls = vinyls.releases
                                 width={200}
                                 height={200}
                                 class="hover:scale-105 hover:cursor-pointer hover:shadow transition-all duration-300 rounded-xs shadow-lg relative z-10 aspect-square"
-                                transition:name={`playlist ${release.id + "_a"} image`}
+                                transition:name={`playlist ${release.id + '_a'} image`}
                             />
                             <Image
                                 src={
                                     release.basic_information.formats
-                                        .map((format) => format.name)
-                                        .find((name) => name === "Vinyl")
+                                        .map(format => format.name)
+                                        .find(name => name === 'Vinyl')
                                         ? VinylPng
                                         : CdPng
                                 }
                                 alt={
                                     release.basic_information.formats
-                                        .map((format) => format.name)
-                                        .find((name) => name === "Vinyl")
-                                        ? "A black vinyl record"
-                                        : "A clear CD"
+                                        .map(format => format.name)
+                                        .find(name => name === 'Vinyl')
+                                        ? 'A black vinyl record'
+                                        : 'A clear CD'
                                 }
                                 width={200}
                                 height={200}
@@ -126,7 +139,7 @@ const recentVinyls = vinyls.releases
             <p>You can find me on:</p>
             <ul class="space-y-2 w-fit">
                 {
-                    socialLinks.map((link) => (
+                    socialLinks.map(link => (
                         <li class="flex items-center group gap-2">
                             <Arrow />
                             <Link href={link.href} title={link.text} />

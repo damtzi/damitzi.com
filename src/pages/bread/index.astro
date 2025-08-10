@@ -1,11 +1,11 @@
 ---
-import { getCollection } from "astro:content";
-import Arrow from "@/components/shared/arrow.astro";
-import Breadcrumbs from "@/components/shared/breadcrumbs.astro";
-import Link from "@/components/shared/link.astro";
-import BaseLayout from "@/layouts/base-layout.astro";
+import { getCollection } from 'astro:content';
+import Arrow from '@/components/shared/arrow.astro';
+import Breadcrumbs from '@/components/shared/breadcrumbs.astro';
+import Link from '@/components/shared/link.astro';
+import BaseLayout from '@/layouts/base-layout.astro';
 
-const recipes = await getCollection("recipes");
+const recipes = await getCollection('recipes');
 ---
 
 <BaseLayout title="damitzi | bread recipes">
@@ -14,7 +14,7 @@ const recipes = await getCollection("recipes");
         <Breadcrumbs />
         <ul class="space-y-2 w-fit">
             {
-                recipes.map((recipe) => (
+                recipes.map(recipe => (
                     <li class="flex items-center group gap-2">
                         <Arrow />
                         <Link

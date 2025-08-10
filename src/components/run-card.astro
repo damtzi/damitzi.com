@@ -1,5 +1,5 @@
 ---
-import { formatTime } from "@/lib/utils";
+import { formatTime } from '@/lib/utils';
 
 interface Props {
     date: string;
@@ -23,10 +23,10 @@ const paceSeconds = Math.round(paceSecondsPerKm % 60);
 const formattedSeconds = paceSeconds < 10 ? `0${paceSeconds}` : paceSeconds;
 
 // Format date to "12 May 2025"
-const formattedDate = new Date(date).toLocaleDateString("en-GB", {
-    day: "2-digit",
-    month: "short",
-    year: "numeric",
+const formattedDate = new Date(date).toLocaleDateString('en-GB', {
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric'
 });
 ---
 

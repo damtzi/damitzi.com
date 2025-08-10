@@ -1,10 +1,10 @@
-import type { CollectionsResponse, DiscogsRelease } from "@/lib/types";
+import type { CollectionsResponse, DiscogsRelease } from '@/lib/types';
 
 export async function getDiscogsCollection(): Promise<CollectionsResponse> {
     const response = await fetch(
         `https://api.discogs.com/users/damitzi__/collection/folders/0/releases?token=${import.meta.env.DISCOGS_TOKEN}&per_page=100&sort=artist`
     );
-    
+
     return response.json();
 }
 

@@ -11,7 +11,7 @@ export function slugify(str: string): string {
 export function deslugify(slug: string): string {
     return slug
         .replace(/-/g, ' ')
-        .replace(/(^\w|\s\w)/g, (char) => char.toUpperCase());
+        .replace(/(^\w|\s\w)/g, char => char.toUpperCase());
 }
 
 export function dateFormatter(date: Date): string {
@@ -35,5 +35,5 @@ export function formatTime(seconds: number): string {
 }
 
 export function delay(ms: number): Promise<void> {
-  return new Promise((resolve) => setTimeout(resolve, ms));
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
