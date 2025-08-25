@@ -75,7 +75,7 @@
         const container = document.querySelector(".theme-toggle-container");
         if (container) {
             gsap.to(container, {
-                rotation: "+=180",
+                rotation: "-=180",
                 duration: 0.4,
                 ease: "back.out(1.7)",
             });
