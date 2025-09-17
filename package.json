@@ -47,5 +47,8 @@
     },
     "lint-staged": {
         "*": "pnpm lint"
+    },
+    "dependencies": {
+        "@vercel/analytics": "^1.5.0"
     }
 }
