@@ -1,0 +1,7 @@
+<script lang="ts">
+    import SeoHead from '$lib/components/seo-head.svelte';
+</script>
+
+<SeoHead title="music" description="Explore my music collection!" />
+
+<h1>Hello from music</h1>

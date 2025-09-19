@@ -1,16 +1,26 @@
 <script lang="ts">
     import '../app.css';
+    import favicon from '$lib/assets/favicon.svg';
     import { dev } from '$app/environment';
     import { injectAnalytics } from '@vercel/analytics/sveltekit';
-    import SeoHead from '$lib/components/seo-head.svelte';
+    import Header from '$lib/components/header.svelte';
+    import Footer from '$lib/components/footer.svelte';
 
     injectAnalytics({ mode: dev ? 'development' : 'production' });
 
     let { children } = $props();
 </script>
 
-<SeoHead title="home" description="Welcome to my website!"/>
+<svelte:head>
+    <link rel="icon" href={favicon} />
+</svelte:head>
 
 <main class="w-screen h-screen antialiased">
-    {@render children?.()}
+    <div class="w-full h-full flex flex-col">
+        <Header/>
+        <div class="flex-1 overflow-y-auto container mx-auto">
+            {@render children?.()}
+        </div>
+        <Footer />
+    </div>
 </main>
