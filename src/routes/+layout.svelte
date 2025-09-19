@@ -5,6 +5,8 @@
     import { injectAnalytics } from '@vercel/analytics/sveltekit';
     import Header from '$lib/components/header.svelte';
     import Footer from '$lib/components/footer.svelte';
+    import Noise from '$lib/components/backgrounds/noise.svelte';
+    import Grid from '$lib/components/backgrounds/grid.svelte';
 
     injectAnalytics({ mode: dev ? 'development' : 'production' });
 
@@ -15,7 +17,9 @@
     <link rel="icon" href={favicon} />
 </svelte:head>
 
-<main class="w-screen h-screen antialiased">
+<main class="relative w-screen h-screen antialiased bg-background text-foreground">
+    <Noise />
+    <Grid />
     <div class="w-full h-full flex flex-col">
         <Header/>
         <div class="flex-1 overflow-y-auto container mx-auto">
