@@ -14,6 +14,12 @@
         "lint:fix": "eslint . --fix",
         "lint-staged": "lint-staged"
     },
+    "dependencies": {
+        "@vercel/analytics": "^1.5.0",
+        "@fontsource-variable/hanken-grotesk": "^5.2.8",
+        "@fontsource-variable/lora": "^5.2.8",
+        "@fontsource/ibm-plex-mono": "^5.2.7"
+    },
     "devDependencies": {
         "@commitlint/cli": "^19.8.1",
         "@commitlint/config-conventional": "^19.8.1",
@@ -47,8 +53,5 @@
     },
     "lint-staged": {
         "*": "pnpm lint"
-    },
-    "dependencies": {
-        "@vercel/analytics": "^1.5.0"
     }
 }
