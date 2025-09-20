@@ -3,7 +3,7 @@
 </script>
 
 <div
-    class="bg-auto bg-center absolute inset-0 w-full h-full opacity-20 dark:opacity-10 pointer-events-none"
+    class="bg-background bg-auto bg-center absolute inset-0 w-full h-full opacity-20 dark:opacity-10 pointer-events-none -z-30"
     style="background-image: url('{noiseUrl}')"
 >
 </div>
