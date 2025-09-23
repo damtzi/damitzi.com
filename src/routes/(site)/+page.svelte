@@ -3,7 +3,6 @@
     import Arrow from '$lib/components/arrow.svelte';
     import RunCard from '$lib/components/run-card.svelte';
     import type { PageProps } from './$types';
-    import { slugify } from '$lib/utils';
     import VinylPng from '$lib/assets/images/black-vinyl.png';
     import CdPng from '$lib/assets/images/clear-cd.png';
 
@@ -71,10 +70,10 @@
         <h2 class="text-2xl font-serif font-medium">
             Recent pickups
         </h2>
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 md:gap-8">
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 md:gap-10">
             {#each data.releases as release (release.id)}
                 <a
-                    href={`/music/vinyls/${slugify(release.basic_information.title)}`}
+                    href={`/music/vinyls/${release.id}`}
                     class="relative group"
                 >
                     <img
