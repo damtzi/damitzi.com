@@ -1,6 +1,7 @@
 <script lang="ts">
     import SeoHead from '$lib/components/seo-head.svelte';
     import Arrow from '$lib/components/arrow.svelte';
+    import RunCard from '$lib/components/run-card.svelte';
     import type { PageProps } from './$types';
     import { slugify } from '$lib/utils';
     import VinylPng from '$lib/assets/images/black-vinyl.png';
@@ -28,7 +29,26 @@
         <p>
             I am a frontend engineer based in Gdynia, specializing in
             building and maintaining user interfaces for websites and web
-            applications.
+            applications. Currently, I'm working on <a
+                href="https://klave.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-gray-400 transition-colors duration-150 ease-out hover:text-pure-blue hover:cursor-pointer"
+            >
+                Klave
+            </a> at <a
+                href="https://secretarium.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-gray-400 transition-colors duration-150 ease-out hover:text-pure-blue hover:cursor-pointer"
+            >
+                Secretarium
+            </a>, crafting intuitive and secure frontends that prioritise
+            privacy and security at every step.
+        </p>
+        <p>
+            In my spare time, I am keeping up with the NBA, listening to <a href="/music" class="text-gray-400 transition-colors duration-150 ease-out hover:text-pure-blue hover:cursor-pointer">music</a>, running
+            and baking <a href="/bread" class="text-gray-400 transition-colors duration-150 ease-out hover:text-pure-blue hover:cursor-pointer">bread</a>.
         </p>
     </div>
 
@@ -36,6 +56,15 @@
         <h2 class="text-2xl font-serif font-medium">
             Recent runs
         </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {#each data.runs as run (run.id)}
+                <RunCard
+                    date={run.start_date_local}
+                    distance={run.distance}
+                    movingTime={run.moving_time}
+                />
+            {/each}
+        </div>
     </div>
 
     <div class="flex flex-col gap-2">
