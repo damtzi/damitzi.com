@@ -20,10 +20,10 @@
     <link rel="icon" href={favicon} />
 </svelte:head>
 
-<main class="relative antialiased font-sans font-medium text-foreground w-screen h-screen">
+<main class="relative antialiased font-sans font-medium text-foreground">
     <Noise />
     <Grid />
-    <div class="w-full h-full flex flex-col gap-8 px-4 py-8 max-w-3xl mx-auto">
+    <div class="w-full min-h-dvh flex flex-col gap-8 px-4 py-8 max-w-3xl mx-auto">
         <Header/>
         <div class="flex-1">
             {@render children?.()}
