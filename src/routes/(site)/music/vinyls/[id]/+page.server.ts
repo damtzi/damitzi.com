@@ -7,7 +7,7 @@ export const prerender = true;
 
 // Provide list of paths to prerender
 export const entries: EntryGenerator = async () => {
-    const response = await fetch('/api/discogs?per_page=100');
+    const response = await fetch(`https://api.discogs.com/users/damitzi__/collection/folders/0/releases?token=${DISCOGS_TOKEN}`);
 
     const collection: CollectionsResponse = await response.json();
     const releases = collection.releases;
@@ -15,7 +15,7 @@ export const entries: EntryGenerator = async () => {
     // Return paths like '/music/vinyl/123'
     return releases.map((vinyl) => {
         return {
-            id: `/music/vinyl/${vinyl.id}`
+            id: `${vinyl.id}`
         };
     });
 };
