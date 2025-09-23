@@ -15,10 +15,10 @@
         "lint-staged": "lint-staged"
     },
     "dependencies": {
-        "@vercel/analytics": "^1.5.0",
         "@fontsource-variable/hanken-grotesk": "^5.2.8",
         "@fontsource-variable/lora": "^5.2.8",
-        "@fontsource/ibm-plex-mono": "^5.2.7"
+        "@fontsource/ibm-plex-mono": "^5.2.7",
+        "@vercel/analytics": "^1.5.0"
     },
     "devDependencies": {
         "@commitlint/cli": "^19.8.1",
@@ -39,6 +39,7 @@
         "globals": "^16.0.0",
         "husky": "^9.1.7",
         "lint-staged": "^16.1.6",
+        "mdsvex": "^0.12.6",
         "svelte": "^5.0.0",
         "svelte-check": "^4.0.0",
         "tailwindcss": "^4.0.0",

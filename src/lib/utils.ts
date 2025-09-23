@@ -14,7 +14,7 @@ export function deslugify(slug: string): string {
         .replace(/(^\w|\s\w)/g, char => char.toUpperCase());
 }
 
-export function dateFormatter(date: Date): string {
+export function dateFormatter(date: string): string {
     // Using Intl API for locale-aware formatting
     const formatter = new Intl.DateTimeFormat('en-GB', {
         day: '2-digit',
@@ -22,7 +22,7 @@ export function dateFormatter(date: Date): string {
         year: 'numeric'
     });
 
-    const formattedDate = formatter.format(date).replace(/\//g, '/');
+    const formattedDate = formatter.format(new Date(date)).replace(/\//g, '/');
 
     return formattedDate;
 }
