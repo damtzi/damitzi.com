@@ -2,7 +2,7 @@ import type { Activity, CollectionsResponse, StravaAuthResponse } from '$lib/typ
 import type { PageServerLoad } from './$types';
 import { STRAVA_CLIENT_ID, STRAVA_CLIENT_SECRET, STRAVA_REFRESH_TOKEN } from '$env/static/private';
 
-export const load: PageServerLoad = async ({ fetch }) => {
+export const load: PageServerLoad = async ({ fetch, setHeaders }) => {
     const stravaAuthResponse = await fetch(
         `https://www.strava.com/oauth/token?client_id=${STRAVA_CLIENT_ID}&client_secret=${STRAVA_CLIENT_SECRET}&refresh_token=${STRAVA_REFRESH_TOKEN}&grant_type=refresh_token`,
         {
@@ -24,6 +24,11 @@ export const load: PageServerLoad = async ({ fetch }) => {
 
     const activities: Activity[] = await stravaResponse.json();
     const runs = activities.filter(activity => activity.type === 'Run').slice(0, 4);
+
+    // Set cache-control headers for the page response
+    setHeaders({
+        'cache-control': 'public, max-age=300, stale-while-revalidate=60'
+    });
 
     return { releases, runs };
 };
