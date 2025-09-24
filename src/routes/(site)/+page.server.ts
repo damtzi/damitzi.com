@@ -1,6 +1,6 @@
 import type { Activity, CollectionsResponse, StravaAuthResponse } from '$lib/types';
 import type { PageServerLoad } from './$types';
-import { STRAVA_CLIENT_ID, STRAVA_CLIENT_SECRET, STRAVA_REFRESH_TOKEN } from '$env/static/private';
+import { STRAVA_CLIENT_ID, STRAVA_CLIENT_SECRET, STRAVA_REFRESH_TOKEN, DISCOGS_TOKEN } from '$env/static/private';
 
 export const load: PageServerLoad = async ({ fetch, setHeaders }) => {
     const stravaAuthResponse = await fetch(
@@ -13,11 +13,18 @@ export const load: PageServerLoad = async ({ fetch, setHeaders }) => {
     const data: StravaAuthResponse = await stravaAuthResponse.json();
 
     const [discogsResponse, stravaResponse] = await Promise.all([
-        fetch('/api/discogs?sort=added&sort_order=desc&page=1&per_page=4'),
+        fetch(`https://api.discogs.com/users/damitzi__/collection/folders/0/releases?token=${DISCOGS_TOKEN}&sort=added&sort_order=desc&page=1&per_page=4`),
         fetch(
             `https://www.strava.com/api/v3/athlete/activities?access_token=${data.access_token}`
         )
     ]);
+
+    if (!discogsResponse.ok) {
+        throw new Error(`Discogs API error: ${discogsResponse.statusText}`);
+    }
+    if (!stravaResponse.ok) {
+        throw new Error(`Strava API error: ${stravaResponse.statusText}`);
+    }
 
     const collection: CollectionsResponse = await discogsResponse.json();
     const releases = collection.releases;
