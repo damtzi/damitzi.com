@@ -294,3 +294,11 @@ export type DiscogsImage = {
     width: number;
     height: number;
 };
+
+export type Recipe = {
+    title: string;
+    slug: string;
+    description: string;
+    date: string;
+    published: boolean;
+};
