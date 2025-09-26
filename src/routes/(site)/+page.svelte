@@ -20,7 +20,7 @@
 
 <SeoHead title="Home" description="Home page" />
 
-<div class="flex flex-col gap-8">
+<div class="flex flex-col gap-8 stagger-animation">
     <div class="flex flex-col gap-2">
         <h2 class="text-2xl font-serif font-medium">
             About me
@@ -129,3 +129,38 @@
         </ul>
     </div>
 </div>
+
+<style>
+    @media (prefers-reduced-motion: no-preference) {
+        /* Target all direct children of the stagger-animation container */
+        .stagger-animation > * {
+            opacity: 0;
+            transform: translateY(-10px);
+            animation: fadeInDown 0.6s ease-out forwards;
+        }
+
+        /* Apply delays to each consecutive child */
+        .stagger-animation > :nth-child(1) {
+            animation-delay: 0.1s;
+        }
+        .stagger-animation > :nth-child(2) {
+            animation-delay: 0.3s;
+        }
+        .stagger-animation > :nth-child(3) {
+            animation-delay: 0.5s;
+        }
+        .stagger-animation > :nth-child(4) {
+            animation-delay: 0.7s;
+        }
+        .stagger-animation > :nth-child(5) {
+            animation-delay: 0.9s;
+        }
+
+        @keyframes fadeInDown {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    }
+</style>
