@@ -6,7 +6,7 @@
     import VinylPng from '$lib/assets/images/black-vinyl.png';
     import CdPng from '$lib/assets/images/clear-cd.png';
 
-    const { data }: PageProps = $props();
+    let { data }: PageProps = $props();
 
     const socialLinks = [
         { href: 'https://github.com/damtzi', text: 'github' },
@@ -46,8 +46,8 @@
             privacy and security at every step.
         </p>
         <p>
-            In my spare time, I am keeping up with the NBA, listening to <a href="/music" class="text-gray-400 transition-colors duration-150 ease-out hover:text-pure-blue hover:cursor-pointer">music</a>, running
-            and baking <a href="/bread" class="text-gray-400 transition-colors duration-150 ease-out hover:text-pure-blue hover:cursor-pointer">bread</a>.
+            In my spare time, I am keeping up with the NBA, listening to <a href="/music" class="text-gray-400 transition-colors duration-150 ease-out hover:text-pure-blue hover:cursor-pointer">music</a>, playing sports
+            and <a href="/recipes" class="text-gray-400 transition-colors duration-150 ease-out hover:text-pure-blue hover:cursor-pointer">baking</a> bread.
         </p>
     </div>
 

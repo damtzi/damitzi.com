@@ -4,7 +4,7 @@
     import Breadcrumbs from '$lib/components/breadcrumbs.svelte';
 </script>
 
-<SeoHead title="Music" description="Explore my music collection!" />
+<SeoHead title="Music" description="Explore my music collection and concert tracker" />
 
 <div class="flex flex-col gap-2">
     <h1 class="text-2xl font-serif font-medium">
@@ -27,7 +27,16 @@
                 href="/music/concerts"
                 class="text-gray-400 transition-colors duration-150 ease-out hover:text-pure-blue hover:cursor-pointer"
             >
-                Concert tracker
+                Concert Tracker
+            </a>
+        </li>
+        <li class="flex items-center group gap-2">
+            <Arrow />
+            <a
+                href="/music/top-picks"
+                class="text-gray-400 transition-colors duration-150 ease-out hover:text-pure-blue hover:cursor-pointer"
+            >
+                Top Picks
             </a>
         </li>
     </ul>

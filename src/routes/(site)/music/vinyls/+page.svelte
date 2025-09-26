@@ -5,10 +5,10 @@
     import VinylPng from '$lib/assets/images/black-vinyl.png';
     import CdPng from '$lib/assets/images/clear-cd.png';
 
-    const { data }: PageProps = $props();
+    let { data }: PageProps = $props();
 </script>
 
-<SeoHead title="Vinyls" description="Explore my music collection!" />
+<SeoHead title="Vinyls" description="Explore my music collection" />
 
 <div class="flex flex-col gap-2">
     <h1 class="text-2xl font-serif font-medium">

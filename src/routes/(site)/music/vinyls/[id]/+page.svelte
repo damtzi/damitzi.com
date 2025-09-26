@@ -1,11 +1,14 @@
 <script lang="ts">
     import type { PageProps } from './$types';
+    import SeoHead from '$lib/components/seo-head.svelte';
 
-    const { data }: PageProps = $props();
+    let { data }: PageProps = $props();
 
     const primaryImage = data.vinyl.images.find(image => image.type === 'primary');
     const secondaryImage = data.vinyl.images.find(image => image.type === 'secondary');
 </script>
+
+<SeoHead title={data.vinyl.title} description={`${data.vinyl.title} details`} />
 
 <div class="flex flex-col gap-2">
     <h1 class="text-2xl font-serif font-medium">
