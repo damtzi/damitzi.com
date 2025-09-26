@@ -4,6 +4,7 @@
 
 <header class="flex items-center justify-between">
     <div class="flex items-center gap-2">
+        <a href="/">
             <img
                 src={PureBlueImg}
                 alt="Pure blue, hex code #0007FB."
@@ -11,9 +12,10 @@
                 width={36}
                 height={36}
             />
-            <div class="flex flex-col">
-                <span>Damian Tziamtzis</span>
-                <span class="text-gray-400">Frontend Engineer</span>
-            </div>
+        </a>
+        <div class="flex flex-col">
+            <span>Damian Tziamtzis</span>
+            <span class="text-gray-400">Frontend Engineer</span>
         </div>
+    </div>
 </header>
