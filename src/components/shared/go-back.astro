@@ -41,30 +41,29 @@ const { class: className, fallbackPath, text = 'Go Back' } = Astro.props;
 </div>
 
 <script>
- import { supportsViewTransitions } from 'astro:transitions/client';
+    import { supportsViewTransitions } from 'astro:transitions/client';
 
- if (supportsViewTransitions) {
-     document.addEventListener('astro:page-load', initGoBack);
- }
- else {
-     initGoBack();
- }
+    if (supportsViewTransitions) {
+        document.addEventListener('astro:page-load', initGoBack);
+    }
+    else {
+        initGoBack();
+    }
 
- function initGoBack() {
-     const backButton = document.querySelector('[data-go-back]');
-     const hasHistory = history.length > 1;
-     const referrer = document.referrer;
-     const isSameOrigin
-        = referrer && new URL(referrer).origin === window.location.origin;
+    function initGoBack() {
+        const backButton = document.querySelector('[data-go-back]');
+        const hasHistory = history.length > 1;
+        const referrer = document.referrer;
+        const isSameOrigin = referrer && new URL(referrer).origin === window.location.origin;
 
-     backButton?.addEventListener('click', (e) => {
-         if (hasHistory && isSameOrigin) {
-             console.log('Going back with history!!!!!!!');
-             e.preventDefault();
-             history.back();
-         }
-         console.log('Going back');
-         // If conditions aren't met, it will use the fallback href
-     });
- }
+        backButton?.addEventListener('click', (e) => {
+            if (hasHistory && isSameOrigin) {
+                console.log('Going back with history!!!!!!!');
+                e.preventDefault();
+                history.back();
+            }
+            console.log('Going back');
+            // If conditions aren't met, it will use the fallback href
+        });
+    }
 </script>
