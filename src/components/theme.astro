@@ -16,8 +16,7 @@
 
         if (typeof localStorage !== 'undefined') {
             const observer = new MutationObserver(() => {
-                const isDark
-                = document.documentElement.classList.contains('dark');
+                const isDark = document.documentElement.classList.contains('dark');
                 localStorage.setItem('theme', isDark ? 'dark' : 'theme-light');
             });
             observer.observe(document.documentElement, {
