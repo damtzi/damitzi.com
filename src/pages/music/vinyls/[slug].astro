@@ -17,7 +17,7 @@ export const getStaticPaths = async () => {
 const { release } = Astro.props;
 ---
 
-<BaseLayout title={`damitzi | ${release.basic_information.title}`}>
+<BaseLayout title={`${release.basic_information.title}`}>
     <div class="flex flex-col gap-2">
         <h1 class="text-2xl font-serif font-medium">
             {release.basic_information.title}
