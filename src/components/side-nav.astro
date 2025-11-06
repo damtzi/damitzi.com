@@ -1,0 +1,49 @@
+---
+import { cn } from '@/lib/utils';
+const currentPath = Astro.url.pathname;
+---
+
+<nav class="flex flex-col gap-2">
+    <a
+        href="/"
+        class={cn('font-serif font-medium text-gray-400 transition-colors duration-150 ease-out hover:text-foreground hover:cursor-pointer', currentPath === '/' ? 'text-foreground' : '')}
+    >
+        home
+    </a>
+    <a
+        href="/about"
+        class={cn('font-serif font-medium text-gray-400 transition-colors duration-150 ease-out hover:text-foreground hover:cursor-pointer', currentPath === '/about' ? 'text-foreground' : '')}
+    >
+        about
+    </a>
+    <a
+        href="/projects"
+        class={cn('font-serif font-medium text-gray-400 transition-colors duration-150 ease-out hover:text-foreground hover:cursor-pointer', currentPath === '/projects' ? 'text-foreground' : '')}
+    >
+        projects
+    </a>
+    <a
+        href="/hobbies"
+        class={cn('font-serif font-medium text-gray-400 transition-colors duration-150 ease-out hover:text-foreground hover:cursor-pointer', currentPath === '/hobbies' ? 'text-foreground' : '')}
+    >
+        hobbies
+    </a>
+    <a
+        href="/music"
+        class={cn('font-serif font-medium text-gray-400 transition-colors duration-150 ease-out hover:text-foreground hover:cursor-pointer', currentPath.includes('/music') ? 'text-foreground' : '')}
+    >
+        music
+    </a>
+    <a
+        href="/bread"
+        class={cn('font-serif font-medium text-gray-400 transition-colors duration-150 ease-out hover:text-foreground hover:cursor-pointer', currentPath.includes('/bread') ? 'text-foreground' : '')}
+    >
+        bread
+    </a>
+    <a
+        href="/socials"
+        class={cn('font-serif font-medium text-gray-400 transition-colors duration-150 ease-out hover:text-foreground hover:cursor-pointer', currentPath === '/socials' ? 'text-foreground' : '')}
+    >
+        socials
+    </a>
+</nav>

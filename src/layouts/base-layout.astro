@@ -5,7 +5,8 @@ import '@fontsource/ibm-plex-mono';
 import '@fontsource-variable/lora';
 import { ClientRouter } from 'astro:transitions';
 import Footer from '@/components/footer.astro';
-import Nav from '@/components/nav.astro';
+import Header from '@/components/header.astro';
+import SideNav from '@/components/side-nav.astro';
 import Noise from '@/components/backgrounds/noise.astro';
 import Grid from '@/components/backgrounds/grid.astro';
 import Theme from '@/components/theme.astro';
@@ -23,7 +24,7 @@ const { title } = Astro.props;
         <meta name="viewport" content="width=device-width" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <meta name="generator" content={Astro.generator} />
-        <title>{`${title} | Damian Tziamtzis`}</title>
+        <title>{`${title} | Damian T`}</title>
         <Theme />
         <ClientRouter />
     </head>
@@ -34,12 +35,17 @@ const { title } = Astro.props;
         <Noise />
         <Grid />
         <div
-            class="min-h-dvh w-full flex flex-col mx-auto max-w-3xl px-4 py-8 gap-8"
+            class="min-h-dvh w-full flex flex-col mx-auto max-w-4xl px-4 py-8 gap-8"
         >
-            <Nav />
-            <main class="flex-grow">
-                <slot />
-            </main>
+            <Header />
+            <div class="grid grid-cols-12 flex-grow">
+                <div class="col-span-3">
+                    <SideNav />
+                </div>
+                <main class="col-span-9">
+                    <slot />
+                </main>
+            </div>
             <Footer />
         </div>
     </body>
