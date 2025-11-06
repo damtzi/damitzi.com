@@ -1,9 +1,12 @@
 ---
+import { getCollection } from 'astro:content';
 import Arrow from '@/components/shared/arrow.astro';
 import Breadcrumbs from '@/components/shared/breadcrumbs.astro';
 import Link from '@/components/shared/link.astro';
 import BaseLayout from '@/layouts/base-layout.astro';
 import { TypographyH1, TypographyP } from '@/components/shared/typography';
+
+const topPicks = await getCollection('topPicks');
 ---
 
 <BaseLayout title="My Top Picks">
@@ -14,30 +17,18 @@ import { TypographyH1, TypographyP } from '@/components/shared/typography';
         </TypographyP>
         <Breadcrumbs />
         <ul class="space-y-2 w-fit">
-            <li class="flex items-center group gap-2">
-                <Arrow />
-                <Link href="/music/top-picks" title="2020" internal />
-            </li>
-            <li class="flex items-center group gap-2">
-                <Arrow />
-                <Link href="/music/top-picks" title="2021" internal />
-            </li>
-            <li class="flex items-center group gap-2">
-                <Arrow />
-                <Link href="/music/top-picks" title="2022" internal />
-            </li>
-            <li class="flex items-center group gap-2">
-                <Arrow />
-                <Link href="/music/top-picks" title="2023" internal />
-            </li>
-            <li class="flex items-center group gap-2">
-                <Arrow />
-                <Link href="/music/top-picks" title="2024" internal />
-            </li>
-            <li class="flex items-center group gap-2">
-                <Arrow />
-                <Link href="/music/top-picks" title="2025" internal />
-            </li>
+            {
+                topPicks.map(list => (
+                    <li class="flex items-center group gap-2">
+                        <Arrow />
+                        <Link
+                            href={`/music/top-picks/${list.data.slug}`}
+                            title={list.data.title}
+                            internal
+                        />
+                    </li>
+                ))
+            }
         </ul>
     </div>
 </BaseLayout>

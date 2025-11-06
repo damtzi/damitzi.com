@@ -10,6 +10,15 @@ const recipes = defineCollection({
     })
 });
 
+const topPicks = defineCollection({
+    loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/topPicks' }),
+    schema: z.object({
+        title: z.string(),
+        slug: z.string(),
+        content: z.string()
+    })
+});
+
 const concerts = defineCollection({
     loader: file('src/content/concerts.json'),
     schema: z.object({
@@ -21,4 +30,4 @@ const concerts = defineCollection({
     })
 });
 
-export const collections = { recipes, concerts };
+export const collections = { recipes, topPicks, concerts };
