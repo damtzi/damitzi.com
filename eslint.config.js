@@ -61,7 +61,7 @@ export default ts.config(
             }
         },
         rules: {
-            '@stylistic/jsx-one-expression-per-line': ['error', { allow: 'non-jsx' }]
+            '@stylistic/jsx-one-expression-per-line': ['off']
         }
     }
 );

@@ -1,0 +1,42 @@
+---
+import Arrow from '@/components/shared/arrow.astro';
+import Breadcrumbs from '@/components/shared/breadcrumbs.astro';
+import Link from '@/components/shared/link.astro';
+import BaseLayout from '@/layouts/base-layout.astro';
+---
+
+<BaseLayout title="My Top Picks">
+    <div class="flex flex-col gap-2">
+        <h1 class="text-2xl font-serif font-medium">My Top Picks</h1>
+        <p>
+            Since 2020 I have been writing down all the albums I have listened to that year and ranking them. I do not follow any universal ranking system, but rather rely on my personal taste and listening habits.
+        </p>
+        <Breadcrumbs />
+        <ul class="space-y-2 w-fit">
+            <li class="flex items-center group gap-2">
+                <Arrow />
+                <Link href="/music/top-picks" title="2020" internal />
+            </li>
+            <li class="flex items-center group gap-2">
+                <Arrow />
+                <Link href="/music/top-picks" title="2021" internal />
+            </li>
+            <li class="flex items-center group gap-2">
+                <Arrow />
+                <Link href="/music/top-picks" title="2022" internal />
+            </li>
+            <li class="flex items-center group gap-2">
+                <Arrow />
+                <Link href="/music/top-picks" title="2023" internal />
+            </li>
+            <li class="flex items-center group gap-2">
+                <Arrow />
+                <Link href="/music/top-picks" title="2024" internal />
+            </li>
+            <li class="flex items-center group gap-2">
+                <Arrow />
+                <Link href="/music/top-picks" title="2025" internal />
+            </li>
+        </ul>
+    </div>
+</BaseLayout>

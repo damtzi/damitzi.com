@@ -1,0 +1,30 @@
+---
+import BaseLayout from '@/layouts/base-layout.astro';
+import Link from '@/components/shared/link.astro';
+import Arrow from '@/components/shared/arrow.astro';
+
+const socialLinks = [
+    { href: 'https://github.com/damtzi', text: 'github' },
+    { href: 'https://bsky.app/profile/damitzi.bsky.social', text: 'bluesky' },
+    { href: 'https://www.instagram.com/damitzi__', text: 'instagram' },
+    { href: 'https://www.discogs.com/user/damitzi__', text: 'discogs' },
+    { href: 'https://www.strava.com/athletes/108759547', text: 'strava' },
+    { href: 'mailto:damian.tziamtzis@gmail.com', text: 'email' }
+];
+---
+<BaseLayout title="Socials">
+    <div class="flex flex-col gap-2">
+        <h1 class="text-3xl font-serif font-medium">Socials</h1>
+        <p>You can find me on:</p>
+        <ul class="space-y-2 w-fit">
+            {
+                socialLinks.map(link => (
+                    <li class="flex items-center group gap-2">
+                        <Arrow />
+                        <Link href={link.href} title={link.text} />
+                    </li>
+                ))
+            }
+        </ul>
+    </div>
+</BaseLayout>

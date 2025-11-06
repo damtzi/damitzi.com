@@ -1,0 +1,50 @@
+---
+import BaseLayout from '@/layouts/base-layout.astro';
+import Link from '@/components/shared/link.astro';
+---
+
+<BaseLayout title="Home">
+    <div class="flex flex-col gap-8">
+        <div class="flex flex-col gap-2">
+            <h1 class="text-3xl font-serif font-medium">About me</h1>
+
+            <p>
+                I am a frontend engineer based in Gdynia, specializing in
+                building and maintaining user interfaces for websites and web
+                applications. Currently, I'm working on
+                {' '}
+                <Link
+                    href="https://klave.com/"
+                    title="Klave"
+                />
+                {' '}
+                at
+                {' '}
+                <Link
+                    href="https://secretarium.com/"
+                    title="Secretarium"
+                />
+                , crafting intuitive and secure frontends that prioritise
+                privacy and security at every step.
+                <br />
+                <br />
+                In my spare time, I am keeping up with the NBA, listening to
+                {' '}
+                <Link
+                    href="/music"
+                    title="music"
+                    internal
+                />
+                , running, and baking
+                {' '}
+                <Link
+                    href="/bread"
+                    title="bread"
+                    internal
+                />
+                .
+            </p>
+        </div>
+
+    </div>
+</BaseLayout>

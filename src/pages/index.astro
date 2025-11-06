@@ -4,20 +4,10 @@ import VinylPng from '@/assets/black-vinyl.png';
 import CdPng from '@/assets/clear-cd.png';
 import BaseLayout from '@/layouts/base-layout.astro';
 import Link from '@/components/shared/link.astro';
-import Arrow from '@/components/shared/arrow.astro';
 import RunCard from '@/components/run-card.astro';
 import { slugify } from '@/lib/utils';
 import { getStravaActivity } from '@/lib/strava';
 import { getDiscogsCollection } from '@/lib/discogs';
-
-const socialLinks = [
-    { href: 'https://github.com/damtzi', text: 'github' },
-    { href: 'https://bsky.app/profile/damitzi.bsky.social', text: 'bluesky' },
-    { href: 'https://www.instagram.com/damitzi__', text: 'instagram' },
-    { href: 'https://www.discogs.com/user/damitzi__', text: 'discogs' },
-    { href: 'https://www.strava.com/athletes/108759547', text: 'strava' },
-    { href: 'mailto:damian.tziamtzis@gmail.com', text: 'email' }
-];
 
 const activities = await getStravaActivity();
 const vinyls = await getDiscogsCollection();
@@ -34,43 +24,19 @@ const recentVinyls = vinyls.releases
 <BaseLayout title="Home">
     <div class="flex flex-col gap-8">
         <div class="flex flex-col gap-2">
-            <h2 class="text-2xl font-serif font-medium">About me</h2>
+            <h1 class="text-3xl font-serif font-medium">Welcome</h1>
 
             <p>
-                I am a frontend engineer based in Gdynia, specializing in
-                building and maintaining user interfaces for websites and web
-                applications. Currently, I'm working on
-                {' '}
-                <Link
-                    href="https://klave.com/"
-                    title="Klave"
-                />
-                {' '}
-                at
-                {' '}
-                <Link
-                    href="https://secretarium.com/"
-                    title="Secretarium"
-                />
-                , crafting intuitive and secure frontends that prioritise
-                privacy and security at every step.
-                <br />
-                <br />
-                In my spare time, I am keeping up with the NBA, listening to
-                {' '}
-                <Link
-                    href="/music"
-                    title="music"
-                    internal
-                />
-                , running, and baking
-                {' '}
-                <Link
-                    href="/bread"
-                    title="bread"
-                    internal
-                />
-                .
+                Hello there! Welcome to my personal website. Here you can find: information <Link href="/about" title="about me" internal />,
+                my <Link href="/projects" title="projects" internal />, my <Link href="/music/vinyls" title="vinyl collection" internal />,
+                my <Link href="/music/top-picks" title="top picks" internal />, my <Link href="/socials" title="social links" internal />,
+                my <Link href="/hobbies" title="hobbies" internal />, and my <Link href="/bread" title="bread" internal />.
+            </p>
+            <p>
+                You can check out my work on <Link href="https://github.com/damtzi" title="GitHub" />, follow me on
+                <Link href="https://bsky.app/profile/damitzi.com" title="Bluesky" />, <Link href="https://www.instagram.com/damitzi__" title="Instagram" />,
+                <Link href="https://www.discogs.com/user/damitzi__" title="Discogs" />, <Link href="https://www.strava.com/athletes/108759547" title="Strava" />,
+                or drop me an email at <Link href="mailto:damian.tziamtzis@gmail.com" title="damian.tziamtzis@gmail.com" />.
             </p>
         </div>
 
@@ -132,21 +98,6 @@ const recentVinyls = vinyls.releases
                     ))
                 }
             </div>
-        </div>
-
-        <div class="flex flex-col gap-2">
-            <h2 class="text-2xl font-serif font-medium">Socials</h2>
-            <p>You can find me on:</p>
-            <ul class="space-y-2 w-fit">
-                {
-                    socialLinks.map(link => (
-                        <li class="flex items-center group gap-2">
-                            <Arrow />
-                            <Link href={link.href} title={link.text} />
-                        </li>
-                    ))
-                }
-            </ul>
         </div>
     </div>
 </BaseLayout>
