@@ -2,6 +2,7 @@
 import BaseLayout from '@/layouts/base-layout.astro';
 import Link from '@/components/shared/link.astro';
 import Arrow from '@/components/shared/arrow.astro';
+import { TypographyH1, TypographyP } from '@/components/shared/typography';
 
 const socialLinks = [
     { href: 'https://github.com/damtzi', text: 'github' },
@@ -14,8 +15,8 @@ const socialLinks = [
 ---
 <BaseLayout title="Socials">
     <div class="flex flex-col gap-2">
-        <h1 class="text-3xl font-serif font-medium">Socials</h1>
-        <p>You can find me on:</p>
+        <TypographyH1>Socials</TypographyH1>
+        <TypographyP>You can find me on:</TypographyP>
         <ul class="space-y-2 w-fit">
             {
                 socialLinks.map(link => (

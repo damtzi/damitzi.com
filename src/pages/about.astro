@@ -1,14 +1,15 @@
 ---
 import BaseLayout from '@/layouts/base-layout.astro';
 import Link from '@/components/shared/link.astro';
+import { TypographyH1, TypographyP } from '@/components/shared/typography';
 ---
 
 <BaseLayout title="Home">
     <div class="flex flex-col gap-8">
         <div class="flex flex-col gap-2">
-            <h1 class="text-3xl font-serif font-medium">About me</h1>
+            <TypographyH1>About me</TypographyH1>
 
-            <p>
+            <TypographyP>
                 I am a frontend engineer based in Gdynia, specializing in
                 building and maintaining user interfaces for websites and web
                 applications. Currently, I'm working on
@@ -26,24 +27,10 @@ import Link from '@/components/shared/link.astro';
                 />
                 , crafting intuitive and secure frontends that prioritise
                 privacy and security at every step.
-                <br />
-                <br />
-                In my spare time, I am keeping up with the NBA, listening to
-                {' '}
-                <Link
-                    href="/music"
-                    title="music"
-                    internal
-                />
-                , running, and baking
-                {' '}
-                <Link
-                    href="/bread"
-                    title="bread"
-                    internal
-                />
-                .
-            </p>
+            </TypographyP>
+            <TypographyP>
+                WIP
+            </TypographyP>
         </div>
 
     </div>

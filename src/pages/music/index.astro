@@ -3,11 +3,12 @@ import Arrow from '@/components/shared/arrow.astro';
 import Breadcrumbs from '@/components/shared/breadcrumbs.astro';
 import Link from '@/components/shared/link.astro';
 import BaseLayout from '@/layouts/base-layout.astro';
+import { TypographyH1 } from '@/components/shared/typography';
 ---
 
 <BaseLayout title="Music">
     <div class="flex flex-col gap-2">
-        <h1 class="text-2xl font-serif font-medium">Music</h1>
+        <TypographyH1>Music</TypographyH1>
         <Breadcrumbs />
         <ul class="space-y-2 w-fit">
             <li class="flex items-center group gap-2">

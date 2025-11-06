@@ -4,6 +4,7 @@ import Breadcrumbs from '@/components/shared/breadcrumbs.astro';
 import BaseLayout from '@/layouts/base-layout.astro';
 import { getDiscogsCollection } from '@/lib/discogs';
 import { slugify } from '@/lib/utils';
+import { TypographyH1 } from '@/components/shared/typography';
 
 export const getStaticPaths = async () => {
     const data = await getDiscogsCollection();
@@ -19,9 +20,9 @@ const { release } = Astro.props;
 
 <BaseLayout title={`${release.basic_information.title}`}>
     <div class="flex flex-col gap-2">
-        <h1 class="text-2xl font-serif font-medium">
+        <TypographyH1>
             {release.basic_information.title}
-        </h1>
+        </TypographyH1>
         <Breadcrumbs />
         <div class="flex flex-col md:flex-row gap-8">
             <Image

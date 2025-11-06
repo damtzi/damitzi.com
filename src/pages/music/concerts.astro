@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import Breadcrumbs from '@/components/shared/breadcrumbs.astro';
 import BaseLayout from '@/layouts/base-layout.astro';
 import { dateFormatter } from '@/lib/utils';
+import { TypographyH1 } from '@/components/shared/typography';
 
 const concerts = await getCollection('concerts');
 
@@ -32,7 +33,7 @@ const years = Object.keys(concertsByYear)
 
 <BaseLayout title="My Concerts">
     <div class="flex flex-col gap-4">
-        <h1 class="text-2xl font-serif font-medium">My Concerts</h1>
+        <TypographyH1>My Concerts</TypographyH1>
         <Breadcrumbs />
         <div class="space-y-6 w-full">
             {
