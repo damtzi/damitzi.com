@@ -1,10 +1,130 @@
 ---
 import BaseLayout from '@/layouts/base-layout.astro';
-import { TypographyH1, TypographyP } from '@/components/shared/typography';
+import { TypographyH1, TypographyH2, TypographyP } from '@/components/shared/typography';
+import ProjectCard from '@/components/project-card.astro';
+
+const personalProjects = [
+    {
+        title: 'damitzi.com',
+        description: 'My personal portfolio website built with Astro, showcasing my projects, experience, skills, and favorite hobbies. Features a modern design with dark mode support and responsive layout.',
+        link: 'https://damitzi.com',
+        githubUrl: 'https://github.com/damtzi/damitzi.com'
+    }
+];
+
+const workProjects = [
+    {
+        title: 'iLancaster',
+        description: 'Official mobile app for Lancaster University with 10K+ downloads. Built with React Native, providing students access to university services, resources, library information, and campus navigation. Features live streaming, timetables, and integration with the student portal.',
+        link: 'https://portal.lancaster.ac.uk/ask/mobile/'
+    },
+    {
+        title: 'Secretarium Website',
+        description: 'Corporate website for Secretarium, a UK confidential computing leader. Built with React and Next.js, showcasing their innovative privacy-preserving technology, Trusted Execution Environments (TEEs), and solutions for secure data processing across financial services and healthcare.',
+        link: 'https://secretarium.com'
+    },
+    {
+        title: 'Moai Website',
+        description: 'Marketing website for Moai, a privacy-preserving COVID-19 contact tracing and immunity certificate app. Built during the pandemic to enable secure track and trace without collecting personal data, supporting cross-border collaboration and anonymous venue check-ins.',
+        link: 'https://moaiapp.com'
+    },
+    {
+        title: 'Moai App',
+        description: 'Privacy-first mobile application (iOS & Android) for COVID-19 contact tracing and exposure risk assessment. Developed with React Native, featuring anonymous QR code scanning, secure location check-ins, and immunity certificate sharing without compromising user privacy.',
+        link: 'https://moaiapp.com'
+    },
+    {
+        title: 'STTS Website',
+        description: 'Website for the Secretarium Tokenisation & Trading Suite. Showcases the secure platform for tokenising and trading assets using confidential computing, featuring delivery vs payment processes, parametric tokens, and immutable audit trails powered by TEEs.',
+        link: 'https://stts.io'
+    },
+    {
+        title: 'DANIE Website',
+        description: 'Platform website for DANIE, a consortium of financial institutions using Privacy-Enhancing Technology for secure cross-firm collaboration. Multiple A-Team Innovation Awards winner for enabling KYC, AML, and reference data reconciliation without exposing sensitive information.',
+        link: 'https://danie.tech'
+    },
+    {
+        title: 'Amlytic Website',
+        description: 'Marketing site for Amlytic, an award-winning anti-money laundering platform. Won the BIS/G20 TechSprint on cross-border AML/CFT collaboration. Features privacy-preserving transaction data pooling enabling financial institutions to detect money laundering patterns at scale.',
+        link: 'https://amlytic.com'
+    },
+    {
+        title: 'SoftMetal Website',
+        description: 'Corporate website for SoftMetal AG, a metal trading company using confidential computing for blind FerroChrome auctions. Built with modern web technologies to showcase their innovative trading platform powered by Secretarium technology.',
+        link: 'https://softmetal.ch'
+    },
+    {
+        title: 'SoftMetal Platform',
+        description: 'Secure trading platform enabling blind auctions for FerroChrome and metals. Built on confidential computing with React, featuring parametric token trading, custodian integration, and tamper-proof execution. Enables flexible trading beyond traditional exchange standards.',
+        link: 'https://app.softmetal.ch'
+    },
+    {
+        title: 'Klave Website',
+        description: 'Marketing website for Klave, Secretarium\'s flagship confidential computing Platform-as-a-Service. Built with Next.js and Tailwind CSS, showcasing the serverless platform that enables developers to deploy WebAssembly apps into secure TEEs with end-to-end encryption.',
+        link: 'https://klave.com'
+    },
+    {
+        title: 'Klave Platform',
+        description: 'Full-stack confidential computing PaaS built with React and Node.js. Enables developers to deploy WebAssembly applications into Trusted Execution Environments with cryptographic attestation, secure ledger storage, and lightning-fast performance without cold starts.',
+        link: 'https://app.klave.com',
+        githubUrl: 'https://github.com/klave-network/platform'
+    },
+    {
+        title: 'Klave CLI',
+        description: 'Command-line interface tool for Klave platform built with Rust. Provides developers seamless workflow integration to scaffold, build, deploy, and manage confidential computing applications directly from the terminal.',
+        link: 'https://klave.com',
+        githubUrl: 'https://github.com/klave-network/cli'
+    },
+    {
+        title: 'Klave Docs',
+        description: 'Comprehensive documentation site for Klave platform built with Next.js and MDX. Features quickstart guides, SDK references, architecture deep-dives, and tutorials for building trustless WebAssembly applications with confidential computing in AssemblyScript and Rust.',
+        link: 'https://docs.klave.com',
+        githubUrl: 'https://github.com/klave-network/docs'
+    },
+    {
+        title: 'Klave AI',
+        description: 'Confidential AI solution enabling secure RAG (Retrieval-Augmented Generation) and inference. Built on TEEs to keep models, prompts, and data encrypted by default. Features data provenance tracking, model lineage, and cryptographic guarantees for enterprise AI workflows.',
+        link: 'https://klave.com/confidential-ai'
+    }
+];
+
 ---
 <BaseLayout title="Projects">
-    <div class="flex flex-col gap-2">
-        <TypographyH1>Projects</TypographyH1>
-        <TypographyP>WIP</TypographyP>
+    <div class="flex flex-col gap-8">
+        <div class="flex flex-col gap-2">
+            <TypographyH1>Projects</TypographyH1>
+            <TypographyP>
+                Here's a list of projects I've worked on over the years.
+            </TypographyP>
+        </div>
+
+        <div class="flex flex-col gap-2">
+            <TypographyH2>Personal</TypographyH2>
+            <TypographyP>
+                These are some of my side projects I've been working on in my free time.
+            </TypographyP>
+            {personalProjects.map(project => (
+                <ProjectCard key={project.title} {...project} />
+            ))}
+        </div>
+
+        <div class="flex flex-col gap-2">
+            <TypographyH2>Work</TypographyH2>
+            <TypographyP>
+                I started programming my last year of high school and I landed my first "real" job
+                during my time at Lancaster University. I worked on the university's official app - the iLancaster mobile app
+                and the Lancaster University Portal. This is where I started my journey with React and gained experience
+                working with a team in an agile environment.
+            </TypographyP>
+            <TypographyP>
+                I have worked at Secretarium for over 5 years and I was lucky
+                to be involved in the development of some of their most innovative
+                projects. Everything was built on top of confidential computing,
+                meaning we prioritized data security and privacy at every step.
+            </TypographyP>
+            {workProjects.reverse().map(project => (
+                <ProjectCard key={project.title} {...project} />
+            ))}
+        </div>
     </div>
 </BaseLayout>
