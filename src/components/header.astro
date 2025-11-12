@@ -2,6 +2,9 @@
 import { Image } from 'astro:assets';
 import PureBlueImg from '@/assets/0007fb.png';
 import { ThemeToggle } from '@/components/theme-toggle';
+import { MobileNav } from '@/components/mobile-nav';
+
+const currentPath = Astro.url.pathname;
 ---
 
 <header class="flex items-center justify-between">
@@ -19,4 +22,5 @@ import { ThemeToggle } from '@/components/theme-toggle';
         </div>
     </div>
     <ThemeToggle client:load />
+    <MobileNav currentPath={currentPath} client:load />
 </header>

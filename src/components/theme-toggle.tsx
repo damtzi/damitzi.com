@@ -38,7 +38,7 @@ export const ThemeToggle = () => {
             type="button"
             onClick={onClick}
             aria-label="Toggle Theme"
-            className="hover:cursor-pointer"
+            className="hidden sm:block hover:cursor-pointer"
         >
             {/* <motion.div initial={{ opacity: theme === 'light' ? 1 : 0 }}>
                 <Moon id="moonIcon" className="s-6" />

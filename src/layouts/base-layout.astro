@@ -39,10 +39,10 @@ const { title } = Astro.props;
         >
             <Header />
             <div class="grid grid-cols-12 flex-grow">
-                <div class="col-span-3">
+                <div class="hidden sm:block sm:col-span-3">
                     <SideNav />
                 </div>
-                <main class="col-span-9">
+                <main class="col-span-12 sm:col-span-9">
                     <slot />
                 </main>
             </div>
