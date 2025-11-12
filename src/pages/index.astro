@@ -5,6 +5,7 @@ import CdPng from '@/assets/clear-cd.png';
 import BaseLayout from '@/layouts/base-layout.astro';
 import Link from '@/components/shared/link.astro';
 import RunCard from '@/components/run-card.astro';
+import LiftCard from '@/components/lift-card.astro';
 import { TypographyH1, TypographyH2, TypographyP } from '@/components/shared/typography';
 import { slugify } from '@/lib/utils';
 import { getStravaActivity } from '@/lib/strava';
@@ -39,24 +40,6 @@ const recentVinyls = vinyls.releases
                 <Link href="https://www.discogs.com/user/damitzi__" title="Discogs" />, <Link href="https://www.strava.com/athletes/108759547" title="Strava" />,
                 or drop me an email at <Link href="mailto:damian.tziamtzis@gmail.com" title="damian.tziamtzis@gmail.com" />.
             </TypographyP>
-        </div>
-
-        <div class="flex flex-col gap-2">
-            <TypographyH2>Recent runs</TypographyH2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {
-                    activities
-                        .filter(activity => activity.type === 'Run')
-                        .slice(0, 4)
-                        .map(activity => (
-                            <RunCard
-                                date={activity.start_date_local}
-                                distance={activity.distance}
-                                movingTime={activity.moving_time}
-                            />
-                        ))
-                }
-            </div>
         </div>
 
         <div class="flex flex-col gap-2">
@@ -97,6 +80,42 @@ const recentVinyls = vinyls.releases
                             />
                         </a>
                     ))
+                }
+            </div>
+        </div>
+
+        <div class="flex flex-col gap-2">
+            <TypographyH2>Recent runs</TypographyH2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {
+                    activities
+                        .filter(activity => activity.type === 'Run')
+                        .slice(0, 4)
+                        .map(activity => (
+                            <RunCard
+                                date={activity.start_date_local}
+                                distance={activity.distance}
+                                movingTime={activity.moving_time}
+                            />
+                        ))
+                }
+            </div>
+        </div>
+
+        <div class="flex flex-col gap-2">
+            <TypographyH2>Recent lifts</TypographyH2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {
+                    activities
+                        .filter(activity => activity.type === 'WeightTraining')
+                        .slice(0, 4)
+                        .map(activity => (
+                            <LiftCard
+                                date={activity.start_date_local}
+                                maxHeartRate={activity.max_heartrate}
+                                movingTime={activity.moving_time}
+                            />
+                        ))
                 }
             </div>
         </div>

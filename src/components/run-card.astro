@@ -33,20 +33,20 @@ const formattedDate = new Date(date).toLocaleDateString('en-GB', {
 <div class="flex flex-col gap-2 border border-gray-300 shadow rounded-md px-4 py-2">
     <h3>{formattedDate}</h3>
     <div class="grid grid-cols-3">
-        <div class="flex flex-col">
-            <span class="text-sm text-gray-500">Distance</span>
+        <div class="text-sm flex flex-col">
+            <span class="text-gray-500">Distance</span>
             <span class="font-mono">
-                {(distance / 1000).toFixed(2)} km
+                {(distance / 1000).toFixed(2)}km
             </span>
         </div>
-        <div class="flex flex-col">
-            <span class="text-sm text-gray-500">Pace</span>
+        <div class="text-sm flex flex-col">
+            <span class="text-gray-500">Pace</span>
             <span class="font-mono">
-                {paceMinutes}:{formattedSeconds} /km
+                {paceMinutes}:{formattedSeconds}/km
             </span>
         </div>
-        <div class="flex flex-col">
-            <span class="text-sm text-gray-500">Duration</span>
+        <div class="text-sm flex flex-col">
+            <span class="text-gray-500">Duration</span>
             <span class="font-mono">
                 {formatTime(movingTime)} mm:ss
             </span>
