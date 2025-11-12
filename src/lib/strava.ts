@@ -10,7 +10,7 @@ export async function getStravaActivity(): Promise<Activity[]> {
     const data: StravaAuthResponse = await stravaAuthResponse.json();
 
     const stravaActivityResponse = await fetch(
-        `https://www.strava.com/api/v3/athlete/activities?access_token=${data.access_token}`
+        `https://www.strava.com/api/v3/athlete/activities?access_token=${data.access_token}&per_page=100`
     );
 
     return await stravaActivityResponse.json();
