@@ -30,4 +30,28 @@ const concerts = defineCollection({
     })
 });
 
-export const collections = { recipes, topPicks, concerts };
+const workProjects = defineCollection({
+    loader: file('src/content/projects.json', { parser: text => JSON.parse(text).work }),
+    schema: z.object({
+        title: z.string(),
+        description: z.string(),
+        link: z.string(),
+        tech: z.array(z.string()),
+        githubUrl: z.string().optional(),
+        id: z.number()
+    })
+});
+
+const personalProjects = defineCollection({
+    loader: file('src/content/projects.json', { parser: text => JSON.parse(text).personal }),
+    schema: z.object({
+        title: z.string(),
+        description: z.string(),
+        link: z.string(),
+        tech: z.array(z.string()),
+        githubUrl: z.string().optional(),
+        id: z.number()
+    })
+});
+
+export const collections = { recipes, topPicks, concerts, personalProjects, workProjects };
