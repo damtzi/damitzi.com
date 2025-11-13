@@ -69,48 +69,60 @@ export const MobileNav = ({ currentPath }: { currentPath: string }) => {
                 >
                     <ul
                         className={cn(
-                            'flex h-full flex-col px-6',
+                            'flex h-full flex-col px-6 gap-2',
                             'ease-in [&_a]:flex [&_a]:w-full [&_a]:translate-y-8 [&_a]:items-center [&_a]:text-lg [&_a]:transition-[color,transform] [&_a]:duration-300',
                             isOpen && '[&_a]:translate-y-0'
                         )}
                     >
-                        <li className="pb-4">
+                        <li>
                             <a
                                 href="/"
                                 className={cn('font-serif font-medium text-gray-400 transition-colors duration-150 ease-out hover:text-foreground hover:cursor-pointer', currentPath === '/' ? 'text-foreground' : '')}
                             >
                                 home
                             </a>
+                        </li>
+                        <li>
                             <a
                                 href="/about"
                                 className={cn('font-serif font-medium text-gray-400 transition-colors duration-150 ease-out hover:text-foreground hover:cursor-pointer', currentPath === '/about' ? 'text-foreground' : '')}
                             >
                                 about
                             </a>
+                        </li>
+                        <li>
                             <a
                                 href="/projects"
                                 className={cn('font-serif font-medium text-gray-400 transition-colors duration-150 ease-out hover:text-foreground hover:cursor-pointer', currentPath === '/projects' ? 'text-foreground' : '')}
                             >
                                 projects
                             </a>
+                        </li>
+                        <li>
                             <a
                                 href="/hobbies"
                                 className={cn('font-serif font-medium text-gray-400 transition-colors duration-150 ease-out hover:text-foreground hover:cursor-pointer', currentPath === '/hobbies' ? 'text-foreground' : '')}
                             >
                                 hobbies
                             </a>
+                        </li>
+                        <li>
                             <a
                                 href="/music"
                                 className={cn('font-serif font-medium text-gray-400 transition-colors duration-150 ease-out hover:text-foreground hover:cursor-pointer', currentPath.includes('/music') ? 'text-foreground' : '')}
                             >
                                 music
                             </a>
+                        </li>
+                        <li>
                             <a
                                 href="/bread"
                                 className={cn('font-serif font-medium text-gray-400 transition-colors duration-150 ease-out hover:text-foreground hover:cursor-pointer', currentPath.includes('/bread') ? 'text-foreground' : '')}
                             >
                                 bread
                             </a>
+                        </li>
+                        <li>
                             <a
                                 href="/socials"
                                 className={cn('font-serif font-medium text-gray-400 transition-colors duration-150 ease-out hover:text-foreground hover:cursor-pointer', currentPath === '/socials' ? 'text-foreground' : '')}
