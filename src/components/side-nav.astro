@@ -12,19 +12,19 @@ const currentPath = Astro.url.pathname;
     </a>
     <a
         href="/about"
-        class={cn('font-serif font-medium text-gray-400 transition-colors duration-150 ease-out hover:text-foreground hover:cursor-pointer', currentPath === '/about' ? 'text-foreground' : '')}
+        class={cn('font-serif font-medium text-gray-400 transition-colors duration-150 ease-out hover:text-foreground hover:cursor-pointer', currentPath.includes('/about') ? 'text-foreground' : '')}
     >
         about
     </a>
     <a
         href="/projects"
-        class={cn('font-serif font-medium text-gray-400 transition-colors duration-150 ease-out hover:text-foreground hover:cursor-pointer', currentPath === '/projects' ? 'text-foreground' : '')}
+        class={cn('font-serif font-medium text-gray-400 transition-colors duration-150 ease-out hover:text-foreground hover:cursor-pointer', currentPath.includes('/projects') ? 'text-foreground' : '')}
     >
         projects
     </a>
     <a
         href="/hobbies"
-        class={cn('font-serif font-medium text-gray-400 transition-colors duration-150 ease-out hover:text-foreground hover:cursor-pointer', currentPath === '/hobbies' ? 'text-foreground' : '')}
+        class={cn('font-serif font-medium text-gray-400 transition-colors duration-150 ease-out hover:text-foreground hover:cursor-pointer', currentPath.includes('/hobbies') ? 'text-foreground' : '')}
     >
         hobbies
     </a>
@@ -42,7 +42,7 @@ const currentPath = Astro.url.pathname;
     </a>
     <a
         href="/socials"
-        class={cn('font-serif font-medium text-gray-400 transition-colors duration-150 ease-out hover:text-foreground hover:cursor-pointer', currentPath === '/socials' ? 'text-foreground' : '')}
+        class={cn('font-serif font-medium text-gray-400 transition-colors duration-150 ease-out hover:text-foreground hover:cursor-pointer', currentPath.includes('/socials') ? 'text-foreground' : '')}
     >
         socials
     </a>
