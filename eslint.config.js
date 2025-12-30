@@ -1,41 +1,36 @@
 import { includeIgnoreFile } from '@eslint/compat';
 import { fileURLToPath } from 'node:url';
-import js from '@eslint/js';
-import stylistic from '@stylistic/eslint-plugin';
 import eslintPluginUnicorn from 'eslint-plugin-unicorn';
-import astro from 'eslint-plugin-astro';
-import ts from 'typescript-eslint';
 import globals from 'globals';
+import prettier from 'eslint-config-prettier';
+import js from '@eslint/js';
+import svelte from 'eslint-plugin-svelte';
+import { defineConfig } from 'eslint/config';
+import ts from 'typescript-eslint';
+import svelteConfig from './svelte.config.js';
 
 const gitignorePath = fileURLToPath(new URL('./.gitignore', import.meta.url));
 
-export default ts.config(
+export default defineConfig(
     includeIgnoreFile(gitignorePath),
     js.configs.recommended,
-    ts.configs.recommended,
-    astro.configs.recommended,
-    stylistic.configs.customize({
-        indent: 4,
-        quotes: 'single',
-        semi: true
-    }),
+    ...ts.configs.recommended,
+    ...svelte.configs.recommended,
+    prettier,
+    ...svelte.configs.prettier,
     {
         languageOptions: {
             globals: {
                 ...globals.browser,
                 ...globals.node
             }
-        }
-    },
-    {
+        },
         plugins: {
-            '@stylistic': stylistic,
             'unicorn': eslintPluginUnicorn
         },
         rules: {
             'no-console': ['warn'],
             '@typescript-eslint/no-explicit-any': 'warn',
-            '@stylistic/comma-dangle': ['error', 'never'],
             'unicorn/filename-case': [
                 'error',
                 {
@@ -49,19 +44,15 @@ export default ts.config(
         }
     },
     {
-        files: ['**/*.astro'],
+        files: ['**/*.svelte', '**/*.svelte.ts', '**/*.svelte.js'],
+
         languageOptions: {
-            parser: astro.parser,
             parserOptions: {
+                projectService: true,
+                extraFileExtensions: ['.svelte'],
                 parser: ts.parser,
-                extraFileExtensions: ['.astro'],
-                sourceType: 'module',
-                ecmaVersion: 'latest',
-                project: './tsconfig.json'
+                svelteConfig
             }
-        },
-        rules: {
-            '@stylistic/jsx-one-expression-per-line': ['off']
         }
     }
 );
