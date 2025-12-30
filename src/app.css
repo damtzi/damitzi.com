@@ -1,6 +1,7 @@
-@import "tailwindcss";
-@import "./animation.css";
+@import 'tailwindcss';
 @plugin '@tailwindcss/typography';
+
+@custom-variant dark (&:where(.dark, .dark *));
 
 :root {
     --background: oklch(1 0 0);
@@ -13,12 +14,12 @@
 }
 
 @theme inline {
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+
     --color-pure-blue: #0007fb;
     --color-baby-powder: #fdfffc;
     --color-licorice: #1c110a;
-
-    --color-background: var(--background);
-    --color-foreground: var(--foreground);
 
     --font-sans: var(--font-hanken-grotesk);
     --font-serif: var(--font-lora);
@@ -28,5 +29,3 @@
     --font-serif: "Lora Variable", sans-serif;
     --font-mono: "IBM Plex Mono", monospace;
 }
-
-@custom-variant dark (&:where(.dark, .dark *));
