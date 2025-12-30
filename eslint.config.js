@@ -53,6 +53,11 @@ export default defineConfig(
                 parser: ts.parser,
                 svelteConfig
             }
+        },
+
+        rules: {
+            // @see https://github.com/sveltejs/eslint-plugin-svelte/issues/1353
+            'svelte/no-navigation-without-resolve': 'off'
         }
     }
 );
