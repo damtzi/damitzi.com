@@ -1,8 +1,11 @@
-# build output
+# output
+.output
+.vercel
+.netlify
+.wrangler
+/.svelte-kit
+/build
 dist/
-
-# generated types
-.astro/
 
 # dependencies
 node_modules/
@@ -25,3 +28,7 @@ pnpm-debug.log*
 
 # cf workers variables
 .dev.vars
+
+# vite
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
