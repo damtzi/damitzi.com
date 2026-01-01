@@ -1,7 +1,8 @@
 ---
 title: The OG
-slug: the-og
-content: This is my tried-n-true recipe for a good sourdough bread.
+slug: bread-the-og
+description: This is my tried-n-true recipe for a good sourdough bread.
+published: true
 ---
 
 ### Sourdough base
