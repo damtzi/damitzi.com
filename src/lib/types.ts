@@ -294,3 +294,17 @@ export type DiscogsImage = {
     width: number;
     height: number;
 };
+
+export type Recipe = {
+    title: string;
+    slug: string;
+    description: string;
+    published: boolean;
+};
+
+export type TopPick = {
+    title: string;
+    slug: string;
+    description: string;
+    published: boolean;
+};
