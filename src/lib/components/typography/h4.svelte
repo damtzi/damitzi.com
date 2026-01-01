@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type { Snippet } from 'svelte';
+	import type { Snippet } from 'svelte';
 	import { cn } from '$lib/utils';
 
 	let { children, className }: { children: Snippet; className?: string } = $props();
