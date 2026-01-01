@@ -19,7 +19,12 @@ export const load: PageServerLoad = async ({ fetch, setHeaders }) => {
 
 	const [discogsResponse, stravaResponse] = await Promise.all([
 		fetch(
-			`https://api.discogs.com/users/damitzi__/collection/folders/0/releases?token=${DISCOGS_TOKEN}&sort=added&sort_order=desc&page=1&per_page=4`
+			`https://api.discogs.com/users/damitzi__/collection/folders/0/releases?token=${DISCOGS_TOKEN}&sort=added&sort_order=desc&page=1&per_page=4`,
+			{
+				headers: {
+					'User-Agent': 'damitzi.com/1.0 +https://damitzi.com'
+				}
+			}
 		),
 		fetch(
 			`https://www.strava.com/api/v3/athlete/activities?access_token=${data.access_token}&per_page=100`

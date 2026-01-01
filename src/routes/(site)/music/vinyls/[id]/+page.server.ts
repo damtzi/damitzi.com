@@ -8,7 +8,12 @@ export const prerender = true;
 // Provide list of paths to prerender
 export const entries: EntryGenerator = async () => {
 	const response = await fetch(
-		`https://api.discogs.com/users/damitzi__/collection/folders/0/releases?token=${DISCOGS_TOKEN}`
+		`https://api.discogs.com/users/damitzi__/collection/folders/0/releases?token=${DISCOGS_TOKEN}`,
+		{
+			headers: {
+				'User-Agent': 'damitzi.com/1.0 +https://damitzi.com'
+			}
+		}
 	);
 
 	const collection: CollectionsResponse = await response.json();
@@ -24,7 +29,11 @@ export const entries: EntryGenerator = async () => {
 
 export const load: PageServerLoad = async ({ fetch, params }) => {
 	const { id } = params;
-	const response = await fetch(`https://api.discogs.com/releases/${id}?token=${DISCOGS_TOKEN}`);
+	const response = await fetch(`https://api.discogs.com/releases/${id}?token=${DISCOGS_TOKEN}`, {
+		headers: {
+			'User-Agent': 'damitzi.com/1.0 +https://damitzi.com'
+		}
+	});
 
 	if (!response.ok) {
 		error(404, {

@@ -4,7 +4,12 @@ import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ fetch, setHeaders }) => {
 	const response = await fetch(
-		`https://api.discogs.com/users/damitzi__/collection/folders/0/releases?token=${DISCOGS_TOKEN}&per_page=100&sort=artist`
+		`https://api.discogs.com/users/damitzi__/collection/folders/0/releases?token=${DISCOGS_TOKEN}&per_page=100&sort=artist`,
+		{
+			headers: {
+				'User-Agent': 'damitzi.com/1.0 +https://damitzi.com'
+			}
+		}
 	);
 
 	if (!response.ok) {
