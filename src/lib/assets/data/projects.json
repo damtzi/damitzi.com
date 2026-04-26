@@ -3,10 +3,10 @@
 		{
 			"id": 1,
 			"title": "damitzi.com",
-			"description": "My personal portfolio website built with Astro, showcasing my projects, experience, skills, and favorite hobbies. Features a modern design with dark mode support and responsive layout.",
+			"description": "My personal portfolio website built with SvelteKit, showcasing my projects, experience, skills, and favorite hobbies. Features a modern design with dark mode support and responsive layout.",
 			"link": "https://damitzi.com",
 			"githubUrl": "https://github.com/damtzi/damitzi.com",
-			"tech": ["Astro", "Tailwind CSS", "TypeScript", "React", "Cloudflare", "pnpm"]
+			"tech": ["SvelteKit", "Tailwind CSS", "TypeScript", "Svelte", "Cloudflare", "pnpm"]
 		}
 	],
 	"work": [
