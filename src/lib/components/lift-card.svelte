@@ -11,12 +11,13 @@
 		movingTime: number; // seconds
 	} = $props();
 
-	// Format date to "12 May 2025"
-	const formattedDate = new Date(date).toLocaleDateString('en-GB', {
-		day: '2-digit',
-		month: 'short',
-		year: 'numeric'
-	});
+	const formattedDate = $derived(
+		new Date(date).toLocaleDateString('en-GB', {
+			day: '2-digit',
+			month: 'short',
+			year: 'numeric'
+		})
+	);
 </script>
 
 <div class="flex flex-col gap-2 bg-background border border-gray-300 shadow rounded-md px-4 py-2">

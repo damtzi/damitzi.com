@@ -5,8 +5,12 @@
 
 	let { data }: PageProps = $props();
 
-	const primaryImage = data.vinyl.images.find((image) => image.type === 'primary');
-	const secondaryImage = data.vinyl.images.find((image) => image.type === 'secondary');
+	const coverImage = $derived.by(() => {
+		return (
+			data.vinyl.images.find((image) => image.type === 'primary') ??
+			data.vinyl.images.find((image) => image.type === 'secondary')
+		);
+	});
 </script>
 
 <SeoHead title={data.vinyl.title} description={`${data.vinyl.title} details`} />
@@ -18,7 +22,7 @@
 	<!-- <Breadcrumbs /> -->
 	<div class="flex flex-col md:flex-row gap-8">
 		<img
-			src={primaryImage?.uri || secondaryImage?.uri}
+			src={coverImage?.uri}
 			alt={`Cover for ${data.vinyl.title}`}
 			width={400}
 			height={400}

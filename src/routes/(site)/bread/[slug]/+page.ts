@@ -1,6 +1,7 @@
 import { error } from '@sveltejs/kit';
+import type { PageLoad } from './$types';
 
-export async function load({ params }) {
+export const load: PageLoad = async ({ params }) => {
 	try {
 		const recipe = await import(`../../../../lib/assets/data/recipes/${params.slug}.md`);
 
@@ -8,8 +9,7 @@ export async function load({ params }) {
 			content: recipe.default,
 			meta: recipe.metadata
 		};
-	} catch (e) {
-		console.error(e);
+	} catch {
 		error(404, `Could not find ${params.slug}`);
 	}
-}
+};

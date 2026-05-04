@@ -1,4 +1,4 @@
-import type { Activity, StravaAuthResponse } from '@/lib/types';
+import type { Activity, StravaAuthResponse } from '$lib/types';
 
 export async function getStravaActivity(): Promise<Activity[]> {
 	const stravaAuthResponse = await fetch(
