@@ -35,7 +35,14 @@ export default defineConfig({
 			currentTime: 'readonly',
 			registerProcessor: 'readonly',
 			sampleRate: 'readonly',
-			WorkletGlobalScope: 'readonly'
+			WorkletGlobalScope: 'readonly',
+			$bindable: 'readonly',
+			$derived: 'readonly',
+			$effect: 'readonly',
+			$host: 'readonly',
+			$inspect: 'readonly',
+			$props: 'readonly',
+			$state: 'readonly'
 		},
 		ignorePatterns: [
 			'**/.output',

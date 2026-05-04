@@ -79,7 +79,7 @@ export type Activity = {
 };
 
 export type BasicInformation = {
-	[x: string]: any;
+	[x: string]: unknown;
 	cover_image: string;
 	id: number;
 	thumb: string;
@@ -120,7 +120,7 @@ export type Pagination = {
 	pages: number;
 	per_page: number;
 	items: number;
-	urls: any;
+	urls: unknown;
 };
 
 export type Image = {
@@ -167,7 +167,7 @@ export type DiscogsRelease = {
 	artists: DiscogsArtist[];
 	artists_sort: string;
 	labels: DiscogsLabel[];
-	series: any[]; // No data provided, keep as any[]
+	series: unknown[]; // No data provided, keep as unknown[]
 	companies: DiscogsCompany[];
 	formats: DiscogsFormat[];
 	data_quality: string;

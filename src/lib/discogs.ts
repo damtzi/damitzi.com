@@ -1,4 +1,4 @@
-import type { CollectionsResponse, DiscogsRelease } from '@/lib/types';
+import type { CollectionsResponse, DiscogsRelease } from '$lib/types';
 
 export async function getDiscogsCollection(): Promise<CollectionsResponse> {
 	const response = await fetch(
