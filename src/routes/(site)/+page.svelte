@@ -33,7 +33,7 @@
 				href="/music/top-picks"
 				class="text-gray-400 transition-colors duration-150 ease-out hover:text-pure-blue hover:cursor-pointer"
 				>top picks</a
-			>, my <a href="/socials">social links</a>, my
+			>, my <a href="/socials" class="text-gray-400 transition-colors duration-150 ease-out hover:text-pure-blue hover:cursor-pointer">social links</a>, my
 			<a
 				href="/hobbies"
 				class="text-gray-400 transition-colors duration-150 ease-out hover:text-pure-blue hover:cursor-pointer"
