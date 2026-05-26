@@ -6,6 +6,8 @@
 	const socialLinks = [
 		{ href: 'https://github.com/damtzi', text: 'github' },
 		{ href: 'https://bsky.app/profile/damitzi.bsky.social', text: 'bluesky' },
+		{ href: 'https://x.com/damitzi__', text: 'twitter' },
+		{ href: 'https://www.linkedin.com/in/damian-tziamtzis/', text: 'linkedin' },
 		{ href: 'https://www.instagram.com/damitzi__', text: 'instagram' },
 		{ href: 'https://www.discogs.com/user/damitzi__', text: 'discogs' },
 		{ href: 'https://www.strava.com/athletes/108759547', text: 'strava' },
