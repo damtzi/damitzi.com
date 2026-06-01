@@ -4,17 +4,13 @@
 	"private": true,
 	"type": "module",
 	"scripts": {
-		"build": "vp build",
 		"cf-typegen": "wrangler types --env-interface CloudflareBindings",
-		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-		"dev": "vp dev",
-		"format": "vp fmt .",
-		"lint": "vp lint . && vp fmt --check .",
-		"lint-staged": "vp staged",
-		"lint:fix": "vp lint . --fix",
-		"prepare": "vp config",
-		"preview": "pnpm run build && wrangler dev"
+		"dev": "astro dev",
+		"build": "astro build",
+		"preview": "astro preview",
+		"astro": "astro",
+		"format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,css,md}\"",
+		"format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,css,md}\""
 	},
 	"dependencies": {
 		"@fontsource-variable/hanken-grotesk": "^5.2.6",
@@ -59,11 +55,5 @@
 		"vite-plus": "latest",
 		"wrangler": "^4.27.0"
 	},
-	"packageManager": "pnpm@10.33.2",
-	"pnpm": {
-		"overrides": {
-			"vite": "npm:@voidzero-dev/vite-plus-core@latest",
-			"vitest": "npm:@voidzero-dev/vite-plus-test@latest"
-		}
-	}
+	"packageManager": "pnpm@10.33.2"
 }

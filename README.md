@@ -18,7 +18,8 @@ pnpm run dev
 
 To build the website, I'm using:
 
-- [SvelteKit](https://svelte.dev/docs/kit/introduction)
+- [Astro](https://astro.build/)
+- [React](https://react.dev/)
 - [TypeScript](https://www.typescriptlang.org/)
 - [Tailwind CSS](https://tailwindcss.com/)
 - [pnpm](https://pnpm.io/)
