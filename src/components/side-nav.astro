@@ -1,0 +1,31 @@
+---
+import { cn } from '@/lib/utils';
+
+const pathname = Astro.url.pathname;
+
+const links = [
+	{ href: '/', label: 'home', active: pathname === '/' },
+	{ href: '/about', label: 'about', active: pathname.includes('/about') },
+	{ href: '/projects', label: 'projects', active: pathname.includes('/projects') },
+	{ href: '/hobbies', label: 'hobbies', active: pathname.includes('/hobbies') },
+	{ href: '/music', label: 'music', active: pathname.includes('/music') },
+	{ href: '/bread', label: 'bread', active: pathname.includes('/bread') },
+	{ href: '/socials', label: 'socials', active: pathname.includes('/socials') }
+];
+---
+
+<nav class="flex flex-col gap-2">
+	{
+		links.map((link) => (
+			<a
+				href={link.href}
+				class={cn(
+					'font-serif font-medium text-gray-400 transition-colors duration-150 ease-out hover:cursor-pointer hover:text-foreground',
+					link.active && 'text-foreground'
+				)}
+			>
+				{link.label}
+			</a>
+		))
+	}
+</nav>

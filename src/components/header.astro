@@ -1,0 +1,26 @@
+---
+import { Image } from 'astro:assets';
+import pureBlue from '@/assets/0007fb.png';
+import ThemeToggle from '@/components/theme-toggle.tsx';
+import MobileNav from '@/components/mobile-nav.tsx';
+---
+
+<header class="flex items-center justify-between">
+	<div class="flex items-center gap-2">
+		<a href="/">
+			<Image
+				src={pureBlue}
+				alt="Pure blue, hex code #0007FB."
+				class="rounded-full transition-transform duration-300 hover:scale-110"
+				width={36}
+				height={36}
+			/>
+		</a>
+		<div class="flex flex-col">
+			<span>Damian Tziamtzis</span>
+			<span class="text-gray-400">Frontend Engineer</span>
+		</div>
+	</div>
+	<ThemeToggle client:load />
+	<MobileNav client:load pathname={Astro.url.pathname} />
+</header>
