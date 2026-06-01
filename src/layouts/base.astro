@@ -1,0 +1,52 @@
+---
+import '@/styles/global.css';
+import '@fontsource-variable/playfair-display';
+import '@fontsource/ibm-plex-mono';
+import '@fontsource-variable/hanken-grotesk';
+
+import { ClientRouter } from 'astro:transitions';
+import Footer from '@/components/footer.astro';
+import Header from '@/components/header.astro';
+import Noise from '@/components/backgrounds/noise.astro';
+import GridLines from '@/components/backgrounds/grid-lines.astro';
+import Theme from '@/components/theme.astro';
+
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<Theme />
+		<ClientRouter />
+	</head>
+	<body
+		class="antialised font-hanken-grotesk relative bg-white text-black transition-colors duration-300 ease-out dark:bg-black dark:text-white"
+		transition:persist
+	>
+		<Noise />
+		<GridLines />
+		<div class="mx-auto flex min-h-dvh w-full max-w-3xl flex-col gap-8 px-4 py-8">
+			<Header />
+			<main class="flex-grow">
+				<slot />
+			</main>
+			<Footer />
+		</div>
+	</body>
+</html>
+
+<style>
+	html,
+	body {
+		margin: 0;
+	}
+</style>

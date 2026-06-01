@@ -1,0 +1,37 @@
+---
+const currentPath = Astro.url.pathname;
+const segments = currentPath.split('/').filter((segment) => segment !== '');
+
+const breadcrumbPaths = segments.map((segment, index) => {
+	const href = `/${segments.slice(0, index + 1).join('/')}`;
+
+	return {
+		name: segment,
+		href
+	};
+});
+
+breadcrumbPaths.unshift({ name: 'home', href: '/' });
+---
+
+<nav aria-label="Breadcrumb" class="py-3">
+	<ol class="flex flex-wrap items-center text-sm">
+		{
+			breadcrumbPaths.map((path, index) => (
+				<li class="flex items-center">
+					{index > 0 && <div class="mx-3 h-1.5 w-1.5 rounded-full bg-pure-blue" />}
+					{index === breadcrumbPaths.length - 1 ? (
+						<span class="dark:text-off-white text-black">{path.name}</span>
+					) : (
+						<a
+							href={path.href}
+							class="dark:text-off-white/60 text-black/50 transition-colors duration-150 ease-out hover:cursor-pointer hover:text-pure-blue"
+						>
+							{path.name}
+						</a>
+					)}
+				</li>
+			))
+		}
+	</ol>
+</nav>
