@@ -7,6 +7,7 @@ import '@fontsource/ibm-plex-mono';
 import { ClientRouter } from 'astro:transitions';
 import Footer from '@/components/footer.astro';
 import Header from '@/components/header.astro';
+import SideNav from '@/components/side-nav.astro';
 import Noise from '@/components/backgrounds/noise.astro';
 import GridLines from '@/components/backgrounds/grid-lines.astro';
 import Theme from '@/components/theme.astro';
@@ -39,11 +40,16 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin).hr
 	>
 		<Noise />
 		<GridLines />
-		<div class="mx-auto flex min-h-dvh w-full max-w-3xl flex-col gap-8 px-4 py-8">
+		<div class="mx-auto flex min-h-dvh w-full max-w-4xl flex-col gap-8 px-4 py-8">
 			<Header />
-			<main class="flex-grow">
-				<slot />
-			</main>
+			<div class="grid grow grid-cols-12">
+				<aside class="hidden sm:col-span-3 sm:block">
+					<SideNav />
+				</aside>
+				<main class="col-span-12 sm:col-span-9">
+					<slot />
+				</main>
+			</div>
 			<Footer />
 		</div>
 	</body>
