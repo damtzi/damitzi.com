@@ -1,0 +1,140 @@
+---
+import BaseLayout from '@/layouts/base.astro';
+import { TypographyH1, TypographyH2, TypographyH3, TypographyP } from '@/components/typography';
+
+type CvEntry = {
+	title: string;
+	meta: string;
+	description?: string;
+	items: string[];
+};
+
+const education: CvEntry[] = [
+	{
+		title: 'Lancaster University',
+		meta: '2017-2020',
+		description: 'BSc Hons Computer Science, First Class Honours',
+		items: [
+			'Advanced programming: OOP, recursion, functional programming.',
+			'Operating systems: file systems, semaphores, concurrency, race conditions.',
+			'Software design: object-oriented design, use cases, statecharts.',
+			'Human-computer interaction and UX design principles.',
+			'Internet applications engineering: responsive web design and web development.'
+		]
+	}
+];
+
+const workExperience: CvEntry[] = [
+	{
+		title: 'Campy',
+		meta: 'Feb 2026-present / Remote',
+		description: 'Product engineer',
+		items: [
+			'Led revenue-focused mobile work across campy-app and campy-platform with React Native, Expo, TypeScript, Adapty, GraphQL, and Firebase.',
+			'Owned the Adapty migration for Campy Plus, replacing legacy IAP flows with hosted paywalls, entitlements, promo redemption, offline fallbacks, and purchase recovery.',
+			'Built backend revenue tooling, including support code redemption, legacy entitlement sync, migration scripts, Firestore services, schemas, and API tests.',
+			'Improved attribution reliability across iOS and Android through ATT-aware SDK setup, deep-link routing, SKAN config, tracking permissions, and paywall analytics.'
+		]
+	},
+	{
+		title: 'OKE',
+		meta: 'Jan 2026-present / Remote',
+		description: 'Frontend engineer',
+		items: [
+			'Developed booking, search, and content experiences for Prijsvrij with Next.js, React, TypeScript, Storyblok, tRPC, GraphQL, SCSS, and Vercel.',
+			'Built package-holiday booking flows, including room selection, flight alternatives, search behavior, booking analytics, loading states, and confirmation UX.',
+			'Improved booking performance by reducing CMS/API overfetching, trimming SSR payloads, optimizing navigation data, seeding basket state, and tuning revalidation.',
+			'Delivered Storyblok-powered editorial and SEO features, including blog pages, author pages, CMS headers, rich text layouts, instant revalidation, and responsive content pages.',
+			'Strengthened BAS, Amadeus, payment/webhook, email, matrix, and pricing integrations with safer errors, validation, and shared service layers.',
+			'Improved D-Connect result accuracy with flight timing, stopover details, sorting, price-check normalization, schema hardening, Redis token fixes, and tested fallbacks.'
+		]
+	},
+	{
+		title: 'SoftMetal',
+		meta: 'Dec 2025-present / Remote',
+		description: 'Frontend engineer',
+		items: [
+			'Led frontend development for the SoftMetal ferroalloy trading platform with React, TypeScript, Vite, React Router, Redux, Tailwind CSS, Cypress, and Secretarium APIs.',
+			'Built core trading workflows, including markets, order books, buy/sell flows, portfolios, tokenization, transfers, redemption, invoices, communications, and warehouse operations.'
+		]
+	},
+	{
+		title: 'Secretarium',
+		meta: 'Sep 2020-Nov 2025 / London, UK + Remote',
+		description: 'Frontend engineer',
+		items: [
+			'Led frontend development for Klave AI chat platform with React, Vite, shadcn/ui, Tailwind CSS, TanStack Router, and Fastify.',
+			'Built and evolved the Klave CLI, first in Node.js, later rewritten in Rust.',
+			'Led frontend work for the Soft Metal trading platform with React, Vite, React Router, Tailwind CSS, and Redux.',
+			'Developed and maintained Moai as a privacy-focused PWA with Expo and React Native.',
+			'Built marketing, corporate, and documentation sites for Klave, Secretarium, Soft Metal, MoaiApp, Danie.tech, Amlytic.com, and STTS.io.',
+			'Integrated Payload CMS for klave.com, softmetal.ch, and secretarium.com.'
+		]
+	},
+	{
+		title: 'IT Partnering & Innovation at Lancaster University',
+		meta: 'Jan 2020-Jul 2020 / Lancaster, UK',
+		description: 'Frontend engineer',
+		items: [
+			'Built React internal tools used by 15,000+ users, including booking and time-management apps.',
+			'Contributed across design, implementation, testing, and support.',
+			'Developed a parking validation app for campus security and students.'
+		]
+	}
+];
+---
+
+<BaseLayout title="About" description="About me">
+	<div class="flex flex-col gap-8">
+		<div class="flex flex-col gap-2">
+			<TypographyH1>About me</TypographyH1>
+			<TypographyP>
+				I am a product engineer based in Gdynia with deep React, Next.js, and TypeScript experience
+				across travel, subscriptions, privacy tech, and AI products. I've led frontend work from
+				early product shaping through production delivery, including booking funnels, paywalls,
+				developer tools, CMS platforms, and mobile experiences. I care about clear UX, reliable
+				systems, and shipping work that moves the product.
+			</TypographyP>
+		</div>
+
+		<section class="flex flex-col gap-5">
+			<TypographyH2>Work Experience</TypographyH2>
+			{
+				workExperience.map((entry) => (
+					<article class="flex flex-col gap-2 border-l border-gray-200 pl-4 dark:border-gray-700">
+						<div class="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
+							<TypographyH3>{entry.title}</TypographyH3>
+							<p class="font-mono text-sm text-gray-500">{entry.meta}</p>
+						</div>
+						{entry.description && <p class="font-medium">{entry.description}</p>}
+						<ul class="list-disc space-y-1 pl-5 text-gray-700 dark:text-gray-300">
+							{entry.items.map((item) => (
+								<li>{item}</li>
+							))}
+						</ul>
+					</article>
+				))
+			}
+		</section>
+
+		<section class="flex flex-col gap-5">
+			<TypographyH2>Education</TypographyH2>
+			{
+				education.map((entry) => (
+					<article class="flex flex-col gap-2 border-l border-gray-200 pl-4 dark:border-gray-700">
+						<div class="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
+							<TypographyH3>{entry.title}</TypographyH3>
+							<p class="font-mono text-sm text-gray-500">{entry.meta}</p>
+						</div>
+						{entry.description && <p class="font-medium">{entry.description}</p>}
+						<ul class="list-disc space-y-1 pl-5 text-gray-700 dark:text-gray-300">
+							{entry.items.map((item) => (
+								<li>{item}</li>
+							))}
+						</ul>
+					</article>
+				))
+			}
+		</section>
+	</div>
+</BaseLayout>

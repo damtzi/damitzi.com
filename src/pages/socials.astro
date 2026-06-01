@@ -1,0 +1,40 @@
+---
+import BaseLayout from '@/layouts/base.astro';
+import Arrow from '@/components/shared/arrow.astro';
+import { TypographyH1, TypographyP } from '@/components/typography';
+
+const socialLinks = [
+	{ href: 'https://github.com/damtzi', text: 'github' },
+	{ href: 'https://bsky.app/profile/damitzi.bsky.social', text: 'bluesky' },
+	{ href: 'https://x.com/damitzi__', text: 'twitter' },
+	{ href: 'https://www.linkedin.com/in/damian-tziamtzis/', text: 'linkedin' },
+	{ href: 'https://www.instagram.com/damitzi__', text: 'instagram' },
+	{ href: 'https://www.discogs.com/user/damitzi__', text: 'discogs' },
+	{ href: 'https://www.strava.com/athletes/108759547', text: 'strava' },
+	{ href: 'mailto:damian.tziamtzis@gmail.com', text: 'email' }
+];
+---
+
+<BaseLayout title="Socials" description="Find me on social media">
+	<div class="flex flex-col gap-2">
+		<TypographyH1>Socials</TypographyH1>
+		<TypographyP>You can find me on:</TypographyP>
+		<ul class="w-fit space-y-2">
+			{
+				socialLinks.map((link) => (
+					<li class="group flex items-center gap-2">
+						<Arrow />
+						<a
+							href={link.href}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="text-gray-400 transition-colors duration-150 ease-out hover:cursor-pointer hover:text-pure-blue"
+						>
+							{link.text}
+						</a>
+					</li>
+				))
+			}
+		</ul>
+	</div>
+</BaseLayout>

@@ -1,0 +1,66 @@
+---
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '@/layouts/base.astro';
+import { TypographyH1 } from '@/components/typography';
+import { getDiscogsCollection, getVinylDetails } from '@/lib/discogs';
+
+export const getStaticPaths = (async () => {
+	const collection = await getDiscogsCollection();
+
+	// Fetch release details sequentially to stay within Discogs' rate limit.
+	const paths = [];
+	for (const release of collection.releases) {
+		const vinyl = await getVinylDetails(String(release.id));
+		paths.push({ params: { slug: String(vinyl.id) }, props: { vinyl } });
+	}
+
+	return paths;
+}) satisfies GetStaticPaths;
+
+const { vinyl } = Astro.props;
+
+const coverImage =
+	vinyl.images.find((image) => image.type === 'primary') ??
+	vinyl.images.find((image) => image.type === 'secondary');
+---
+
+<BaseLayout title={vinyl.title} description={`${vinyl.title} details`}>
+	<div class="flex flex-col gap-2">
+		<TypographyH1>{vinyl.title}</TypographyH1>
+		<div class="flex flex-col gap-8 md:flex-row">
+			<img
+				src={coverImage?.uri}
+				alt={`Cover for ${vinyl.title}`}
+				width={400}
+				height={400}
+				class="rounded-xs shadow-lg"
+			/>
+			<div class="flex flex-col gap-4">
+				<div class="flex flex-col">
+					<span class="text-sm text-gray-500">Album</span>
+					<span>{vinyl.title}</span>
+				</div>
+				<div class="flex flex-col">
+					<span class="text-sm text-gray-500">Artist</span>
+					<span>{vinyl.artists.map((artist) => artist.name).join(', ')}</span>
+				</div>
+				<div class="flex flex-col">
+					<span class="text-sm text-gray-500">Label</span>
+					<span>{vinyl.labels.map((label) => label.name).join(', ')}</span>
+				</div>
+				<div class="flex flex-col">
+					<span class="text-sm text-gray-500">Format</span>
+					<span>{vinyl.formats.map((format) => format.name).join(', ')}</span>
+				</div>
+				<div class="flex flex-col">
+					<span class="text-sm text-gray-500">Genres</span>
+					<span>{vinyl.genres.join(', ')}</span>
+				</div>
+				<div class="flex flex-col">
+					<span class="text-sm text-gray-500">Released</span>
+					<span>{vinyl.released}</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</BaseLayout>

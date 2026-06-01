@@ -1,24 +1,22 @@
-import { defineCollection, z } from 'astro:content';
-import { file, glob } from 'astro/loaders';
+import { defineCollection } from 'astro:content';
+import { z } from 'astro/zod';
+import { glob } from 'astro/loaders';
+
+const markdownSchema = z.object({
+	title: z.string(),
+	slug: z.coerce.string(),
+	description: z.string(),
+	published: z.boolean()
+});
 
 const recipes = defineCollection({
-	loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/bread' }),
-	schema: z.object({
-		title: z.string(),
-		slug: z.string(),
-		content: z.string()
-	})
+	loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/recipes' }),
+	schema: markdownSchema
 });
 
-const concerts = defineCollection({
-	loader: file('src/content/concerts.json'),
-	schema: z.object({
-		artist: z.string(),
-		date: z.string().transform((dateString) => new Date(dateString)),
-		location: z.string(),
-		festival: z.string().optional(),
-		id: z.string()
-	})
+const topPicks = defineCollection({
+	loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/top-picks' }),
+	schema: markdownSchema
 });
 
-export const collections = { recipes, concerts };
+export const collections = { recipes, topPicks };

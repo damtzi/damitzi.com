@@ -46,11 +46,9 @@ const { class: className, fallbackPath, text = 'Go Back' } = Astro.props;
 
 		backButton?.addEventListener('click', (e) => {
 			if (hasHistory && isSameOrigin) {
-				console.log('Going back with history!!!!!!!');
 				e.preventDefault();
 				history.back();
 			}
-			console.log('Going back');
 			// If conditions aren't met, it will use the fallback href
 		});
 	}

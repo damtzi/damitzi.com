@@ -1,0 +1,44 @@
+---
+import BaseLayout from '@/layouts/base.astro';
+import Breadcrumbs from '@/components/shared/breadcrumbs.astro';
+import { TypographyH1 } from '@/components/typography';
+import VinylPng from '@/assets/black-vinyl.png';
+import CdPng from '@/assets/clear-cd.png';
+import { getDiscogsCollection } from '@/lib/discogs';
+
+const collection = await getDiscogsCollection();
+const releases = collection.releases;
+
+const isVinyl = (formats: { name: string }[]) => formats.some((format) => format.name === 'Vinyl');
+---
+
+<BaseLayout title="Vinyls" description="My vinyl and CD collection">
+	<div class="flex flex-col gap-2">
+		<TypographyH1>Music</TypographyH1>
+		<Breadcrumbs />
+		<div class="grid grid-cols-2 gap-4 sm:grid-cols-4 md:gap-10">
+			{
+				releases.map((release) => (
+					<a href={`/music/vinyls/${release.id}`} class="group relative">
+						<img
+							src={release.basic_information.cover_image}
+							alt={release.basic_information.title}
+							width={200}
+							height={200}
+							class="relative z-10 aspect-square rounded-xs shadow-lg transition-all duration-300 hover:scale-105 hover:cursor-pointer hover:shadow"
+						/>
+						<img
+							src={isVinyl(release.basic_information.formats) ? VinylPng.src : CdPng.src}
+							alt={
+								isVinyl(release.basic_information.formats) ? 'A black vinyl record' : 'A clear CD'
+							}
+							width={200}
+							height={200}
+							class="absolute top-0 z-0 transition-transform duration-300 group-hover:translate-x-10"
+						/>
+					</a>
+				))
+			}
+		</div>
+	</div>
+</BaseLayout>
