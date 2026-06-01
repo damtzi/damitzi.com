@@ -3,5 +3,13 @@
 	"name": "damitzi-com",
 	// Update to today's date
 	"compatibility_date": "2025-08-15",
-	"compatibility_flags": ["nodejs_compat"]
+	"compatibility_flags": ["nodejs_compat"],
+	"secrets": {
+		"required": [
+			"DISCOGS_TOKEN",
+			"STRAVA_CLIENT_ID",
+			"STRAVA_CLIENT_SECRET",
+			"STRAVA_REFRESH_TOKEN"
+		]
+	}
 }
