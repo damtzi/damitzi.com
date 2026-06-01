@@ -1,0 +1,399 @@
+[
+	{
+		"artist": "Alt-J",
+		"date": "2013-07-03",
+		"location": "Gdynia, PL",
+		"festival": "Opener",
+		"id": "alt-j-07-2013"
+	},
+	{
+		"artist": "Alt-J",
+		"date": "2015-07-01",
+		"location": "Gdynia, PL",
+		"festival": "Opener",
+		"id": "alt-j-07-2015"
+	},
+	{
+		"artist": "Alt-J",
+		"date": "2017-08-18",
+		"location": "Krakow, PL",
+		"festival": "Live",
+		"id": "alt-j-08-2017"
+	},
+	{
+		"artist": "Amine",
+		"date": "2019-02-19",
+		"location": "London, UK",
+		"id": "amine-02-2019"
+	},
+	{
+		"artist": "Arctic Monkeys",
+		"date": "2013-07-04",
+		"location": "Gdynia, PL",
+		"festival": "Opener",
+		"id": "arctic-monkeys-07-2013"
+	},
+	{
+		"artist": "Arctic Monkeys",
+		"date": "2018-07-04",
+		"location": "Gdynia, PL",
+		"festival": "Opener",
+		"id": "arctic-monkeys-07-2018"
+	},
+	{
+		"artist": "A$AP Rocky",
+		"date": "2015-07-02",
+		"location": "Gdynia, PL",
+		"festival": "Opener",
+		"id": "asap-rocky-07-2015"
+	},
+	{
+		"artist": "Belmondawg",
+		"date": "2024-08-31",
+		"location": "Warszawa, PL",
+		"id": "belmondawg-08-2024"
+	},
+	{
+		"artist": "Belmondawg",
+		"date": "2023-12-29",
+		"location": "Krakow, PL",
+		"id": "belmondawg-12-2023"
+	},
+	{
+		"artist": "Billy Woods",
+		"date": "2024-06-06",
+		"location": "Warszawa, PL",
+		"id": "billy-woods-06-2024"
+	},
+	{
+		"artist": "Blur",
+		"date": "2013-07-04",
+		"location": "Gdynia, PL",
+		"festival": "Opener",
+		"id": "blur-07-2013"
+	},
+	{
+		"artist": "Danny Brown",
+		"date": "2024-05-13",
+		"location": "Warszawa, PL",
+		"id": "danny-brown-05-2024"
+	},
+	{
+		"artist": "Denzel Curry",
+		"date": "2022-05-04",
+		"location": "London, UK",
+		"id": "denzel-curry-05-2022"
+	},
+	{
+		"artist": "Denzel Curry",
+		"date": "2018-12-12",
+		"location": "Manchester, UK",
+		"id": "denzel-curry-12-2018"
+	},
+	{
+		"artist": "Disclosure",
+		"date": "2013-07-05",
+		"location": "Gdynia, PL",
+		"festival": "Opener",
+		"id": "disclosure-07-2013"
+	},
+	{
+		"artist": "Disclosure",
+		"date": "2015-07-04",
+		"location": "Gdynia, PL",
+		"festival": "Opener",
+		"id": "disclosure-07-2015"
+	},
+	{
+		"artist": "Dua Lipa",
+		"date": "2017-07-01",
+		"location": "Gdynia, PL",
+		"festival": "Opener",
+		"id": "dua-lipa-07-2017"
+	},
+	{
+		"artist": "Faithless",
+		"date": "2015-07-02",
+		"location": "Gdynia, PL",
+		"festival": "Opener",
+		"id": "faithless-07-2015"
+	},
+	{
+		"artist": "Flume",
+		"date": "2015-07-04",
+		"location": "Gdynia, PL",
+		"festival": "Opener",
+		"id": "flume-07-2015"
+	},
+	{
+		"artist": "Gorillaz",
+		"date": "2018-07-07",
+		"location": "Gdynia, PL",
+		"festival": "Opener",
+		"id": "gorillaz-07-2018"
+	},
+	{
+		"artist": "Injury Reserve",
+		"date": "2018-05-25",
+		"location": "London, UK",
+		"id": "injury-reserve-05-2018"
+	},
+	{
+		"artist": "Injury Reserve",
+		"date": "2022-07-04",
+		"location": "London, UK",
+		"id": "injury-reserve-07-2022"
+	},
+	{
+		"artist": "Injury Reserve",
+		"date": "2019-11-01",
+		"location": "Manchester, UK",
+		"id": "injury-reserve-11-2019"
+	},
+	{
+		"artist": "James Blake",
+		"date": "2017-06-28",
+		"location": "Gdynia, PL",
+		"festival": "Opener",
+		"id": "james-blake-06-2017"
+	},
+	{
+		"artist": "JPEGMAFIA",
+		"date": "2022-03-28",
+		"location": "London, UK",
+		"id": "jpegmafia-03-2022"
+	},
+	{
+		"artist": "Kali Uchis",
+		"date": "2018-07-06",
+		"location": "Gdynia, PL",
+		"festival": "Opener",
+		"id": "kali-uchis-07-2018"
+	},
+	{
+		"artist": "Kendrick Lamar",
+		"date": "2013-07-04",
+		"location": "Gdynia, PL",
+		"festival": "Opener",
+		"id": "kendrick-lamar-07-2013"
+	},
+	{
+		"artist": "Little Simz",
+		"date": "2018-07-06",
+		"location": "Gdynia, PL",
+		"festival": "Opener",
+		"id": "little-simz-07-2018"
+	},
+	{
+		"artist": "Mac DeMarco",
+		"date": "2016-06-29",
+		"location": "Gdynia, PL",
+		"festival": "Opener",
+		"id": "mac-demarco-06-2016"
+	},
+	{
+		"artist": "Mac Miller",
+		"date": "2017-07-01",
+		"location": "Gdynia, PL",
+		"festival": "Opener",
+		"id": "mac-miller-06-2017"
+	},
+	{
+		"artist": "Migos",
+		"date": "2018-07-04",
+		"location": "Gdynia, PL",
+		"festival": "Opener",
+		"id": "migos-07-2018"
+	},
+	{
+		"artist": "Nas",
+		"date": "2013-07-04",
+		"location": "Gdynia, PL",
+		"festival": "Opener",
+		"id": "nas-07-2013"
+	},
+	{
+		"artist": "Paris Texas",
+		"date": "2023-09-19",
+		"location": "London, UK",
+		"id": "paris-texas-09-2023"
+	},
+	{
+		"artist": "Pharrell",
+		"date": "2016-07-02",
+		"location": "Gdynia, PL",
+		"festival": "Opener",
+		"id": "pharrell-07-2016"
+	},
+	{
+		"artist": "PRO8L3M",
+		"date": "2018-07-06",
+		"location": "Gdynia, PL",
+		"festival": "Opener",
+		"id": "pro8l3m-07-2018"
+	},
+	{
+		"artist": "Radiohead",
+		"date": "2017-06-28",
+		"location": "Gdynia, PL",
+		"festival": "Opener",
+		"id": "radiohead-06-2017"
+	},
+	{
+		"artist": "Rasmentalism",
+		"date": "2016-07-02",
+		"location": "Gdynia, PL",
+		"festival": "Opener",
+		"id": "rasmentalism-07-2016"
+	},
+	{
+		"artist": "Sheck Wes",
+		"date": "2018-11-01",
+		"location": "London, UK",
+		"id": "sheck-wes-11-2018"
+	},
+	{
+		"artist": "Solange",
+		"date": "2017-06-28",
+		"location": "Gdynia, PL",
+		"festival": "Opener",
+		"id": "solange-06-2017"
+	},
+	{
+		"artist": "Taco Hemingway",
+		"date": "2015-07-03",
+		"location": "Gdynia, PL",
+		"festival": "Opener",
+		"id": "taco-hemingway-07-2015"
+	},
+	{
+		"artist": "Tame Impala",
+		"date": "2013-07-04",
+		"location": "Gdynia, PL",
+		"festival": "Opener",
+		"id": "tame-impala-07-2013"
+	},
+	{
+		"artist": "The Alchemist",
+		"date": "2024-09-07",
+		"location": "Gdansk, PL",
+		"id": "the-alchemist-09-2024"
+	},
+	{
+		"artist": "The Weeknd",
+		"date": "2017-06-30",
+		"location": "Gdynia, PL",
+		"festival": "Opener",
+		"id": "the-weeknd-06-2017"
+	},
+	{
+		"artist": "Travis Scott",
+		"date": "2017-08-18",
+		"location": "Krakow, PL",
+		"festival": "Live",
+		"id": "travis-scott-08-2017"
+	},
+	{
+		"artist": "Vince Staples",
+		"date": "2016-07-02",
+		"location": "Gdynia, PL",
+		"festival": "Opener",
+		"id": "vince-staples-07-2016"
+	},
+	{
+		"artist": "Vince Staples",
+		"date": "2018-07-06",
+		"location": "Gdynia, PL",
+		"festival": "Opener",
+		"id": "vince-staples-07-2018"
+	},
+	{
+		"artist": "Young Fathers",
+		"date": "2018-07-05",
+		"location": "Gdynia, PL",
+		"festival": "Opener",
+		"id": "young-fathers-07-2018"
+	},
+	{
+		"artist": "Young Thug",
+		"date": "2018-07-06",
+		"location": "Gdynia, PL",
+		"festival": "Opener",
+		"id": "young-thug-07-2018"
+	},
+	{
+		"artist": "Yung Lean",
+		"date": "2018-07-07",
+		"location": "Gdynia, PL",
+		"festival": "Opener",
+		"id": "yung-lean-07-2018"
+	},
+	{
+		"artist": "Linkin Park",
+		"date": "2025-07-05",
+		"location": "Gdynia, PL",
+		"festival": "Opener",
+		"id": "linkin-park-07-2025"
+	},
+	{
+		"artist": "Future",
+		"date": "2025-07-03",
+		"location": "Gdynia, PL",
+		"festival": "Opener",
+		"id": "future-07-2025"
+	},
+	{
+		"artist": "fka Twigs",
+		"date": "2025-07-04",
+		"location": "Gdynia, PL",
+		"festival": "Opener",
+		"id": "fka-twigs-07-2025"
+	},
+	{
+		"artist": "JPEGMAFIA",
+		"date": "2025-07-05",
+		"location": "Gdynia, PL",
+		"festival": "Opener",
+		"id": "jpegmafia-07-2025"
+	},
+	{
+		"artist": "Little Simz",
+		"date": "2025-07-04",
+		"location": "Gdynia, PL",
+		"festival": "Opener",
+		"id": "little-simz-07-2025"
+	},
+	{
+		"artist": "Pezet",
+		"date": "2025-07-02",
+		"location": "Gdynia, PL",
+		"festival": "Opener",
+		"id": "pezet-07-2025"
+	},
+	{
+		"artist": "ScHoolboy Q",
+		"date": "2025-07-02",
+		"location": "Gdynia, PL",
+		"festival": "Opener",
+		"id": "schoolboy-q-07-2025"
+	},
+	{
+		"artist": "Jorja Smith",
+		"date": "2025-07-02",
+		"location": "Gdynia, PL",
+		"festival": "Opener",
+		"id": "jorja-smith-07-2025"
+	},
+	{
+		"artist": "Korekcja Linii",
+		"date": "2025-07-30",
+		"location": "Gdynia, PL",
+		"id": "korekcja-linii-07-2025"
+	},
+	{
+		"artist": "Karuzelkaaa",
+		"date": "2025-11-13",
+		"location": "Gdynia, PL",
+		"id": "karuzelkaaa-11-2025"
+	}
+]
