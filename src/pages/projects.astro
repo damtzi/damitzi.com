@@ -2,19 +2,11 @@
 import BaseLayout from '@/layouts/base.astro';
 import ProjectCard from '@/components/project-card.astro';
 import { TypographyH1, TypographyH2, TypographyP } from '@/components/typography';
-import projectsData from '@/content/projects.json';
+import { getCollection } from 'astro:content';
 
-type Project = {
-	id: number;
-	title: string;
-	description: string;
-	link: string;
-	tech: string[];
-	githubUrl?: string;
-};
-
-const personalProjects = projectsData.personal as Project[];
-const workProjects = projectsData.work as Project[];
+const projects = await getCollection('projects');
+const personalProjects = projects.filter((project) => project.data.category === 'personal');
+const workProjects = projects.filter((project) => project.data.category === 'work');
 ---
 
 <BaseLayout title="Projects" description="Projects I've worked on over the years">
@@ -33,11 +25,11 @@ const workProjects = projectsData.work as Project[];
 				{
 					personalProjects.map((project) => (
 						<ProjectCard
-							title={project.title}
-							description={project.description}
-							link={project.link}
-							tech={project.tech}
-							githubUrl={project.githubUrl}
+							title={project.data.title}
+							description={project.data.description}
+							link={project.data.link}
+							tech={project.data.tech}
+							githubUrl={project.data.githubUrl}
 						/>
 					))
 				}
@@ -63,11 +55,11 @@ const workProjects = projectsData.work as Project[];
 						.toReversed()
 						.map((project) => (
 							<ProjectCard
-								title={project.title}
-								description={project.description}
-								link={project.link}
-								tech={project.tech}
-								githubUrl={project.githubUrl}
+								title={project.data.title}
+								description={project.data.description}
+								link={project.data.link}
+								tech={project.data.tech}
+								githubUrl={project.data.githubUrl}
 							/>
 						))
 				}

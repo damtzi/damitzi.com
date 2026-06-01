@@ -3,25 +3,19 @@ import BaseLayout from '@/layouts/base.astro';
 import Breadcrumbs from '@/components/shared/breadcrumbs.astro';
 import { TypographyH1 } from '@/components/typography';
 import { dateFormatter } from '@/lib/utils';
-import concertsData from '@/content/concerts.json';
+import { getCollection, type CollectionEntry } from 'astro:content';
 
-type Concert = {
-	artist: string;
-	date: string;
-	location: string;
-	festival?: string;
-	id: string;
-};
+type Concert = CollectionEntry<'concerts'>['data'];
+
+const concerts = (await getCollection('concerts')).map((entry) => entry.data);
 
 // Sort concerts by date (newest first)
-const sortedConcerts = (concertsData as Concert[]).sort(
-	(a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-);
+const sortedConcerts = concerts.sort((a, b) => b.date.getTime() - a.date.getTime());
 
 // Group concerts by year
 const concertsByYear = sortedConcerts.reduce(
 	(acc, concert) => {
-		const year = new Date(concert.date).getFullYear();
+		const year = concert.date.getFullYear();
 		acc[year] ??= [];
 		acc[year].push(concert);
 		return acc;
@@ -51,7 +45,7 @@ const years = Object.keys(concertsByYear)
 								<li class="group flex flex-col md:flex-row md:items-center md:justify-between">
 									<span>{concert.artist}</span>
 									<span>
-										{dateFormatter(new Date(concert.date))} @ {concert.location}
+										{dateFormatter(concert.date)} @ {concert.location}
 										{concert.festival && ` [${concert.festival} Festival]`}
 									</span>
 								</li>

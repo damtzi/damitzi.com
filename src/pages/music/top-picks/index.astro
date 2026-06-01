@@ -2,6 +2,7 @@
 import BaseLayout from '@/layouts/base.astro';
 import Breadcrumbs from '@/components/shared/breadcrumbs.astro';
 import Arrow from '@/components/shared/arrow.astro';
+import Link from '@/components/shared/link.astro';
 import { TypographyH1, TypographyP } from '@/components/typography';
 import { getCollection } from 'astro:content';
 
@@ -24,12 +25,7 @@ const topPicks = (await getCollection('topPicks', ({ data }) => data.published))
 				topPicks.map((topPick) => (
 					<li class="group flex items-center gap-2">
 						<Arrow />
-						<a
-							href={`/music/top-picks/${topPick.id}`}
-							class="text-gray-400 transition-colors duration-150 ease-out hover:cursor-pointer hover:text-pure-blue"
-						>
-							{topPick.data.title}
-						</a>
+						<Link href={`/music/top-picks/${topPick.id}`}>{topPick.data.title}</Link>
 					</li>
 				))
 			}

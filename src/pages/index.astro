@@ -2,14 +2,12 @@
 import BaseLayout from '@/layouts/base.astro';
 import RunCard from '@/components/run-card.astro';
 import LiftCard from '@/components/lift-card.astro';
+import Link from '@/components/shared/link.astro';
 import { TypographyH1, TypographyH2, TypographyP } from '@/components/typography';
 import VinylPng from '@/assets/black-vinyl.png';
 import CdPng from '@/assets/clear-cd.png';
 import { getDiscogsCollection } from '@/lib/discogs';
 import { getStravaActivity } from '@/lib/strava';
-
-const linkClass =
-	'text-gray-400 transition-colors duration-150 ease-out hover:text-pure-blue hover:cursor-pointer';
 
 const [collection, activities] = await Promise.all([getDiscogsCollection(), getStravaActivity()]);
 
@@ -27,49 +25,24 @@ const isVinyl = (formats: { name: string }[]) => formats.some((format) => format
 		<div class="flex flex-col gap-2">
 			<TypographyH1>Welcome</TypographyH1>
 			<TypographyP>
-				Hello there! Welcome to my personal website. Here you can find: information <a
-					href="/about"
-					class={linkClass}>about me</a
-				>, my <a href="/projects" class={linkClass}>projects</a>, my
-				<a href="/music/vinyls" class={linkClass}>vinyl collection</a>, my
-				<a href="/music/top-picks" class={linkClass}>top picks</a>, my
-				<a href="/socials" class={linkClass}>social links</a>, my
-				<a href="/hobbies" class={linkClass}>hobbies</a>, and my
-				<a href="/bread" class={linkClass}>bread</a>.
+				Hello there! Welcome to my personal website. Here you can find: information <Link
+					href="/about">about me</Link
+				>, my <Link href="/projects">projects</Link>, my
+				<Link href="/music/vinyls">vinyl collection</Link>, my
+				<Link href="/music/top-picks">top picks</Link>, my
+				<Link href="/socials">social links</Link>, my
+				<Link href="/hobbies">hobbies</Link>, and my
+				<Link href="/bread">bread</Link>.
 			</TypographyP>
 			<TypographyP>
-				You can check out my work on <a
-					href="https://github.com/damtzi"
-					target="_blank"
-					rel="noopener noreferrer"
-					class={linkClass}>GitHub</a
-				>, follow me on
-				<a
-					href="https://bsky.app/profile/damitzi.com"
-					target="_blank"
-					rel="noopener noreferrer"
-					class={linkClass}>Bluesky</a
-				>,
-				<a
-					href="https://www.instagram.com/damitzi__"
-					target="_blank"
-					rel="noopener noreferrer"
-					class={linkClass}>Instagram</a
-				>,
-				<a
-					href="https://www.discogs.com/user/damitzi__"
-					target="_blank"
-					rel="noopener noreferrer"
-					class={linkClass}>Discogs</a
-				>,
-				<a
-					href="https://www.strava.com/athletes/108759547"
-					target="_blank"
-					rel="noopener noreferrer"
-					class={linkClass}>Strava</a
-				>, or drop me an email at
-				<a href="mailto:damian.tziamtzis@gmail.com" class={linkClass}>damian.tziamtzis@gmail.com</a
-				>.
+				You can check out my work on <Link href="https://github.com/damtzi" external>GitHub</Link>,
+				follow me on
+				<Link href="https://bsky.app/profile/damitzi.com" external>Bluesky</Link>,
+				<Link href="https://www.instagram.com/damitzi__" external>Instagram</Link>,
+				<Link href="https://www.discogs.com/user/damitzi__" external>Discogs</Link>,
+				<Link href="https://www.strava.com/athletes/108759547" external>Strava</Link>, or drop me an
+				email at
+				<Link href="mailto:damian.tziamtzis@gmail.com">damian.tziamtzis@gmail.com</Link>.
 			</TypographyP>
 		</div>
 
