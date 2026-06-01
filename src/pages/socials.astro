@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@/layouts/base.astro';
 import Arrow from '@/components/shared/arrow.astro';
+import Link from '@/components/shared/link.astro';
 import { TypographyH1, TypographyP } from '@/components/typography';
 
 const socialLinks = [
@@ -24,14 +25,9 @@ const socialLinks = [
 				socialLinks.map((link) => (
 					<li class="group flex items-center gap-2">
 						<Arrow />
-						<a
-							href={link.href}
-							target="_blank"
-							rel="noopener noreferrer"
-							class="text-gray-400 transition-colors duration-150 ease-out hover:cursor-pointer hover:text-pure-blue"
-						>
+						<Link href={link.href} external={link.href.startsWith('http')}>
 							{link.text}
-						</a>
+						</Link>
 					</li>
 				))
 			}

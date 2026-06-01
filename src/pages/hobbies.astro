@@ -1,9 +1,7 @@
 ---
 import BaseLayout from '@/layouts/base.astro';
+import Link from '@/components/shared/link.astro';
 import { TypographyH1, TypographyP } from '@/components/typography';
-
-const linkClass =
-	'text-gray-400 transition-colors duration-150 ease-out hover:text-pure-blue hover:cursor-pointer';
 ---
 
 <BaseLayout title="Hobbies" description="My hobbies and interests">
@@ -14,12 +12,11 @@ const linkClass =
 			Chicago Bulls, with the New York Knicks being a close second. I also support Arka Gdynia in
 			the Polish Basketball League - PLK. When I'm not watching hoops, I love playing padel, lifting
 			weights, going for runs, and sailing. I enjoy spending time in the kitchen - I bake my own
-			sourdough <a href="/bread" class={linkClass}>bread</a>
-			at least once a week. Music is a big passion too; I'm always curating my "<a
-				href="/music/top-picks"
-				class={linkClass}>top picks</a
+			sourdough <Link href="/bread">bread</Link>
+			at least once a week. Music is a big passion too; I'm always curating my "<Link
+				href="/music/top-picks">top picks</Link
 			>" of the year lists and adding new vinyl records to my
-			<a href="/music/vinyls" class={linkClass}>collection</a>.
+			<Link href="/music/vinyls">collection</Link>.
 		</TypographyP>
 	</div>
 </BaseLayout>

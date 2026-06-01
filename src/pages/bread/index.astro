@@ -2,6 +2,7 @@
 import BaseLayout from '@/layouts/base.astro';
 import Breadcrumbs from '@/components/shared/breadcrumbs.astro';
 import Arrow from '@/components/shared/arrow.astro';
+import Link from '@/components/shared/link.astro';
 import { TypographyH1 } from '@/components/typography';
 import { getCollection } from 'astro:content';
 
@@ -17,12 +18,7 @@ const recipes = await getCollection('recipes', ({ data }) => data.published);
 				recipes.map((recipe) => (
 					<li class="group flex items-center gap-2">
 						<Arrow />
-						<a
-							href={`/bread/${recipe.id}`}
-							class="text-gray-400 transition-colors duration-150 ease-out hover:cursor-pointer hover:text-pure-blue"
-						>
-							{recipe.data.title}
-						</a>
+						<Link href={`/bread/${recipe.id}`}>{recipe.data.title}</Link>
 					</li>
 				))
 			}
