@@ -1,0 +1,168 @@
+---
+import BaseLayout from '@/layouts/base.astro';
+import RunCard from '@/components/run-card.astro';
+import LiftCard from '@/components/lift-card.astro';
+import { TypographyH1, TypographyH2, TypographyP } from '@/components/typography';
+import VinylPng from '@/assets/black-vinyl.png';
+import CdPng from '@/assets/clear-cd.png';
+import { getDiscogsCollection } from '@/lib/discogs';
+import { getStravaActivity } from '@/lib/strava';
+
+const linkClass =
+	'text-gray-400 transition-colors duration-150 ease-out hover:text-pure-blue hover:cursor-pointer';
+
+const [collection, activities] = await Promise.all([getDiscogsCollection(), getStravaActivity()]);
+
+const releases = collection.releases
+	.sort((a, b) => new Date(b.date_added).getTime() - new Date(a.date_added).getTime())
+	.slice(0, 4);
+const runs = activities.filter((activity) => activity.type === 'Run').slice(0, 4);
+const lifts = activities.filter((activity) => activity.type === 'WeightTraining').slice(0, 4);
+
+const isVinyl = (formats: { name: string }[]) => formats.some((format) => format.name === 'Vinyl');
+---
+
+<BaseLayout title="Home" description="Home page">
+	<div class="stagger-animation flex flex-col gap-8">
+		<div class="flex flex-col gap-2">
+			<TypographyH1>Welcome</TypographyH1>
+			<TypographyP>
+				Hello there! Welcome to my personal website. Here you can find: information <a
+					href="/about"
+					class={linkClass}>about me</a
+				>, my <a href="/projects" class={linkClass}>projects</a>, my
+				<a href="/music/vinyls" class={linkClass}>vinyl collection</a>, my
+				<a href="/music/top-picks" class={linkClass}>top picks</a>, my
+				<a href="/socials" class={linkClass}>social links</a>, my
+				<a href="/hobbies" class={linkClass}>hobbies</a>, and my
+				<a href="/bread" class={linkClass}>bread</a>.
+			</TypographyP>
+			<TypographyP>
+				You can check out my work on <a
+					href="https://github.com/damtzi"
+					target="_blank"
+					rel="noopener noreferrer"
+					class={linkClass}>GitHub</a
+				>, follow me on
+				<a
+					href="https://bsky.app/profile/damitzi.com"
+					target="_blank"
+					rel="noopener noreferrer"
+					class={linkClass}>Bluesky</a
+				>,
+				<a
+					href="https://www.instagram.com/damitzi__"
+					target="_blank"
+					rel="noopener noreferrer"
+					class={linkClass}>Instagram</a
+				>,
+				<a
+					href="https://www.discogs.com/user/damitzi__"
+					target="_blank"
+					rel="noopener noreferrer"
+					class={linkClass}>Discogs</a
+				>,
+				<a
+					href="https://www.strava.com/athletes/108759547"
+					target="_blank"
+					rel="noopener noreferrer"
+					class={linkClass}>Strava</a
+				>, or drop me an email at
+				<a href="mailto:damian.tziamtzis@gmail.com" class={linkClass}>damian.tziamtzis@gmail.com</a
+				>.
+			</TypographyP>
+		</div>
+
+		<div class="flex flex-col gap-2">
+			<TypographyH2>Recent pickups</TypographyH2>
+			<div class="grid grid-cols-2 gap-4 sm:grid-cols-4 md:gap-10">
+				{
+					releases.map((release) => (
+						<a href={`/music/vinyls/${release.id}`} class="group relative">
+							<img
+								src={release.basic_information.cover_image}
+								alt={release.basic_information.title}
+								width={200}
+								height={200}
+								class="relative z-10 aspect-square rounded-xs shadow-lg transition-all duration-300 hover:scale-105 hover:cursor-pointer hover:shadow"
+							/>
+							<img
+								src={isVinyl(release.basic_information.formats) ? VinylPng.src : CdPng.src}
+								alt={
+									isVinyl(release.basic_information.formats) ? 'A black vinyl record' : 'A clear CD'
+								}
+								width={200}
+								height={200}
+								class="absolute top-0 z-0 transition-transform duration-300 group-hover:translate-x-10"
+							/>
+						</a>
+					))
+				}
+			</div>
+		</div>
+
+		<div class="flex flex-col gap-2">
+			<TypographyH2>Recent runs</TypographyH2>
+			<div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+				{
+					runs.map((run) => (
+						<RunCard
+							date={run.start_date_local}
+							distance={run.distance}
+							movingTime={run.moving_time}
+						/>
+					))
+				}
+			</div>
+		</div>
+
+		<div class="flex flex-col gap-2">
+			<TypographyH2>Recent lifts</TypographyH2>
+			<div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+				{
+					lifts.map((lift) => (
+						<LiftCard
+							date={lift.start_date_local}
+							maxHeartRate={lift.max_heartrate}
+							movingTime={lift.moving_time}
+						/>
+					))
+				}
+			</div>
+		</div>
+	</div>
+</BaseLayout>
+
+<style>
+	@media (prefers-reduced-motion: no-preference) {
+		/* Target all direct children of the stagger-animation container */
+		.stagger-animation > * {
+			opacity: 0;
+			transform: translateY(-10px);
+			animation: fadeInDown 0.6s ease-out forwards;
+		}
+
+		.stagger-animation > :nth-child(1) {
+			animation-delay: 0.1s;
+		}
+		.stagger-animation > :nth-child(2) {
+			animation-delay: 0.3s;
+		}
+		.stagger-animation > :nth-child(3) {
+			animation-delay: 0.5s;
+		}
+		.stagger-animation > :nth-child(4) {
+			animation-delay: 0.7s;
+		}
+		.stagger-animation > :nth-child(5) {
+			animation-delay: 0.9s;
+		}
+
+		@keyframes fadeInDown {
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+	}
+</style>

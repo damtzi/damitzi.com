@@ -1,8 +1,9 @@
-import type { Activity, StravaAuthResponse } from '$lib/types';
+import type { Activity, StravaAuthResponse } from '@/lib/types';
+import { STRAVA_CLIENT_ID, STRAVA_CLIENT_SECRET, STRAVA_REFRESH_TOKEN } from 'astro:env/server';
 
 export async function getStravaActivity(): Promise<Activity[]> {
 	const stravaAuthResponse = await fetch(
-		`https://www.strava.com/oauth/token?client_id=${import.meta.env.STRAVA_CLIENT_ID}&client_secret=${import.meta.env.STRAVA_CLIENT_SECRET}&refresh_token=${import.meta.env.STRAVA_REFRESH_TOKEN}&grant_type=refresh_token`,
+		`https://www.strava.com/oauth/token?client_id=${STRAVA_CLIENT_ID}&client_secret=${STRAVA_CLIENT_SECRET}&refresh_token=${STRAVA_REFRESH_TOKEN}&grant_type=refresh_token`,
 		{
 			method: 'POST'
 		}
