@@ -8,6 +8,8 @@
 	--foreground: oklch(0.2644 0 0);
 	/* Brand blue for thin text/lines. Light mode is the true #0007fb. */
 	--accent: #0007fb;
+	/* Opaque card surface — consistent regardless of the backdrop behind it. */
+	--surface: oklch(0.975 0.002 264.7);
 }
 
 .dark {
@@ -15,12 +17,14 @@
 	--foreground: oklch(0.9848 0 0);
 	/* Same hue, lifted so it stays legible on near-black navy. */
 	--accent: oklch(0.72 0.15 264);
+	--surface: oklch(0.165 0.035 264.7);
 }
 
 @theme inline {
 	--color-background: var(--background);
 	--color-foreground: var(--foreground);
 	--color-accent: var(--accent);
+	--color-surface: var(--surface);
 
 	--color-pure-blue: #0007fb;
 	--color-baby-powder: #fdfffc;
