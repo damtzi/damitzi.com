@@ -37,7 +37,7 @@ export default function MobileNav({ pathname }: { pathname: string }) {
 		<div className="sm:hidden">
 			{/* Animated button */}
 			<button
-				className="relative h-10 w-10 rounded-sm text-slate-50 focus:outline-none"
+				className="relative z-30 h-10 w-10 rounded-sm text-slate-50 focus:outline-none"
 				onClick={() => setIsOpen((open) => !open)}
 			>
 				<span className="sr-only">Toggle menu</span>
@@ -65,41 +65,35 @@ export default function MobileNav({ pathname }: { pathname: string }) {
 					/>
 				</div>
 			</button>
-			<div
+			<nav
 				className={cn(
-					'transition-opacity md:hidden',
-					isOpen ? 'opacity-100' : 'opacity-0 delay-500'
+					'fixed inset-0 z-20 h-dvh w-full overflow-auto bg-background/70 backdrop-blur-xl transition-opacity duration-300 ease-out',
+					isOpen ? 'opacity-100' : 'pointer-events-none opacity-0'
 				)}
 			>
-				<nav
+				<ul
 					className={cn(
-						'fixed inset-x-0 z-20 mx-auto h-full overflow-auto bg-background/50 backdrop-blur-lg',
-						isOpen ? 'translate-x-0 opacity-100' : 'translate-x-[-100vw] opacity-0'
+						'flex h-full flex-col justify-center gap-6 px-8',
+						'[&_a]:flex [&_a]:w-full [&_a]:items-center [&_a]:text-2xl [&_a]:transition-[color,transform,opacity] [&_a]:duration-300 [&_a]:ease-out',
+						isOpen ? '[&_a]:translate-y-0 [&_a]:opacity-100' : '[&_a]:translate-y-4 [&_a]:opacity-0'
 					)}
 				>
-					<ul
-						className={cn(
-							'flex h-full flex-col gap-2 px-6',
-							'ease-in [&_a]:flex [&_a]:w-full [&_a]:translate-y-8 [&_a]:items-center [&_a]:text-lg [&_a]:transition-[color,transform] [&_a]:duration-300',
-							isOpen && '[&_a]:translate-y-0'
-						)}
-					>
-						{links.map((link) => (
-							<li key={link.href}>
-								<a
-									href={link.href}
-									className={cn(
-										'font-serif font-medium text-gray-400 transition-colors duration-150 ease-out hover:cursor-pointer hover:text-foreground',
-										link.match(pathname) && 'text-foreground'
-									)}
-								>
-									{link.label}
-								</a>
-							</li>
-						))}
-					</ul>
-				</nav>
-			</div>
+					{links.map((link, i) => (
+						<li key={link.href}>
+							<a
+								href={link.href}
+								style={{ transitionDelay: isOpen ? `${i * 40 + 100}ms` : '0ms' }}
+								className={cn(
+									'font-serif font-medium text-gray-400 transition-colors duration-150 ease-out hover:cursor-pointer hover:text-foreground',
+									link.match(pathname) && 'text-foreground'
+								)}
+							>
+								{link.label}
+							</a>
+						</li>
+					))}
+				</ul>
+			</nav>
 		</div>
 	);
 }
