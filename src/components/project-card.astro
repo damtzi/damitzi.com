@@ -2,18 +2,20 @@
 import ExternalLinkIcon from '@lucide/astro/icons/external-link';
 import { TypographyH4, TypographyP } from '@/components/typography';
 
-interface Props {
+type Props = {
 	title: string;
 	description: string;
 	link: string;
 	tech: string[];
 	githubUrl?: string;
-}
+};
 
 const { title, description, link, tech, githubUrl } = Astro.props;
 ---
 
-<div class="flex flex-col gap-2 rounded-md border border-gray-300 bg-background px-4 py-2 shadow">
+<div
+	class="flex flex-col gap-3 rounded-lg border border-foreground/10 bg-surface px-4 py-3 shadow-sm"
+>
 	<TypographyH4 class="flex items-center gap-2">
 		<svg width="6" height="6">
 			<circle cx="3" cy="3" r="3" fill="#0007fb"></circle>
@@ -24,7 +26,7 @@ const { title, description, link, tech, githubUrl } = Astro.props;
 	<div class="flex flex-wrap gap-2">
 		{
 			tech.map((techItem) => (
-				<span class="rounded-md bg-pure-blue/10 px-2 py-1 text-foreground dark:bg-pure-blue">
+				<span class="rounded-md bg-pure-blue/10 px-2 py-1 text-foreground dark:bg-pure-blue/70">
 					{techItem}
 				</span>
 			))

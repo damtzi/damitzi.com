@@ -1,11 +1,11 @@
 ---
 import { formatTime } from '@/lib/utils';
 
-interface Props {
+type Props = {
 	date: string;
 	distance: number; // meters
 	movingTime: number; // seconds
-}
+};
 
 const { date, distance, movingTime } = Astro.props;
 
@@ -25,20 +25,24 @@ const stats = {
 };
 ---
 
-<div class="flex flex-col gap-2 rounded-md border border-gray-300 bg-background px-4 py-2 shadow">
-	<h3>{stats.formattedDate}</h3>
-	<div class="grid grid-cols-3">
-		<div class="flex flex-col text-sm">
-			<span class="text-gray-500">Distance</span>
-			<span class="font-mono">{stats.distance}</span>
+<div
+	class="flex flex-col gap-3 rounded-lg border border-foreground/10 bg-surface px-4 py-3 shadow-sm"
+>
+	<h3 class="font-medium">{stats.formattedDate}</h3>
+	<div class="grid grid-cols-3 gap-2">
+		<div class="flex flex-col gap-0.5">
+			<span class="text-xs font-medium tracking-wider text-foreground/40 uppercase">Distance</span>
+			<span class="font-mono text-sm tabular-nums">{stats.distance}</span>
 		</div>
-		<div class="flex flex-col text-sm">
-			<span class="text-gray-500">Pace</span>
-			<span class="font-mono">{stats.pace}</span>
+		<div class="flex flex-col gap-0.5">
+			<span class="text-xs font-medium tracking-wider text-foreground/40 uppercase">Pace</span>
+			<span class="font-mono text-sm tabular-nums">{stats.pace}</span>
 		</div>
-		<div class="flex flex-col text-sm">
-			<span class="text-gray-500">Duration</span>
-			<span class="font-mono">{formatTime(movingTime)} mm:ss</span>
+		<div class="flex flex-col gap-0.5">
+			<span class="text-xs font-medium tracking-wider text-foreground/40 uppercase">Duration</span>
+			<span class="font-mono text-sm tabular-nums"
+				>{formatTime(movingTime)} <span class="text-foreground/40">mm:ss</span></span
+			>
 		</div>
 	</div>
 </div>
