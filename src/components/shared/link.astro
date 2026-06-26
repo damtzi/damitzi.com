@@ -13,7 +13,7 @@ const { href, external = false, class: className } = Astro.props;
 	target={external ? '_blank' : undefined}
 	rel={external ? 'noopener noreferrer' : undefined}
 	class:list={[
-		'text-gray-400 transition-colors duration-150 ease-out hover:cursor-pointer hover:text-pure-blue',
+		'text-gray-400 transition-colors duration-150 ease-out hover:cursor-pointer hover:text-accent',
 		className
 	]}><slot /></a
 >
