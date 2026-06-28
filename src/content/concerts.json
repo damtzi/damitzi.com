@@ -395,5 +395,23 @@
 		"date": "2025-11-13",
 		"location": "Gdynia, PL",
 		"id": "karuzelkaaa-11-2025"
+	},
+	{
+		"artist": "PGR",
+		"date": "2026-03-13",
+		"location": "Sopot, PL",
+		"id": "pgr-03-2026"
+	},
+	{
+		"artist": "By Storm",
+		"date": "2026-04-14",
+		"location": "Warszawa, PL",
+		"id": "by-storm-04-2026"
+	},
+	{
+		"artist": "Armand Hammer",
+		"date": "2026-06-12",
+		"location": "Warszawa, PL",
+		"id": "armand-hammer-06-2026"
 	}
 ]
