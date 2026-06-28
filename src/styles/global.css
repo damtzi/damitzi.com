@@ -3,6 +3,24 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* Keep the page width constant so the centered layout (and side nav) never
+   shifts sideways — between short/tall pages or mid view-transition.
+   overflow-y:scroll forces a permanent scrollbar on classic-scrollbar systems;
+   scrollbar-gutter reserves the gutter on overlay-scrollbar systems. */
+html {
+	overflow-y: scroll;
+	scrollbar-gutter: stable;
+}
+
+/* Don't cross-fade the whole page on navigation — the header, side nav and
+   footer swap instantly so they can't animate or shift. Only <main> fades
+   (see transition:animate in the layout). */
+::view-transition-old(root),
+::view-transition-new(root) {
+	animation: none;
+	mix-blend-mode: normal;
+}
+
 :root {
 	--background: oklch(1 0 0);
 	--foreground: oklch(0.2644 0 0);
