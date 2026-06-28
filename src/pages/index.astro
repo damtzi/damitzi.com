@@ -57,6 +57,7 @@ const isVinyl = (formats: { name: string }[]) => formats.some((format) => format
 								alt={release.basic_information.title}
 								width={200}
 								height={200}
+								transition:name={`vinyl-cover-${release.id}`}
 								class="relative z-10 aspect-square rounded-xs shadow-lg transition-all duration-300 hover:scale-105 hover:cursor-pointer hover:shadow"
 							/>
 							<img
@@ -66,7 +67,7 @@ const isVinyl = (formats: { name: string }[]) => formats.some((format) => format
 								}
 								width={200}
 								height={200}
-								class="absolute top-0 z-0 transition-transform duration-300 group-hover:translate-x-10"
+								class="absolute top-0 z-0 opacity-0 transition-all duration-300 group-hover:translate-x-10 group-hover:opacity-100"
 							/>
 						</a>
 					))
@@ -108,8 +109,9 @@ const isVinyl = (formats: { name: string }[]) => formats.some((format) => format
 
 <style>
 	@media (prefers-reduced-motion: no-preference) {
-		/* Target all direct children of the stagger-animation container */
-		.stagger-animation > * {
+		/* Target all direct children of the stagger-animation container.
+		   Skipped after the first navigation so it only animates on initial load. */
+		:root:not([data-navigated]) .stagger-animation > * {
 			opacity: 0;
 			transform: translateY(-10px);
 			animation: fadeInDown 0.6s ease-out forwards;

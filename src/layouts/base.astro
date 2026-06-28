@@ -33,6 +33,14 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin).hr
 		<link rel="canonical" href={canonical} />
 		<Theme />
 		<ClientRouter />
+		<script is:inline>
+			// Mark the document once a view transition occurs so first-load-only
+			// animations don't re-run on client-side navigation. Must run after
+			// the swap, since Astro overwrites <html> attributes during it.
+			document.addEventListener('astro:after-swap', () => {
+				document.documentElement.setAttribute('data-navigated', '');
+			});
+		</script>
 	</head>
 	<body
 		class="antialised font-hanken-grotesk relative bg-white text-black transition-colors duration-300 ease-out dark:bg-black dark:text-white"

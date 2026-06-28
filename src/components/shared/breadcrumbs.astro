@@ -1,4 +1,11 @@
 ---
+interface Props {
+	// Map a URL segment to a display label, e.g. a vinyl id to its album title.
+	labels?: Record<string, string>;
+}
+
+const { labels = {} } = Astro.props;
+
 const currentPath = Astro.url.pathname;
 const segments = currentPath.split('/').filter((segment) => segment !== '');
 
@@ -6,12 +13,14 @@ const breadcrumbPaths = segments.map((segment, index) => {
 	const href = `/${segments.slice(0, index + 1).join('/')}`;
 
 	return {
-		name: segment,
-		href
+		name: labels[segment] ?? segment,
+		href,
+		// Only auto-capitalize raw URL segments, never custom labels (e.g. titles).
+		capitalize: !(segment in labels)
 	};
 });
 
-breadcrumbPaths.unshift({ name: 'home', href: '/' });
+breadcrumbPaths.unshift({ name: 'home', href: '/', capitalize: true });
 ---
 
 <nav aria-label="Breadcrumb" class="py-3">
@@ -21,11 +30,16 @@ breadcrumbPaths.unshift({ name: 'home', href: '/' });
 				<li class="flex items-center">
 					{index > 0 && <div class="mx-3 h-1.5 w-1.5 rounded-full bg-pure-blue" />}
 					{index === breadcrumbPaths.length - 1 ? (
-						<span class="text-foreground">{path.name}</span>
+						<span class:list={['text-foreground', { capitalize: path.capitalize }]}>
+							{path.name}
+						</span>
 					) : (
 						<a
 							href={path.href}
-							class="text-foreground/50 transition-colors duration-150 ease-out hover:cursor-pointer hover:text-accent"
+							class:list={[
+								'text-foreground/50 transition-colors duration-150 ease-out hover:cursor-pointer hover:text-accent',
+								{ capitalize: path.capitalize }
+							]}
 						>
 							{path.name}
 						</a>
