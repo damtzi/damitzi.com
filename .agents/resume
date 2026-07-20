@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+#
+# Runs when an existing orb wakes from pause. Fast and idempotent: this is a
+# static Astro site with no backing services, so just verify the toolchain is
+# on PATH and node_modules is present. Target completion well under 10 seconds.
+set -euo pipefail
+
+cd "$(dirname "$0")/.."
+
+command -v node >/dev/null 2>&1 || { echo "resume: node missing on PATH" >&2; exit 1; }
+command -v pnpm >/dev/null 2>&1 || corepack enable
+
+# node_modules lives in the snapshotted filesystem, but repair if absent.
+[ -d node_modules ] || pnpm install --frozen-lockfile
+
+echo "resume: ready (node $(node --version), pnpm $(pnpm --version))"

@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+#
+# Runs once when a fresh orb is created. Installs everything needed to build,
+# lint, typecheck, and run the dev server for damitzi.com.
+set -euo pipefail
+
+cd "$(dirname "$0")/.."
+
+# --- Node.js ---------------------------------------------------------------
+# CI uses Node 24.x and pnpm@10.33.2 requires Node >= 22.13. Orbs ship Node 20,
+# so install the Node 24 LTS tarball over /usr/local when needed.
+NODE_VERSION="24.18.0"
+if ! command -v node >/dev/null 2>&1 || [[ "$(node --version)" != v24.* ]]; then
+  echo "setup: installing Node.js v${NODE_VERSION}..."
+  curl -fsSL "https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-linux-x64.tar.xz" \
+    | tar -xJ --strip-components=1 -C /usr/local || true
+  hash -r
+  if [[ "$(node --version)" != v24.* ]]; then
+    echo "setup: Node.js installation failed" >&2
+    exit 1
+  fi
+fi
+echo "setup: node $(node --version)"
+
+# --- pnpm ------------------------------------------------------------------
+# Pinned by the `packageManager` field in package.json; activate via corepack.
+corepack enable
+corepack prepare pnpm@10.33.2 --activate
+hash -r
+echo "setup: pnpm $(pnpm --version)"
+
+# --- Dependencies ----------------------------------------------------------
+pnpm install --frozen-lockfile
+
+# --- Local secrets ---------------------------------------------------------
+# `pnpm build` and `pnpm dev` prerender pages that fetch live data from Discogs
+# and Strava, so they require real API secrets in .dev.vars. `pnpm check` and
+# `pnpm lint` work without them. Seed .dev.vars from the committed template so
+# the env schema is satisfied once real values are filled in.
+if [ ! -f .dev.vars ] && [ -f .dev.vars.example ]; then
+  cp -- .dev.vars.example .dev.vars
+fi
+
+echo "setup: done"
