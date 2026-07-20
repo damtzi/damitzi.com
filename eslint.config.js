@@ -1,4 +1,5 @@
 import eslintPluginAstro from 'eslint-plugin-astro';
+import eslintPluginSvelte from 'eslint-plugin-svelte';
 import { includeIgnoreFile } from '@eslint/compat';
 import { fileURLToPath } from 'node:url';
 import eslintPluginUnicorn from 'eslint-plugin-unicorn';
@@ -15,6 +16,16 @@ export default defineConfig(
 	js.configs.recommended,
 	...ts.configs.recommended,
 	...eslintPluginAstro.configs.recommended,
+	...eslintPluginSvelte.configs.recommended,
+	{
+		files: ['**/*.svelte'],
+		languageOptions: {
+			parserOptions: {
+				extraFileExtensions: ['.svelte'],
+				parser: ts.parser
+			}
+		}
+	},
 	prettier,
 	{
 		languageOptions: {
