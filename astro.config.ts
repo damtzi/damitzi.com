@@ -12,10 +12,7 @@ export default defineConfig({
 
 	env: {
 		schema: {
-			DISCOGS_TOKEN: envField.string({ context: 'server', access: 'secret' }),
-			STRAVA_CLIENT_ID: envField.string({ context: 'server', access: 'secret' }),
-			STRAVA_CLIENT_SECRET: envField.string({ context: 'server', access: 'secret' }),
-			STRAVA_REFRESH_TOKEN: envField.string({ context: 'server', access: 'secret' })
+			DISCOGS_TOKEN: envField.string({ context: 'server', access: 'secret' })
 		}
 	},
 

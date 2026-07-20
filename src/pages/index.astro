@@ -1,21 +1,16 @@
 ---
 import BaseLayout from '@/layouts/base.astro';
-import RunCard from '@/components/run-card.astro';
-import LiftCard from '@/components/lift-card.astro';
 import Link from '@/components/shared/link.astro';
 import { TypographyH1, TypographyH2, TypographyP } from '@/components/typography';
 import VinylPng from '@/assets/black-vinyl.png';
 import CdPng from '@/assets/clear-cd.png';
 import { getDiscogsCollection } from '@/lib/discogs';
-import { getStravaActivity } from '@/lib/strava';
 
-const [collection, activities] = await Promise.all([getDiscogsCollection(), getStravaActivity()]);
+const collection = await getDiscogsCollection();
 
 const releases = collection.releases
 	.sort((a, b) => new Date(b.date_added).getTime() - new Date(a.date_added).getTime())
 	.slice(0, 4);
-const runs = activities.filter((activity) => activity.type === 'Run').slice(0, 4);
-const lifts = activities.filter((activity) => activity.type === 'WeightTraining').slice(0, 4);
 
 const isVinyl = (formats: { name: string }[]) => formats.some((format) => format.name === 'Vinyl');
 ---
@@ -39,8 +34,7 @@ const isVinyl = (formats: { name: string }[]) => formats.some((format) => format
 				follow me on
 				<Link href="https://bsky.app/profile/damitzi.com" external>Bluesky</Link>,
 				<Link href="https://www.instagram.com/damitzi__" external>Instagram</Link>,
-				<Link href="https://www.discogs.com/user/damitzi__" external>Discogs</Link>,
-				<Link href="https://www.strava.com/athletes/108759547" external>Strava</Link>, or drop me an
+				<Link href="https://www.discogs.com/user/damitzi__" external>Discogs</Link>, or drop me an
 				email at
 				<Link href="mailto:damian.tziamtzis@gmail.com">damian.tziamtzis@gmail.com</Link>.
 			</TypographyP>
@@ -74,36 +68,6 @@ const isVinyl = (formats: { name: string }[]) => formats.some((format) => format
 				}
 			</div>
 		</div>
-
-		<div class="flex flex-col gap-2">
-			<TypographyH2>Recent runs</TypographyH2>
-			<div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-				{
-					runs.map((run) => (
-						<RunCard
-							date={run.start_date_local}
-							distance={run.distance}
-							movingTime={run.moving_time}
-						/>
-					))
-				}
-			</div>
-		</div>
-
-		<div class="flex flex-col gap-2">
-			<TypographyH2>Recent lifts</TypographyH2>
-			<div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-				{
-					lifts.map((lift) => (
-						<LiftCard
-							date={lift.start_date_local}
-							maxHeartRate={lift.max_heartrate}
-							movingTime={lift.moving_time}
-						/>
-					))
-				}
-			</div>
-		</div>
 	</div>
 </BaseLayout>
 
@@ -122,15 +86,6 @@ const isVinyl = (formats: { name: string }[]) => formats.some((format) => format
 		}
 		.stagger-animation > :nth-child(2) {
 			animation-delay: 0.3s;
-		}
-		.stagger-animation > :nth-child(3) {
-			animation-delay: 0.5s;
-		}
-		.stagger-animation > :nth-child(4) {
-			animation-delay: 0.7s;
-		}
-		.stagger-animation > :nth-child(5) {
-			animation-delay: 0.9s;
 		}
 
 		@keyframes fadeInDown {

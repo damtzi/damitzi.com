@@ -11,11 +11,6 @@
 		}
 	],
 	"secrets": {
-		"required": [
-			"DISCOGS_TOKEN",
-			"STRAVA_CLIENT_ID",
-			"STRAVA_CLIENT_SECRET",
-			"STRAVA_REFRESH_TOKEN"
-		]
+		"required": ["DISCOGS_TOKEN"]
 	}
 }
