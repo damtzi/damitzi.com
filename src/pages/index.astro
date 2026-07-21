@@ -1,98 +1,105 @@
 ---
 import BaseLayout from '@/layouts/base.astro';
-import Link from '@/components/shared/link.astro';
-import { TypographyH1, TypographyH2, TypographyP } from '@/components/typography';
+import ProjectRow from '@/components/project-row.astro';
 import VinylPng from '@/assets/black-vinyl.png';
 import CdPng from '@/assets/clear-cd.png';
 import { getDiscogsCollection } from '@/lib/discogs';
+import { getCollection, render } from 'astro:content';
 
+const projects = (await getCollection('featuredProjects')).toSorted(
+	(a, b) => a.data.order - b.data.order
+);
+const nowEntries = await getCollection('now', ({ data }) => data.published);
+const nowEntry = nowEntries[0];
+const { Content: NowContent } = await render(nowEntry);
 const collection = await getDiscogsCollection();
-
 const releases = collection.releases
-	.sort((a, b) => new Date(b.date_added).getTime() - new Date(a.date_added).getTime())
+	.toSorted((a, b) => new Date(b.date_added).getTime() - new Date(a.date_added).getTime())
 	.slice(0, 4);
-
 const isVinyl = (formats: { name: string }[]) => formats.some((format) => format.name === 'Vinyl');
 ---
 
-<BaseLayout title="Home" description="Home page">
-	<div class="stagger-animation flex flex-col gap-8">
-		<div class="flex flex-col gap-2">
-			<TypographyH1>Welcome</TypographyH1>
-			<TypographyP>
-				Hello there! Welcome to my personal website. Here you can find: information <Link
-					href="/about">about me</Link
-				>, my <Link href="/projects">projects</Link>, my
-				<Link href="/music/vinyls">vinyl collection</Link>, my
-				<Link href="/music/top-picks">top picks</Link>, my
-				<Link href="/socials">social links</Link>, my
-				<Link href="/hobbies">hobbies</Link>, and my
-				<Link href="/bread">bread</Link>.
-			</TypographyP>
-			<TypographyP>
-				You can check out my work on <Link href="https://github.com/damtzi" external>GitHub</Link>,
-				follow me on
-				<Link href="https://bsky.app/profile/damitzi.com" external>Bluesky</Link>,
-				<Link href="https://www.instagram.com/damitzi__" external>Instagram</Link>,
-				<Link href="https://www.discogs.com/user/damitzi__" external>Discogs</Link>, or drop me an
-				email at
-				<Link href="mailto:damian.tziamtzis@gmail.com">damian.tziamtzis@gmail.com</Link>.
-			</TypographyP>
-		</div>
+<BaseLayout title="Home" description="Damian Tziamtzis is a product engineer in Gdynia, Poland.">
+	<section class="home-intro">
+		<p class="eyebrow">Gdynia, Poland · Product engineer</p>
+		<h1 class="page-title">
+			I build useful software and keep a <span class="serif-accent">curious life</span> outside it.
+		</h1>
+		<p class="lede">
+			I’m Damian. I care about clear interfaces, reliable systems, and the small details that make
+			software feel considered. Away from work, attention shifts to records, live music, bread, and
+			the animals running the house.
+		</p>
+		<p class="intro-links">
+			<a class="text-link" href="/about">More about me</a>
+			<span aria-hidden="true">·</span>
+			<a class="text-link" href="mailto:damian.tziamtzis@gmail.com">Say hello</a>
+		</p>
+	</section>
 
-		<div class="flex flex-col gap-2">
-			<TypographyH2>Recent pickups</TypographyH2>
-			<div class="grid grid-cols-2 gap-4 sm:grid-cols-4 md:gap-10">
-				{
-					releases.map((release) => (
-						<a href={`/music/vinyls/${release.id}`} class="group relative">
-							<img
-								src={release.basic_information.cover_image}
-								alt={release.basic_information.title}
-								width={200}
-								height={200}
-								transition:name={`vinyl-cover-${release.id}`}
-								class="relative z-10 aspect-square rounded-xs shadow-lg transition-all duration-300 hover:scale-105 hover:cursor-pointer hover:shadow"
-							/>
-							<img
-								src={isVinyl(release.basic_information.formats) ? VinylPng.src : CdPng.src}
-								alt={
-									isVinyl(release.basic_information.formats) ? 'A black vinyl record' : 'A clear CD'
-								}
-								width={200}
-								height={200}
-								class="absolute top-0 z-0 opacity-0 transition-all duration-300 group-hover:translate-x-10 group-hover:opacity-100"
-							/>
-						</a>
-					))
-				}
-			</div>
-		</div>
-	</div>
-</BaseLayout>
-
-<style>
-	@media (prefers-reduced-motion: no-preference) {
-		/* Target all direct children of the stagger-animation container.
-		   Skipped after the first navigation so it only animates on initial load. */
-		:root:not([data-navigated]) .stagger-animation > * {
-			opacity: 0;
-			transform: translateY(-10px);
-			animation: fadeInDown 0.6s ease-out forwards;
-		}
-
-		.stagger-animation > :nth-child(1) {
-			animation-delay: 0.1s;
-		}
-		.stagger-animation > :nth-child(2) {
-			animation-delay: 0.3s;
-		}
-
-		@keyframes fadeInDown {
-			to {
-				opacity: 1;
-				transform: translateY(0);
+	<section class="content-section" aria-labelledby="selected-work">
+		<h2 id="selected-work" class="section-label">Selected work</h2>
+		<div class="project-list">
+			{
+				projects.map((project, index) => (
+					<ProjectRow {...project.data} href={`/work/${project.id}`} {index} />
+				))
 			}
-		}
-	}
-</style>
+		</div>
+		<p class="section-more"><a class="text-link" href="/work">All work</a></p>
+	</section>
+
+	<section class="content-section now-section" aria-labelledby="lately">
+		<div>
+			<h2 id="lately" class="section-label">Lately</h2>
+			<div class="now-copy"><NowContent /></div>
+		</div>
+		<aside class="now-note">
+			<span class="blue-orbit" aria-hidden="true"><span></span></span>
+			<p class="meta">Updated July 2026</p>
+		</aside>
+	</section>
+
+	<section class="content-section" aria-labelledby="recent-records">
+		<h2 id="recent-records" class="section-label">Recent records</h2>
+		<div class="record-grid">
+			{
+				releases.map((release) => (
+					<a
+						href={`/interests/music/vinyls/${release.id}`}
+						class="record"
+						aria-label={release.basic_information.title}
+					>
+						<img
+							src={release.basic_information.cover_image}
+							alt=""
+							width="220"
+							height="220"
+							loading="lazy"
+							class="record__cover"
+						/>
+						<img
+							src={isVinyl(release.basic_information.formats) ? VinylPng.src : CdPng.src}
+							alt=""
+							width="220"
+							height="220"
+							loading="lazy"
+							class="record__disc"
+						/>
+						<span class="record__title">{release.basic_information.title}</span>
+					</a>
+				))
+			}
+		</div>
+		<p class="section-more"><a class="text-link" href="/interests/music">Explore music</a></p>
+	</section>
+
+	<section class="content-section" aria-labelledby="explore-interests">
+		<h2 id="explore-interests" class="section-label">Interests</h2>
+		<div class="interest-links">
+			<a href="/interests/music"><span>Music</span><small>Records, concerts, annual picks</small></a
+			>
+			<a href="/interests/kitchen"><span>Kitchen</span><small>Bread now, cookies soon</small></a>
+		</div>
+	</section>
+</BaseLayout>

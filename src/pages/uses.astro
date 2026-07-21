@@ -1,0 +1,44 @@
+---
+import BaseLayout from '@/layouts/base.astro';
+import { getCollection } from 'astro:content';
+
+const groups = await getCollection('uses');
+---
+
+<BaseLayout title="Uses" description="A changing list of tools Damian uses to build software.">
+	<header>
+		<p class="eyebrow">Uses</p>
+		<h1 class="page-title">
+			Tools that have earned a place in the <span class="serif-accent">daily rhythm.</span>
+		</h1>
+		<p class="lede">
+			A short, changing list. Hardware will join after I have documented the desk properly.
+		</p>
+	</header>
+
+	{
+		groups.map((group) => (
+			<section class="content-section uses-group" aria-labelledby={`uses-${group.id}`}>
+				<h2 id={`uses-${group.id}`} class="section-label">
+					{group.data.category}
+				</h2>
+				<dl>
+					{group.data.items.map((item) => (
+						<div>
+							<dt>
+								{item.link ? (
+									<a class="text-link" href={item.link}>
+										{item.name}
+									</a>
+								) : (
+									item.name
+								)}
+							</dt>
+							<dd>{item.description}</dd>
+						</div>
+					))}
+				</dl>
+			</section>
+		))
+	}
+</BaseLayout>

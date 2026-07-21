@@ -9,6 +9,19 @@ export default defineConfig({
 	output: 'static',
 	site: 'https://damitzi.com',
 	integrations: [svelte(), mdx()],
+	redirects: {
+		'/projects': '/work',
+		'/hobbies': '/interests',
+		'/socials': '/about',
+		'/music': '/interests/music',
+		'/music/concerts': '/interests/music/concerts',
+		'/music/top-picks': '/interests/music/top-picks',
+		'/music/top-picks/[slug]': '/interests/music/top-picks/[slug]',
+		'/music/vinyls': '/interests/music/vinyls',
+		'/music/vinyls/[slug]': '/interests/music/vinyls/[slug]',
+		'/bread': '/interests/kitchen',
+		'/bread/[slug]': '/interests/kitchen/[slug]'
+	},
 
 	env: {
 		schema: {

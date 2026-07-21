@@ -1,21 +1,30 @@
 <script lang="ts">
-	import { Moon, Sun } from '@lucide/svelte';
+	let isDark = $state(false);
+
+	const syncTheme = () => {
+		isDark = document.documentElement.classList.contains('dark');
+	};
 
 	const toggleTheme = () => {
-		const isDark = document.documentElement.classList.toggle('dark');
+		isDark = !document.documentElement.classList.contains('dark');
+		document.documentElement.classList.toggle('dark', isDark);
 		localStorage.setItem('theme', isDark ? 'dark' : 'light');
 	};
+
+	$effect(() => {
+		syncTheme();
+		document.addEventListener('astro:after-swap', syncTheme);
+		return () => document.removeEventListener('astro:after-swap', syncTheme);
+	});
 </script>
 
 <button
 	type="button"
 	onclick={toggleTheme}
-	aria-label="Toggle Theme"
-	class="relative hidden cursor-pointer sm:block"
+	aria-label={`Use ${isDark ? 'light' : 'dark'} theme`}
+	class="theme-toggle"
 >
-	<Sun class="size-6 scale-100 rotate-0 transition-all! dark:scale-0 dark:-rotate-90" />
-	<Moon
-		class="absolute inset-0 size-6 scale-0 rotate-90 transition-all! dark:scale-100 dark:rotate-0"
-	/>
-	<span class="sr-only">Toggle theme</span>
+	<span class="theme-toggle__orbit" aria-hidden="true">
+		<span class="theme-toggle__moon"></span>
+	</span>
 </button>

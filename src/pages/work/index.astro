@@ -1,0 +1,56 @@
+---
+import BaseLayout from '@/layouts/base.astro';
+import ProjectRow from '@/components/project-row.astro';
+import { getCollection } from 'astro:content';
+
+const featured = (await getCollection('featuredProjects')).toSorted(
+	(a, b) => a.data.order - b.data.order
+);
+const archive = (await getCollection('projects'))
+	.filter((project) => project.data.category === 'work')
+	.filter(
+		(project) =>
+			!project.data.title.startsWith('SoftMetal') && !project.data.title.startsWith('Klave')
+	)
+	.toReversed();
+---
+
+<BaseLayout title="Work" description="Selected product engineering work by Damian Tziamtzis." wide>
+	<header>
+		<p class="eyebrow">Selected work · 2020-present</p>
+		<h1 class="page-title">
+			Products shaped from <span class="serif-accent">problem to production.</span>
+		</h1>
+		<p class="lede">
+			I work across product definition, interface architecture, implementation, and the unglamorous
+			last mile that makes software dependable.
+		</p>
+	</header>
+
+	<section class="content-section" aria-labelledby="featured-projects">
+		<h2 id="featured-projects" class="section-label">Featured</h2>
+		<div class="project-list">
+			{
+				featured.map((project, index) => (
+					<ProjectRow {...project.data} href={`/work/${project.id}`} {index} />
+				))
+			}
+		</div>
+	</section>
+
+	<section class="content-section" aria-labelledby="archive">
+		<h2 id="archive" class="section-label">Archive</h2>
+		<ul class="archive-list">
+			{
+				archive.map((project) => (
+					<li>
+						<a href={project.data.link} target="_blank" rel="noreferrer">
+							<span>{project.data.title}</span>
+							<span class="meta">View project ↗</span>
+						</a>
+					</li>
+				))
+			}
+		</ul>
+	</section>
+</BaseLayout>

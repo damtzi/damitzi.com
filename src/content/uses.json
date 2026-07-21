@@ -1,0 +1,44 @@
+[
+	{
+		"id": "development",
+		"category": "Development",
+		"items": [
+			{
+				"name": "TypeScript",
+				"description": "The default language for most of my product work.",
+				"link": "https://www.typescriptlang.org/"
+			},
+			{
+				"name": "pnpm",
+				"description": "Fast, strict package management for JavaScript projects.",
+				"link": "https://pnpm.io/"
+			},
+			{
+				"name": "GitHub",
+				"description": "Where code, reviews, and most project history live.",
+				"link": "https://github.com/"
+			}
+		]
+	},
+	{
+		"id": "web",
+		"category": "This website",
+		"items": [
+			{
+				"name": "Astro",
+				"description": "A content-first foundation that ships very little JavaScript.",
+				"link": "https://astro.build/"
+			},
+			{
+				"name": "Svelte",
+				"description": "Small interactive islands where plain HTML and CSS stop being enough.",
+				"link": "https://svelte.dev/"
+			},
+			{
+				"name": "Cloudflare",
+				"description": "Builds and serves this site close to its visitors.",
+				"link": "https://www.cloudflare.com/"
+			}
+		]
+	}
+]

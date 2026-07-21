@@ -1,25 +1,37 @@
 ---
-import pureBlue from '@/assets/0007fb.png';
 import ThemeToggle from '@/components/theme-toggle.svelte';
-import MobileNav from '@/components/mobile-nav.svelte';
+
+const pathname = Astro.url.pathname;
+const links = [
+	{ href: '/work', label: 'Work', active: pathname.startsWith('/work') },
+	{ href: '/interests', label: 'Interests', active: pathname.startsWith('/interests') },
+	{ href: '/about', label: 'About', active: pathname === '/about' }
+];
 ---
 
-<header class="flex items-center justify-between">
-	<div class="flex items-center gap-2">
-		<a href="/">
-			<img
-				src={pureBlue.src}
-				alt="Pure blue, hex code #0007FB."
-				class="rounded-full transition-transform duration-300 hover:scale-110"
-				width={36}
-				height={36}
-			/>
+<header class="site-header">
+	<div class="site-header__inner">
+		<a href="/" class="identity" aria-label="Damian Tziamtzis, home">
+			<span class="identity__mark" aria-hidden="true"></span>
+			<span class="identity__name">Damian T.</span>
 		</a>
-		<div class="flex flex-col">
-			<span>Damian Tziamtzis</span>
-			<span class="text-gray-400">Software Engineer</span>
+
+		<div class="site-header__actions">
+			<nav aria-label="Primary navigation">
+				<ul class="primary-nav">
+					{
+						links.map((link) => (
+							<li>
+								<a href={link.href} aria-current={link.active ? 'page' : undefined}>
+									<span class="nav-dot" aria-hidden="true" />
+									{link.label}
+								</a>
+							</li>
+						))
+					}
+				</ul>
+			</nav>
+			<ThemeToggle client:load />
 		</div>
 	</div>
-	<ThemeToggle client:load />
-	<MobileNav client:load pathname={Astro.url.pathname} />
 </header>

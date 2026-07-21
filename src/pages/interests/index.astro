@@ -1,0 +1,55 @@
+---
+import BaseLayout from '@/layouts/base.astro';
+
+const interests = [
+	{
+		href: '/interests/music',
+		number: '01',
+		title: 'Music',
+		description:
+			'A growing record collection, concerts remembered, and annual albums worth returning to.'
+	},
+	{
+		href: '/interests/kitchen',
+		number: '02',
+		title: 'Kitchen',
+		description: 'Sourdough notes now; cookies and other repeatable experiments to follow.'
+	}
+];
+---
+
+<BaseLayout
+	title="Interests"
+	description="Music, food, and other things that hold Damian's attention."
+>
+	<header>
+		<p class="eyebrow">Interests</p>
+		<h1 class="page-title">
+			The things that make time <span class="serif-accent">disappear.</span>
+		</h1>
+		<p class="lede">
+			Not a complete inventory. Just the interests with enough gravity to earn their own corner.
+		</p>
+	</header>
+
+	<section class="content-section">
+		<div class="interest-index">
+			{
+				interests.map((interest) => (
+					<a href={interest.href}>
+						<span class="meta">{interest.number}</span>
+						<div>
+							<>
+								<h2>{interest.title}</h2>
+								<p>{interest.description}</p>
+							</>
+						</div>
+						<span class="interest-index__arrow" aria-hidden="true">
+							↗
+						</span>
+					</a>
+				))
+			}
+		</div>
+	</section>
+</BaseLayout>

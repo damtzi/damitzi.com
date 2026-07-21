@@ -1,0 +1,64 @@
+---
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '@/layouts/base.astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+
+export const getStaticPaths = (async () => {
+	const projects = (await getCollection('featuredProjects')).toSorted(
+		(a, b) => a.data.order - b.data.order
+	);
+	return projects.map((project) => ({ params: { slug: project.id }, props: { project } }));
+}) satisfies GetStaticPaths;
+
+type Props = { project: CollectionEntry<'featuredProjects'> };
+const { project } = Astro.props as Props;
+const data = project.data;
+const projects = (await getCollection('featuredProjects')).toSorted(
+	(a, b) => a.data.order - b.data.order
+);
+const currentIndex = projects.findIndex((item) => item.id === project.id);
+const next = projects[(currentIndex + 1) % projects.length];
+---
+
+<BaseLayout title={data.title} description={data.summary}>
+	<article class="project-note">
+		<a class="back-link text-link" href="/work">← Work</a>
+		<header class="project-note__header">
+			<p class="eyebrow">{data.domain}</p>
+			<h1 class="page-title">{data.title}</h1>
+			<p class="lede">{data.summary}</p>
+		</header>
+
+		<div class="project-facts">
+			<div><span class="meta">Role</span><p>{data.role}</p></div>
+			<div><span class="meta">Period</span><p>{data.period}</p></div>
+			<div><span class="meta">Tools</span><p>{data.tech.join(', ')}</p></div>
+		</div>
+
+		<section class="content-section" aria-labelledby="impact">
+			<h2 id="impact" class="section-label">Selected impact</h2>
+			<ol class="impact-list">
+				{
+					data.impact.map((item, index) => (
+						<li>
+							<>
+								<span class="meta">0{index + 1}</span>
+								<p>{item}</p>
+							</>
+						</li>
+					))
+				}
+			</ol>
+		</section>
+
+		<p class="project-external">
+			<a class="text-link" href={data.link} target="_blank" rel="noreferrer">Visit {data.title} ↗</a
+			>
+		</p>
+	</article>
+
+	<nav class="next-project" aria-label="Next project">
+		<span class="meta">Next project</span>
+		<a href={`/work/${next.id}`}>{next.data.title} <span aria-hidden="true">→</span></a>
+	</nav>
+</BaseLayout>

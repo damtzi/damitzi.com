@@ -1,0 +1,52 @@
+---
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '@/layouts/base.astro';
+import { getDiscogsCollection, getVinylDetails } from '@/lib/discogs';
+
+export const getStaticPaths = (async () => {
+	const collection = await getDiscogsCollection();
+	const paths = [];
+	for (const release of collection.releases) {
+		const vinyl = await getVinylDetails(String(release.id));
+		paths.push({ params: { slug: String(vinyl.id) }, props: { vinyl } });
+	}
+	return paths;
+}) satisfies GetStaticPaths;
+
+const { vinyl } = Astro.props;
+const cover =
+	vinyl.images.find((image) => image.type === 'primary') ??
+	vinyl.images.find((image) => image.type === 'secondary');
+const facts = [
+	['Artist', vinyl.artists.map((artist) => artist.name).join(', ')],
+	['Label', vinyl.labels.map((label) => label.name).join(', ')],
+	['Format', vinyl.formats.map((format) => format.name).join(', ')],
+	['Genres', vinyl.genres.join(', ')],
+	['Released', vinyl.released]
+];
+---
+
+<BaseLayout title={vinyl.title} description={`${vinyl.title} record details.`} wide>
+	<a class="back-link text-link" href="/interests/music/vinyls">← Collection</a>
+	<article class="record-detail">
+		<div class="record-detail__art">
+			<img src={cover?.uri} alt={`Cover of ${vinyl.title}`} width="500" height="500" />
+		</div>
+		<div class="record-detail__copy">
+			<p class="eyebrow">From the shelves</p>
+			<h1>{vinyl.title}</h1>
+			<dl>
+				{
+					facts.map(([label, value]) => (
+						<div>
+							<>
+								<dt class="meta">{label}</dt>
+								<dd>{value}</dd>
+							</>
+						</div>
+					))
+				}
+			</dl>
+		</div>
+	</article>
+</BaseLayout>

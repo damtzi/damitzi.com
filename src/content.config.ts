@@ -53,4 +53,44 @@ const projects = defineCollection({
 	})
 });
 
-export const collections = { recipes, topPicks, concerts, projects };
+const featuredProjects = defineCollection({
+	loader: file('src/content/featured-projects.json'),
+	schema: z.object({
+		id: z.string(),
+		order: z.number(),
+		title: z.string(),
+		domain: z.string(),
+		role: z.string(),
+		period: z.string(),
+		summary: z.string(),
+		link: z.url(),
+		impact: z.array(z.string()),
+		tech: z.array(z.string())
+	})
+});
+
+const uses = defineCollection({
+	loader: file('src/content/uses.json'),
+	schema: z.object({
+		id: z.string(),
+		category: z.string(),
+		items: z.array(
+			z.object({
+				name: z.string(),
+				description: z.string(),
+				link: z.url().optional()
+			})
+		)
+	})
+});
+
+const now = defineCollection({
+	loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/now' }),
+	schema: z.object({
+		title: z.string(),
+		description: z.string(),
+		published: z.boolean()
+	})
+});
+
+export const collections = { recipes, topPicks, concerts, projects, featuredProjects, uses, now };

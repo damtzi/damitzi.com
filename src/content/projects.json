@@ -198,6 +198,13 @@
 				"Zustand",
 				"Docker"
 			]
+		},
+		{
+			"id": 16,
+			"title": "Prijsvrij",
+			"description": "Booking, search, and editorial experiences for a Dutch online travel retailer, spanning package holidays, flight alternatives, pricing, and CMS content.",
+			"link": "https://www.prijsvrij.nl/",
+			"tech": ["React", "Next.js", "TypeScript", "Storyblok", "GraphQL", "tRPC"]
 		}
 	]
 }

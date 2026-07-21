@@ -1,0 +1,29 @@
+---
+type Props = {
+	id: string;
+	title: string;
+	domain: string;
+	role: string;
+	summary: string;
+	href: string;
+	index: number;
+	compact?: boolean;
+};
+
+const { id, title, domain, role, summary, href, index, compact = false } = Astro.props;
+---
+
+<a href={href} class:list={['project-row', { 'project-row--compact': compact }]}>
+	<div class="project-pattern" style={`--pattern-offset: ${index * 7}px`} aria-hidden="true">
+		<span></span>
+	</div>
+	<div class="project-row__body">
+		<div class="project-row__heading">
+			<h3>{title}</h3>
+			<span class="project-row__arrow" aria-hidden="true">↗</span>
+		</div>
+		<p class="meta">{domain} · {role}</p>
+		{!compact && <p class="project-row__summary">{summary}</p>}
+	</div>
+	<span class="sr-only">Read about {title}, project {id}</span>
+</a>

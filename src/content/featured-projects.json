@@ -1,0 +1,53 @@
+[
+	{
+		"id": "campy",
+		"order": 1,
+		"title": "Campy",
+		"domain": "Camping and subscriptions",
+		"role": "Product engineer",
+		"period": "2026-present",
+		"summary": "Subscription and revenue work for a camping app used by more than 500,000 people across Europe.",
+		"link": "https://campy.app/",
+		"impact": [
+			"Built Campy Plus paywalls, upsells, promotional flows, and purchase-recovery paths across iOS and Android.",
+			"Owned the migration to Adapty, replacing legacy purchase flows with hosted paywalls, entitlement checks, and offline fallbacks.",
+			"Closed gaps in purchase recovery and promotion redemption across a large legacy entitlement system.",
+			"Fixed attribution setup across ATT, deep links, SKAN, Singular, and Meta."
+		],
+		"tech": ["React Native", "Expo", "TypeScript", "Adapty", "GraphQL", "Firebase"]
+	},
+	{
+		"id": "softmetal",
+		"order": 2,
+		"title": "SoftMetal",
+		"domain": "Confidential commodity trading",
+		"role": "Frontend lead",
+		"period": "2020-present",
+		"summary": "A secure market for trading complex metals through private auctions and real-time settlement workflows.",
+		"link": "https://softmetal.ch/",
+		"impact": [
+			"Led frontend development and technical direction for the trading platform.",
+			"Built markets, order books, buy and sell flows, portfolio views, and asset tokenization.",
+			"Delivered transfers, redemption, invoices, communications, and warehouse operations.",
+			"Continued maintaining and evolving the product after Secretarium closed."
+		],
+		"tech": ["React", "TypeScript", "Vite", "React Router", "Redux", "Cypress"]
+	},
+	{
+		"id": "klave",
+		"order": 3,
+		"title": "Klave",
+		"domain": "Confidential computing platform",
+		"role": "Frontend engineer",
+		"period": "2020-2025",
+		"summary": "Developer tools and product experiences for running verifiable applications inside trusted execution environments.",
+		"link": "https://klave.com/",
+		"impact": [
+			"Led development as the solo engineer on the Klave AI chat experience.",
+			"Built and evolved the Klave CLI, first in Node.js and later in Rust.",
+			"Contributed to the platform UI and privacy-focused application workflows.",
+			"Built the developer documentation and maintained the CMS-backed product sites."
+		],
+		"tech": ["React", "TypeScript", "Rust", "Node.js", "Fastify", "Payload CMS"]
+	}
+]

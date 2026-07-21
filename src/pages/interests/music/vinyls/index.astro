@@ -1,0 +1,50 @@
+---
+import BaseLayout from '@/layouts/base.astro';
+import VinylPng from '@/assets/black-vinyl.png';
+import CdPng from '@/assets/clear-cd.png';
+import { getDiscogsCollection } from '@/lib/discogs';
+
+const collection = await getDiscogsCollection();
+const releases = collection.releases;
+const isVinyl = (formats: { name: string }[]) => formats.some((format) => format.name === 'Vinyl');
+---
+
+<BaseLayout title="Record collection" description="Damian's vinyl and CD collection." wide>
+	<header>
+		<a class="back-link text-link" href="/interests/music">← Music</a>
+		<p class="eyebrow">The shelves · {releases.length} releases</p>
+		<h1 class="page-title">The record <span class="serif-accent">collection.</span></h1>
+	</header>
+	<section class="content-section collection-grid" aria-label="Record collection">
+		{
+			releases.map((release) => (
+				<a
+					href={`/interests/music/vinyls/${release.id}`}
+					class="record"
+					aria-label={release.basic_information.title}
+				>
+					<img
+						src={release.basic_information.cover_image}
+						alt=""
+						width="220"
+						height="220"
+						loading="lazy"
+						class="record__cover"
+					/>
+					<img
+						src={isVinyl(release.basic_information.formats) ? VinylPng.src : CdPng.src}
+						alt=""
+						width="220"
+						height="220"
+						loading="lazy"
+						class="record__disc"
+					/>
+					<span class="record__title">{release.basic_information.title}</span>
+					<span class="meta">
+						{release.basic_information.artists.map((artist) => artist.name).join(', ')}
+					</span>
+				</a>
+			))
+		}
+	</section>
+</BaseLayout>

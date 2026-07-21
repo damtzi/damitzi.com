@@ -1,0 +1,41 @@
+---
+import BaseLayout from '@/layouts/base.astro';
+import { getCollection } from 'astro:content';
+const picks = (await getCollection('topPicks', ({ data }) => data.published)).toSorted((a, b) =>
+	b.id.localeCompare(a.id)
+);
+---
+
+<BaseLayout title="Annual music picks" description="Damian's favorite albums from each year.">
+	<header>
+		<a class="back-link text-link" href="/interests/music">← Music</a>
+		<p class="eyebrow">Annual picks</p>
+		<h1 class="page-title">Albums worth <span class="serif-accent">returning to.</span></h1>
+		<p class="lede">
+			A personal record of each year in listening. No universal scoring system—just repetition,
+			memory, and taste.
+		</p>
+	</header>
+	<section class="content-section">
+		<ul class="year-list">
+			{
+				picks.map((pick) => (
+					<li>
+						<a href={`/interests/music/top-picks/${pick.id}`}>
+							<>
+								<span>{pick.id}</span>
+								<div>
+									<>
+										<strong>{pick.data.title}</strong>
+										<p>{pick.data.description}</p>
+									</>
+								</div>
+								<span aria-hidden="true">↗</span>
+							</>
+						</a>
+					</li>
+				))
+			}
+		</ul>
+	</section>
+</BaseLayout>

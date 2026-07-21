@@ -1,13 +1,41 @@
 ---
 import Clock from '@/components/clock.svelte';
+
+const year = new Date().getFullYear();
+const links = [
+	{ href: 'mailto:damian.tziamtzis@gmail.com', label: 'Email' },
+	{ href: 'https://github.com/damtzi', label: 'GitHub' },
+	{ href: 'https://www.linkedin.com/in/damian-tziamtzis/', label: 'LinkedIn' },
+	{ href: 'https://bsky.app/profile/damitzi.com', label: 'Bluesky' },
+	{ href: 'https://x.com/damitzi__', label: 'X' }
+];
 ---
 
-<footer class="flex items-center justify-center border-t border-foreground/10 pt-2">
-	<div class="flex items-center gap-2 font-mono text-sm text-foreground/60">
-		Gdynia
-		<svg width="6" height="6" class="animate-pulse">
-			<circle cx="3" cy="3" r="3" fill="#0007fb"></circle>
-		</svg>
+<footer class="site-footer">
+	<div class="site-footer__row">
+		<nav aria-label="Social links">
+			<ul class="footer-links">
+				{
+					links.map((link) => (
+						<li>
+							<a class="text-link" href={link.href}>
+								{link.label}
+							</a>
+						</li>
+					))
+				}
+			</ul>
+		</nav>
 		<Clock client:load />
+	</div>
+	<div class="site-footer__row site-footer__meta">
+		<p>© {year} Damian Tziamtzis</p>
+		<nav aria-label="Site information">
+			<ul class="footer-links">
+				<li><a class="text-link" href="/resume-damian-tziamtzis.pdf">Résumé</a></li>
+				<li><a class="text-link" href="/uses">Uses</a></li>
+				<li><a class="text-link" href="/colophon">Colophon</a></li>
+			</ul>
+		</nav>
 	</div>
 </footer>

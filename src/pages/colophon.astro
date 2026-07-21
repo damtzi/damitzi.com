@@ -1,0 +1,45 @@
+---
+import BaseLayout from '@/layouts/base.astro';
+---
+
+<BaseLayout title="Colophon" description="How and why damitzi.com is made.">
+	<header>
+		<p class="eyebrow">Colophon</p>
+		<h1 class="page-title">A quiet website with a <span class="serif-accent">blue pulse.</span></h1>
+	</header>
+
+	<article class="content-section prose-editorial colophon-copy">
+		<h2>Why it looks this way</h2>
+		<p>
+			This site is a personal home before it is a portfolio. The narrow column, warm paper, and
+			restrained motion keep the work readable; the pure-blue mark, record interactions, local
+			clock, and changing interests keep it mine.
+		</p>
+		<p>
+			The design takes cues from the calm density of Paco Coursey, Gavin Nelson’s direct navigation,
+			Sue Park’s tactile framing, and the personal imagery of Juliette’s site—then pares them back
+			into a system suited to my own material.
+		</p>
+
+		<h2>Made with</h2>
+		<p>
+			Built with Astro, TypeScript, Svelte, and Tailwind CSS. Hosted on Cloudflare. Body type is
+			Hanken Grotesk; editorial accents use Lora; small metadata uses IBM Plex Mono.
+		</p>
+		<p>
+			The signature blue is <code>#0007FB</code>, my favorite color. Light mode uses warm paper
+			rather than white; dark mode uses deep ink rather than black. Functional accents lift the blue
+			slightly in dark mode to keep text and focus states legible.
+		</p>
+
+		<h2>Principles</h2>
+		<ul>
+			<li>No analytics, cookies, fingerprinting, or session replay.</li>
+			<li>Motion respects reduced-motion preferences and never carries essential information.</li>
+			<li>Content pages ship as HTML; JavaScript is reserved for small interactive islands.</li>
+			<li>Old links redirect when the information architecture changes.</li>
+		</ul>
+
+		<p class="meta">Redesigned July 2026.</p>
+	</article>
+</BaseLayout>

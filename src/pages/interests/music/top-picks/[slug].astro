@@ -1,0 +1,26 @@
+---
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '@/layouts/base.astro';
+import { getCollection, render } from 'astro:content';
+export const getStaticPaths = (async () =>
+	(await getCollection('topPicks', ({ data }) => data.published)).map((entry) => ({
+		params: { slug: entry.id },
+		props: { entry }
+	}))) satisfies GetStaticPaths;
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<BaseLayout title={entry.data.title} description={entry.data.description}>
+	<article>
+		<a class="back-link text-link" href="/interests/music/top-picks">← Annual picks</a>
+		<header>
+			<p class="eyebrow">{entry.id}</p><h1 class="page-title">{entry.data.title}</h1><p
+				class="lede"
+			>
+				{entry.data.description}
+			</p>
+		</header>
+		<div class="content-section prose-editorial prose dark:prose-invert"><Content /></div>
+	</article>
+</BaseLayout>

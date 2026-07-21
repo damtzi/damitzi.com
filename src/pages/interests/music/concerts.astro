@@ -1,0 +1,54 @@
+---
+import BaseLayout from '@/layouts/base.astro';
+import { dateFormatter } from '@/lib/utils';
+import { getCollection, type CollectionEntry } from 'astro:content';
+
+type Concert = CollectionEntry<'concerts'>['data'];
+const concerts = (await getCollection('concerts'))
+	.map((entry) => entry.data)
+	.toSorted((a, b) => b.date.getTime() - a.date.getTime());
+const byYear = concerts.reduce(
+	(groups, concert) => {
+		const year = concert.date.getFullYear();
+		groups[year] ??= [];
+		groups[year].push(concert);
+		return groups;
+	},
+	{} as Record<number, Concert[]>
+);
+const years = Object.keys(byYear)
+	.map(Number)
+	.toSorted((a, b) => b - a);
+---
+
+<BaseLayout title="Concert log" description="Concerts Damian has attended over the years.">
+	<header>
+		<a class="back-link text-link" href="/interests/music">← Music</a>
+		<p class="eyebrow">Concert log</p>
+		<h1 class="page-title">Rooms, fields, and <span class="serif-accent">loud evenings.</span></h1>
+	</header>
+	<div class="content-section concert-years">
+		{
+			years.map((year) => (
+				<section>
+					<>
+						<h2 class="section-label">{year}</h2>
+						<ul>
+							{byYear[year].map((concert) => (
+								<li>
+									<span>
+										{concert.artist}
+										{concert.festival && <small>{concert.festival} Festival</small>}
+									</span>
+									<span class="meta">
+										{dateFormatter(concert.date)} · {concert.location}
+									</span>
+								</li>
+							))}
+						</ul>
+					</>
+				</section>
+			))
+		}
+	</div>
+</BaseLayout>

@@ -1,0 +1,40 @@
+---
+import BaseLayout from '@/layouts/base.astro';
+import { getCollection } from 'astro:content';
+const recipes = await getCollection('recipes', ({ data }) => data.published);
+---
+
+<BaseLayout title="Kitchen" description="Bread, cookies, and repeatable kitchen experiments.">
+	<header>
+		<a class="back-link text-link" href="/interests">← Interests</a>
+		<p class="eyebrow">Kitchen</p>
+		<h1 class="page-title">
+			Recipes tested until they become <span class="serif-accent">instinct.</span>
+		</h1>
+		<p class="lede">
+			Sourdough now. Cookies next. A small collection of things worth making again.
+		</p>
+	</header>
+	<section class="content-section">
+		<ul class="recipe-list">
+			{
+				recipes.map((recipe, index) => (
+					<li>
+						<a href={`/interests/kitchen/${recipe.id}`}>
+							<>
+								<span class="meta">0{index + 1}</span>
+								<div>
+									<>
+										<h2>{recipe.data.title}</h2>
+										<p>{recipe.data.description}</p>
+									</>
+								</div>
+								<span aria-hidden="true">↗</span>
+							</>
+						</a>
+					</li>
+				))
+			}
+		</ul>
+	</section>
+</BaseLayout>

@@ -7,65 +7,52 @@ import '@fontsource/ibm-plex-mono';
 import { ClientRouter } from 'astro:transitions';
 import Footer from '@/components/footer.astro';
 import Header from '@/components/header.astro';
-import SideNav from '@/components/side-nav.astro';
-import Noise from '@/components/backgrounds/noise.astro';
-import GridLines from '@/components/backgrounds/grid-lines.astro';
 import Theme from '@/components/theme.astro';
 
-interface Props {
+type Props = {
 	title: string;
 	description: string;
-}
+	wide?: boolean;
+};
 
-const { title, description } = Astro.props;
+const { title, description, wide = false } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin).href;
+const pageTitle =
+	title === 'Home' ? 'Damian Tziamtzis — Product engineer' : `${title} — Damian Tziamtzis`;
 ---
 
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>{`${title} | Damian T`}</title>
-		<meta name="title" content={title} />
+		<meta name="theme-color" content="#f4f1ea" media="(prefers-color-scheme: light)" />
+		<meta name="theme-color" content="#111216" media="(prefers-color-scheme: dark)" />
+		<title>{pageTitle}</title>
+		<meta name="title" content={pageTitle} />
 		<meta name="description" content={description} />
 		<link rel="canonical" href={canonical} />
 		<Theme />
 		<ClientRouter />
 		<script is:inline>
-			// Mark the document once a view transition occurs so first-load-only
-			// animations don't re-run on client-side navigation. Must run after
-			// the swap, since Astro overwrites <html> attributes during it.
 			document.addEventListener('astro:after-swap', () => {
 				document.documentElement.setAttribute('data-navigated', '');
 			});
 		</script>
 	</head>
-	<body
-		class="antialised font-hanken-grotesk relative bg-white text-black transition-colors duration-300 ease-out dark:bg-black dark:text-white"
-		transition:persist
-	>
-		<Noise />
-		<GridLines />
-		<div class="mx-auto flex min-h-dvh w-full max-w-4xl flex-col gap-8 px-4 py-8">
+	<body>
+		<a class="skip-link" href="#content">Skip to content</a>
+		<div class="site-shell">
 			<Header />
-			<div class="grid grow grid-cols-12">
-				<aside class="hidden sm:col-span-3 sm:block">
-					<SideNav />
-				</aside>
-				<main class="col-span-12 sm:col-span-9" transition:animate="fade">
-					<slot />
-				</main>
-			</div>
+			<main
+				id="content"
+				class:list={['page-frame', { 'page-frame--wide': wide }]}
+				transition:animate="fade"
+			>
+				<slot />
+			</main>
 			<Footer />
 		</div>
 	</body>
 </html>
-
-<style>
-	html,
-	body {
-		margin: 0;
-	}
-</style>
