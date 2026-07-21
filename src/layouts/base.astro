@@ -10,7 +10,6 @@ import Header from '@/components/header.astro';
 import SideNav from '@/components/side-nav.astro';
 import Noise from '@/components/backgrounds/noise.astro';
 import GridLines from '@/components/backgrounds/grid-lines.astro';
-import Theme from '@/components/theme.astro';
 
 interface Props {
 	title: string;
@@ -31,7 +30,6 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin).hr
 		<meta name="title" content={title} />
 		<meta name="description" content={description} />
 		<link rel="canonical" href={canonical} />
-		<Theme />
 		<ClientRouter />
 		<script is:inline>
 			// Mark the document once a view transition occurs so first-load-only
@@ -42,23 +40,24 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin).hr
 			});
 		</script>
 	</head>
-	<body
-		class="antialised font-hanken-grotesk relative bg-white text-black transition-colors duration-300 ease-out dark:bg-black dark:text-white"
-		transition:persist
-	>
-		<Noise />
+	<body class="font-hanken-grotesk text-foreground antialiased" transition:persist>
 		<GridLines />
-		<div class="mx-auto flex min-h-dvh w-full max-w-4xl flex-col gap-8 px-4 py-8">
-			<Header />
-			<div class="grid grow grid-cols-12">
-				<aside class="hidden sm:col-span-3 sm:block">
-					<SideNav />
-				</aside>
-				<main class="col-span-12 sm:col-span-9" transition:animate="fade">
-					<slot />
-				</main>
+		<div class="paper-sheet">
+			<Noise />
+			<div
+				class="relative z-10 flex min-h-[inherit] flex-col gap-10 px-5 py-6 sm:px-10 sm:py-10 lg:px-16 lg:py-14"
+			>
+				<Header />
+				<div class="grid grow grid-cols-12">
+					<aside class="hidden sm:col-span-3 sm:block sm:border-r sm:border-foreground/15 sm:pr-7">
+						<SideNav />
+					</aside>
+					<main class="col-span-12 sm:col-span-9 sm:pl-8 lg:pl-12" transition:animate="fade">
+						<slot />
+					</main>
+				</div>
+				<Footer />
 			</div>
-			<Footer />
 		</div>
 	</body>
 </html>
@@ -67,5 +66,9 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin).hr
 	html,
 	body {
 		margin: 0;
+	}
+
+	body {
+		min-width: 320px;
 	}
 </style>

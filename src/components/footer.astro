@@ -1,13 +1,20 @@
 ---
-import Clock from '@/components/clock.tsx';
+import Clock from '@/components/clock.svelte';
+
+const segment = Astro.url.pathname.split('/').filter(Boolean).at(-1) ?? 'home';
+const pageLabel = segment.replaceAll('-', ' ');
 ---
 
-<footer class="flex items-center justify-center border-t border-foreground/10 pt-2">
-	<div class="flex items-center gap-2 font-mono text-sm text-foreground/60">
-		Gdynia
-		<svg width="6" height="6" class="animate-pulse">
-			<circle cx="3" cy="3" r="3" fill="#0007fb"></circle>
+<footer
+	class="grid gap-2 border-t border-foreground/15 pt-3 font-mono text-[0.65rem] tracking-[0.1em] text-foreground/50 uppercase sm:grid-cols-3 sm:items-center"
+>
+	<span>Damian Tziamtzis</span>
+	<div class="flex items-center gap-2 sm:justify-center">
+		<span>Gdynia</span>
+		<svg width="5" height="5" class="animate-pulse" aria-hidden="true">
+			<circle cx="2.5" cy="2.5" r="2.5" fill="#0007fb"></circle>
 		</svg>
 		<Clock client:load />
 	</div>
+	<span class="capitalize sm:text-right">Folio / {pageLabel}</span>
 </footer>

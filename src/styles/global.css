@@ -22,20 +22,14 @@ html {
 }
 
 :root {
-	--background: oklch(1 0 0);
-	--foreground: oklch(0.2644 0 0);
-	/* Brand blue for thin text/lines. Light mode is the true #0007fb. */
+	--background: #f5f1e7;
+	--foreground: #24251f;
 	--accent: #0007fb;
-	/* Opaque card surface — consistent regardless of the backdrop behind it. */
-	--surface: oklch(0.975 0.002 264.7);
-}
-
-.dark {
-	--background: oklch(0.1288 0.0406 264.7);
-	--foreground: oklch(0.9848 0 0);
-	/* Same hue, lifted so it stays legible on near-black navy. */
-	--accent: oklch(0.72 0.15 264);
-	--surface: oklch(0.165 0.035 264.7);
+	--surface: #efeadf;
+	--mat: #1f513d;
+	--mat-grid: rgb(231 240 226 / 10%);
+	--mat-tick: rgb(231 240 226 / 20%);
+	--paper-shadow: 0 2px 4px rgb(6 30 21 / 18%), 0 18px 60px rgb(6 30 21 / 28%);
 }
 
 @theme inline {
@@ -55,4 +49,48 @@ html {
 	--font-sans: 'Hanken Grotesk Variable', serif;
 	--font-serif: 'Lora Variable', sans-serif;
 	--font-mono: 'IBM Plex Mono', monospace;
+}
+
+body {
+	background: var(--mat);
+}
+
+.paper-sheet {
+	position: relative;
+	isolation: isolate;
+	width: calc(100% - 1.5rem);
+	max-width: 65rem;
+	min-height: calc(100dvh - 1.5rem);
+	margin: 0.75rem auto;
+	overflow: hidden;
+	border: 1px solid rgb(36 37 31 / 12%);
+	border-radius: 2px;
+	background: var(--background);
+	box-shadow: var(--paper-shadow);
+}
+
+.editorial-list {
+	width: 100%;
+	border-top: 1px solid rgb(36 37 31 / 15%);
+}
+
+.editorial-list > li {
+	border-bottom: 1px solid rgb(36 37 31 / 15%);
+	padding-block: 0.7rem;
+}
+
+.meta-label {
+	font-family: var(--font-mono);
+	font-size: 0.65rem;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: rgb(36 37 31 / 48%);
+}
+
+@media (min-width: 640px) {
+	.paper-sheet {
+		width: calc(100% - 4rem);
+		min-height: calc(100dvh - 4rem);
+		margin-block: 2rem;
+	}
 }

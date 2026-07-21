@@ -1,11 +1,35 @@
-{/* Grid background */}
-<div
-	class="absolute inset-0 -z-20 h-full w-full bg-white bg-[linear-gradient(to_right,#2b7fff0d_1px,transparent_1px),linear-gradient(to_bottom,#2b7fff0d_1px,transparent_1px)] bg-[size:14px_14px] dark:bg-slate-950 dark:bg-[linear-gradient(to_right,#2929294d_1px,transparent_1px),linear-gradient(to_bottom,#2929294d_1px,transparent_1px)]"
->
-</div>
+<div class="cutting-mat" aria-hidden="true"></div>
 
-{/* Radial gradient overlay */}
-<div
-	class="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.9)_40%,transparent_80%)] dark:bg-[radial-gradient(circle_at_center,rgba(2,6,24,0.9)_40%,transparent_60%)]"
->
-</div>
+<style>
+	.cutting-mat {
+		position: fixed;
+		inset: 0;
+		z-index: -1;
+		background-color: var(--mat);
+		background-image:
+			linear-gradient(var(--mat-grid) 1px, transparent 1px),
+			linear-gradient(90deg, var(--mat-grid) 1px, transparent 1px),
+			radial-gradient(circle at 50% 35%, rgb(255 255 255 / 5%), transparent 68%);
+		background-size:
+			24px 24px,
+			24px 24px,
+			100% 100%;
+	}
+
+	.cutting-mat::after {
+		position: absolute;
+		inset: 8px;
+		border: 1px solid rgb(255 255 255 / 8%);
+		background:
+			repeating-linear-gradient(90deg, var(--mat-tick) 0 1px, transparent 1px 12px) top / 100% 4px
+				no-repeat,
+			repeating-linear-gradient(90deg, var(--mat-tick) 0 1px, transparent 1px 12px) bottom / 100%
+				4px no-repeat,
+			repeating-linear-gradient(0deg, var(--mat-tick) 0 1px, transparent 1px 12px) left / 4px 100%
+				no-repeat,
+			repeating-linear-gradient(0deg, var(--mat-tick) 0 1px, transparent 1px 12px) right / 4px 100%
+				no-repeat;
+		content: '';
+		pointer-events: none;
+	}
+</style>

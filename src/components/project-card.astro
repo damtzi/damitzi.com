@@ -13,31 +13,30 @@ type Props = {
 const { title, description, link, tech, githubUrl } = Astro.props;
 ---
 
-<div
-	class="flex flex-col gap-3 rounded-lg border border-foreground/10 bg-surface px-4 py-3 shadow-sm"
->
-	<TypographyH4 class="flex items-center gap-2">
-		<svg width="6" height="6">
-			<circle cx="3" cy="3" r="3" fill="#0007fb"></circle>
-		</svg>
+<article class="flex flex-col gap-3 border-t border-foreground/15 py-5 last:border-b">
+	<TypographyH4>
 		{title}
 	</TypographyH4>
 	<TypographyP>{description}</TypographyP>
-	<div class="flex flex-wrap gap-2">
+	<div
+		class="flex flex-wrap gap-x-3 gap-y-1 font-mono text-[0.65rem] tracking-[0.08em] text-foreground/55 uppercase"
+	>
 		{
 			tech.map((techItem) => (
-				<span class="rounded-md bg-pure-blue/10 px-2 py-1 text-foreground dark:bg-pure-blue/70">
+				<span class="after:ml-3 after:text-foreground/25 after:content-['/'] last:after:hidden">
 					{techItem}
 				</span>
 			))
 		}
 	</div>
-	<div class="flex items-center justify-between">
+	<div
+		class="flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-[0.65rem] tracking-[0.08em] uppercase"
+	>
 		<a
 			href={link}
 			target="_blank"
 			rel="noopener noreferrer"
-			class="flex items-center gap-1 hover:underline"
+			class="flex items-center gap-1 text-accent hover:underline"
 		>
 			<ExternalLinkIcon class="h-4 w-4" />
 			View Project
@@ -48,7 +47,7 @@ const { title, description, link, tech, githubUrl } = Astro.props;
 					href={githubUrl}
 					target="_blank"
 					rel="noopener noreferrer"
-					class="flex items-center gap-1 hover:underline"
+					class="flex items-center gap-1 text-accent hover:underline"
 				>
 					<svg
 						class="h-4 w-4"
@@ -71,4 +70,4 @@ const { title, description, link, tech, githubUrl } = Astro.props;
 			)
 		}
 	</div>
-</div>
+</article>

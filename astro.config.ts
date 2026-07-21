@@ -1,5 +1,5 @@
 import mdx from '@astrojs/mdx';
-import react from '@astrojs/react';
+import svelte from '@astrojs/svelte';
 import { defineConfig, envField } from 'astro/config';
 import cloudflare from '@astrojs/cloudflare';
 import tailwindcss from '@tailwindcss/vite';
@@ -8,14 +8,11 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
 	output: 'static',
 	site: 'https://damitzi.com',
-	integrations: [react(), mdx()],
+	integrations: [svelte(), mdx()],
 
 	env: {
 		schema: {
-			DISCOGS_TOKEN: envField.string({ context: 'server', access: 'secret' }),
-			STRAVA_CLIENT_ID: envField.string({ context: 'server', access: 'secret' }),
-			STRAVA_CLIENT_SECRET: envField.string({ context: 'server', access: 'secret' }),
-			STRAVA_REFRESH_TOKEN: envField.string({ context: 'server', access: 'secret' })
+			DISCOGS_TOKEN: envField.string({ context: 'server', access: 'secret' })
 		}
 	},
 
