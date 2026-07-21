@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '@/layouts/base.astro';
-import Link from '@/components/shared/link.astro';
+import Arrow from '@/components/shared/arrow.astro';
 import { TypographyH1, TypographyH2, TypographyP } from '@/components/typography';
 import VinylPng from '@/assets/black-vinyl.png';
 import CdPng from '@/assets/clear-cd.png';
@@ -13,86 +13,134 @@ const releases = collection.releases
 	.slice(0, 4);
 
 const isVinyl = (formats: { name: string }[]) => formats.some((format) => format.name === 'Vinyl');
+
+const sections = [
+	{
+		href: '/about',
+		title: 'About',
+		description: 'Background, experience, and the work that shaped my practice.'
+	},
+	{
+		href: '/projects',
+		title: 'Projects',
+		description: 'A working archive of products, platforms, and websites.'
+	},
+	{
+		href: '/music',
+		title: 'Music',
+		description: 'Records, concerts, and yearly listening notes.'
+	},
+	{
+		href: '/hobbies',
+		title: 'Hobbies',
+		description: 'The interests and practices I return to away from a screen.'
+	},
+	{
+		href: '/bread',
+		title: 'Bread',
+		description: 'Recipes and notes from the kitchen.'
+	},
+	{
+		href: '/socials',
+		title: 'Socials',
+		description: 'Places to find me elsewhere on the internet.'
+	}
+];
 ---
 
-<BaseLayout title="Home" description="Home page">
-	<div class="stagger-animation flex flex-col gap-8">
-		<div class="flex flex-col gap-2">
-			<TypographyH1>Welcome</TypographyH1>
-			<TypographyP>
-				Hello there! Welcome to my personal website. Here you can find: information <Link
-					href="/about">about me</Link
-				>, my <Link href="/projects">projects</Link>, my
-				<Link href="/music/vinyls">vinyl collection</Link>, my
-				<Link href="/music/top-picks">top picks</Link>, my
-				<Link href="/socials">social links</Link>, my
-				<Link href="/hobbies">hobbies</Link>, and my
-				<Link href="/bread">bread</Link>.
-			</TypographyP>
-			<TypographyP>
-				You can check out my work on <Link href="https://github.com/damtzi" external>GitHub</Link>,
-				follow me on
-				<Link href="https://bsky.app/profile/damitzi.com" external>Bluesky</Link>,
-				<Link href="https://www.instagram.com/damitzi__" external>Instagram</Link>,
-				<Link href="https://www.discogs.com/user/damitzi__" external>Discogs</Link>, or drop me an
-				email at
-				<Link href="mailto:damian.tziamtzis@gmail.com">damian.tziamtzis@gmail.com</Link>.
-			</TypographyP>
-		</div>
+<BaseLayout
+	title="Home"
+	description="Damian Tziamtzis is a software engineer based in Gdynia, Poland."
+>
+	<div class="flex flex-col gap-12 sm:gap-16">
+		<section class="flex max-w-2xl flex-col gap-5">
+			<p class="meta-label">Introduction</p>
+			<TypographyH1>Software engineer, among other things.</TypographyH1>
+			<div class="flex max-w-xl flex-col gap-3 text-lg">
+				<TypographyP>
+					I’m Damian, a product engineer based in Gdynia. I work across web and mobile, turning
+					complicated product problems into clear, dependable experiences.
+				</TypographyP>
+				<TypographyP class="text-foreground/70">
+					Beyond the work, I collect records, go to concerts, bake bread, and keep notes on whatever
+					has my attention. This is where those threads meet.
+				</TypographyP>
+			</div>
+		</section>
 
-		<div class="flex flex-col gap-2">
-			<TypographyH2>Recent pickups</TypographyH2>
-			<div class="grid grid-cols-2 gap-4 sm:grid-cols-4 md:gap-10">
+		<section class="flex flex-col gap-4">
+			<div class="flex items-end justify-between gap-4">
+				<div class="flex flex-col gap-2">
+					<p class="meta-label">Site contents</p>
+					<TypographyH2>Browse the index</TypographyH2>
+				</div>
+				<p class="meta-label">06 sections</p>
+			</div>
+			<ol class="editorial-list">
+				{
+					sections.map((section, index) => (
+						<li>
+							<a
+								href={section.href}
+								class="group grid grid-cols-[2rem_minmax(0,1fr)_auto] items-start gap-3 py-1"
+							>
+								<span class="pt-2 font-mono text-[0.6rem] text-foreground/35">
+									{String(index + 1).padStart(2, '0')}
+								</span>
+								<span class="grid gap-1 sm:grid-cols-[9rem_1fr] sm:items-baseline sm:gap-5">
+									<span class="font-serif text-xl transition-colors group-hover:text-accent">
+										{section.title}
+									</span>
+									<span class="text-sm leading-relaxed text-foreground/60">
+										{section.description}
+									</span>
+								</span>
+								<span class="mt-2">
+									<Arrow />
+								</span>
+							</a>
+						</li>
+					))
+				}
+			</ol>
+		</section>
+
+		<section class="flex flex-col gap-4">
+			<div class="flex flex-col gap-2">
+				<p class="meta-label">Discogs / Latest additions</p>
+				<TypographyH2>Recently collected</TypographyH2>
+			</div>
+			<div class="grid grid-cols-2 gap-x-4 gap-y-7 sm:grid-cols-4 sm:gap-5 md:gap-10">
 				{
 					releases.map((release) => (
-						<a href={`/music/vinyls/${release.id}`} class="group relative">
-							<img
-								src={release.basic_information.cover_image}
-								alt={release.basic_information.title}
-								width={200}
-								height={200}
-								transition:name={`vinyl-cover-${release.id}`}
-								class="relative z-10 aspect-square rounded-xs shadow-lg transition-all duration-300 hover:scale-105 hover:cursor-pointer hover:shadow"
-							/>
-							<img
-								src={isVinyl(release.basic_information.formats) ? VinylPng.src : CdPng.src}
-								alt={
-									isVinyl(release.basic_information.formats) ? 'A black vinyl record' : 'A clear CD'
-								}
-								width={200}
-								height={200}
-								class="absolute top-0 z-0 opacity-0 transition-all duration-300 group-hover:translate-x-10 group-hover:opacity-100"
-							/>
+						<a href={`/music/vinyls/${release.id}`} class="group min-w-0">
+							<div class="relative">
+								<img
+									src={release.basic_information.cover_image}
+									alt={release.basic_information.title}
+									width={200}
+									height={200}
+									transition:name={`vinyl-cover-${release.id}`}
+									class="relative z-10 aspect-square w-full rounded-xs shadow-lg transition-all duration-300 hover:scale-105 hover:cursor-pointer hover:shadow"
+								/>
+								<img
+									src={isVinyl(release.basic_information.formats) ? VinylPng.src : CdPng.src}
+									alt=""
+									width={200}
+									height={200}
+									class="absolute top-0 left-0 z-0 aspect-square w-full opacity-0 transition-all duration-300 group-hover:translate-x-10 group-hover:opacity-100"
+								/>
+							</div>
+							<p class="mt-2 truncate font-serif leading-tight transition-colors group-hover:text-accent">
+								{release.basic_information.title}
+							</p>
+							<p class="mt-1 truncate font-mono text-[0.6rem] tracking-[0.06em] text-foreground/45 uppercase">
+								{release.basic_information.artists.map((artist) => artist.name).join(', ')}
+							</p>
 						</a>
 					))
 				}
 			</div>
-		</div>
+		</section>
 	</div>
 </BaseLayout>
-
-<style>
-	@media (prefers-reduced-motion: no-preference) {
-		/* Target all direct children of the stagger-animation container.
-		   Skipped after the first navigation so it only animates on initial load. */
-		:root:not([data-navigated]) .stagger-animation > * {
-			opacity: 0;
-			transform: translateY(-10px);
-			animation: fadeInDown 0.6s ease-out forwards;
-		}
-
-		.stagger-animation > :nth-child(1) {
-			animation-delay: 0.1s;
-		}
-		.stagger-animation > :nth-child(2) {
-			animation-delay: 0.3s;
-		}
-
-		@keyframes fadeInDown {
-			to {
-				opacity: 1;
-				transform: translateY(0);
-			}
-		}
-	}
-</style>
