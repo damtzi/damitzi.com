@@ -13,7 +13,7 @@ const recipes = await getCollection('recipes', ({ data }) => data.published);
 	<div class="flex flex-col gap-2">
 		<TypographyH1>Bread recipes</TypographyH1>
 		<Breadcrumbs />
-		<ul class="w-fit space-y-2">
+		<ul class="editorial-list mt-2">
 			{
 				recipes.map((recipe) => (
 					<li class="group flex items-center gap-2">

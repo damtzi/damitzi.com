@@ -37,14 +37,12 @@ const years = Object.keys(concertsByYear)
 			{
 				years.map((year) => (
 					<div class="space-y-2">
-						<h2 class="border-b border-gray-200 pb-1 font-mono text-lg font-semibold text-gray-500">
-							{year}
-						</h2>
-						<ul class="w-full space-y-2">
+						<h2 class="font-mono text-xs tracking-[0.12em] text-foreground/50 uppercase">{year}</h2>
+						<ul class="editorial-list">
 							{concertsByYear[year].map((concert) => (
-								<li class="group flex flex-col md:flex-row md:items-center md:justify-between">
-									<span>{concert.artist}</span>
-									<span>
+								<li class="group flex flex-col gap-1 md:flex-row md:items-baseline md:justify-between">
+									<span class="font-serif text-lg">{concert.artist}</span>
+									<span class="font-mono text-[0.65rem] tracking-[0.04em] text-foreground/55 uppercase">
 										{dateFormatter(concert.date)} @ {concert.location}
 										{concert.festival && ` [${concert.festival} Festival]`}
 									</span>

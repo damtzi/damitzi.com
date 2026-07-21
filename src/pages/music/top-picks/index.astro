@@ -20,7 +20,7 @@ const topPicks = (await getCollection('topPicks', ({ data }) => data.published))
 			listening habits.
 		</TypographyP>
 		<Breadcrumbs />
-		<ul class="w-fit space-y-2">
+		<ul class="editorial-list mt-2">
 			{
 				topPicks.map((topPick) => (
 					<li class="group flex items-center gap-2">

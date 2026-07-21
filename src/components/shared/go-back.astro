@@ -12,7 +12,10 @@ const { class: className, fallbackPath, text = 'Go Back' } = Astro.props;
 	<a
 		href={fallbackPath}
 		data-go-back
-		class:list={['group inline-flex items-center px-1 py-1.5 transition', className]}
+		class:list={[
+			'group inline-flex items-center py-1.5 font-mono text-[0.65rem] tracking-[0.1em] uppercase transition hover:text-accent',
+			className
+		]}
 	>
 		<svg
 			class="mr-2 -ml-1 stroke-foreground stroke-2"

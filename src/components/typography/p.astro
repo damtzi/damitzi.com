@@ -8,6 +8,6 @@ interface Props {
 const { class: className } = Astro.props;
 ---
 
-<p class={cn(className)}>
+<p class={cn('leading-[1.7]', className)}>
 	<slot />
 </p>

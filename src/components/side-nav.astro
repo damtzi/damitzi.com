@@ -14,17 +14,24 @@ const links = [
 ];
 ---
 
-<nav class="flex flex-col gap-2">
+<nav class="sticky top-10 flex flex-col gap-1" aria-label="Site index">
+	<p class="mb-4 font-mono text-[0.65rem] tracking-[0.14em] text-foreground/45 uppercase">Index</p>
 	{
-		links.map((link) => (
+		links.map((link, index) => (
 			<a
 				href={link.href}
+				aria-current={link.active ? 'page' : undefined}
 				class={cn(
-					'font-serif font-medium text-gray-400 transition-colors duration-150 ease-out hover:cursor-pointer hover:text-foreground',
+					'group flex items-baseline gap-3 py-1.5 font-serif text-lg text-foreground/50 transition-colors duration-150 ease-out hover:text-foreground',
 					link.active && 'text-foreground'
 				)}
 			>
-				{link.label}
+				<span
+					class={cn('font-mono text-[0.6rem] text-foreground/30', link.active && 'text-accent')}
+				>
+					{String(index + 1).padStart(2, '0')}
+				</span>
+				<span>{link.label}</span>
 			</a>
 		))
 	}

@@ -24,11 +24,15 @@ breadcrumbPaths.unshift({ name: 'home', href: '/', capitalize: true });
 ---
 
 <nav aria-label="Breadcrumb" class="py-3">
-	<ol class="flex flex-wrap items-center text-sm">
+	<ol class="flex flex-wrap items-center font-mono text-[0.65rem] tracking-[0.1em] uppercase">
 		{
 			breadcrumbPaths.map((path, index) => (
 				<li class="flex items-center">
-					{index > 0 && <div class="mx-3 h-1.5 w-1.5 rounded-full bg-pure-blue" />}
+					{index > 0 && (
+						<span class="mx-2 text-accent" aria-hidden="true">
+							/
+						</span>
+					)}
 					{index === breadcrumbPaths.length - 1 ? (
 						<span class:list={['text-foreground', { capitalize: path.capitalize }]}>
 							{path.name}

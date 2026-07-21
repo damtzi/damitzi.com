@@ -2,6 +2,7 @@
 import type { GetStaticPaths } from 'astro';
 import BaseLayout from '@/layouts/base.astro';
 import Breadcrumbs from '@/components/shared/breadcrumbs.astro';
+import Prose from '@/components/shared/prose.astro';
 import { TypographyH1, TypographyP } from '@/components/typography';
 import { getCollection, render } from 'astro:content';
 
@@ -19,10 +20,8 @@ const { Content } = await render(entry);
 		<TypographyH1>{entry.data.title}</TypographyH1>
 		<Breadcrumbs />
 		<TypographyP class="lead">{entry.data.description}</TypographyP>
-		<div
-			class="prose dark:prose-invert prose-h1:text-xl prose-h1:font-bold prose-p:text-justify prose-p:text-foreground prose-a:text-accent prose-img:rounded-xl"
-		>
+		<Prose>
 			<Content />
-		</div>
+		</Prose>
 	</article>
 </BaseLayout>
