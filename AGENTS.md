@@ -4,6 +4,8 @@
 
 - Node.js 24.x (LTS) and pnpm 10.33.2 (pinned via `packageManager` in package.json).
 - Orbs ship Node 20; `.agents/setup` upgrades to Node 24 automatically.
+- Framework: Astro 6 (static output for Cloudflare) with Svelte + MDX integrations,
+  Tailwind CSS v4.
 
 ## Commands
 
@@ -18,16 +20,11 @@
 ## Secrets and the build
 
 `pnpm build` and `pnpm dev` prerender pages that fetch live data from the
-Discogs and Strava APIs at build time, so they require real values for these
-environment variables in `.dev.vars` (see `.dev.vars.example`):
-
-- `DISCOGS_TOKEN`
-- `STRAVA_CLIENT_ID`
-- `STRAVA_CLIENT_SECRET`
-- `STRAVA_REFRESH_TOKEN`
+Discogs API at build time, so they require a real value for `DISCOGS_TOKEN`
+in `.dev.vars` (see `.dev.vars.example`).
 
 Astro's env schema rejects empty values, so the build cannot complete without
-real secrets. `pnpm check` and `pnpm lint` run without them and are the safe
+a real secret. `pnpm check` and `pnpm lint` run without it and are the safe
 verification commands inside an orb.
 
 There is no test suite; `pnpm check` + `pnpm lint` are the verification gates
