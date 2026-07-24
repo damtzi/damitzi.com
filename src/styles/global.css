@@ -22,7 +22,7 @@ html {
 }
 
 :root {
-	--background: oklch(1 0 0);
+	--background: oklch(0.9938 0.0013 106.4);
 	--foreground: oklch(0.2644 0 0);
 	/* Brand blue for thin text/lines. Light mode is the true #0007fb. */
 	--accent: #0007fb;
@@ -31,9 +31,9 @@ html {
 }
 
 .dark {
-	--background: oklch(0.1288 0.0406 264.7);
+	--background: oklch(0.1638 0 0);
 	--foreground: oklch(0.9848 0 0);
-	/* Same hue, lifted so it stays legible on near-black navy. */
+	/* Same hue, lifted so it stays legible on the near-black background. */
 	--accent: oklch(0.72 0.15 264);
 	--surface: oklch(0.165 0.035 264.7);
 }

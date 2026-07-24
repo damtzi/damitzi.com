@@ -35,7 +35,7 @@
 	});
 </script>
 
-<div class="sm:hidden">
+<div class="lg:hidden">
 	<!-- Animated button -->
 	<button
 		class="relative z-30 h-10 w-10 rounded-sm text-slate-50 focus:outline-none"
