@@ -2,13 +2,13 @@
 import ExternalLinkIcon from '@lucide/astro/icons/external-link';
 import { TypographyH4, TypographyP } from '@/components/typography';
 
-type Props = {
+interface Props {
 	title: string;
 	description: string;
 	link: string;
 	tech: string[];
 	githubUrl?: string;
-};
+}
 
 const { title, description, link, tech, githubUrl } = Astro.props;
 ---
