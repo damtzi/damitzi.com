@@ -1,13 +1,15 @@
 ---
 import Clock from '@/components/clock.svelte';
+import ThemeToggle from '@/components/theme-toggle.svelte';
 ---
 
-<footer class="flex items-center justify-center border-t border-foreground/10 pt-2">
-	<div class="flex items-center gap-2 font-mono text-sm text-foreground/60">
+<footer class="flex items-center justify-between border-t border-foreground/10 pt-2">
+	<div class="flex items-center gap-2 text-sm text-foreground/60">
 		Gdynia
-		<svg width="6" height="6" class="animate-pulse">
+		<svg width="6" height="6">
 			<circle cx="3" cy="3" r="3" fill="#0007fb"></circle>
 		</svg>
 		<Clock client:load />
 	</div>
+	<ThemeToggle client:load />
 </footer>

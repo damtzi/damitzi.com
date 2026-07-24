@@ -1,6 +1,5 @@
 ---
 import pureBlue from '@/assets/0007fb.png';
-import ThemeToggle from '@/components/theme-toggle.svelte';
 import MobileNav from '@/components/mobile-nav.svelte';
 ---
 
@@ -20,6 +19,5 @@ import MobileNav from '@/components/mobile-nav.svelte';
 			<span class="text-gray-400">Software Engineer</span>
 		</div>
 	</div>
-	<ThemeToggle client:load />
 	<MobileNav client:load pathname={Astro.url.pathname} />
 </header>

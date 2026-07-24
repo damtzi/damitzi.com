@@ -1,5 +1,6 @@
 ---
-import ExternalLinkIcon from '@lucide/astro/icons/external-link';
+import { HugeiconsIcon } from '@hugeicons/svelte';
+import { ExternalLinkIcon } from '@hugeicons/core-free-icons';
 import { TypographyH4, TypographyP } from '@/components/typography';
 
 interface Props {
@@ -39,7 +40,7 @@ const { title, description, link, tech, githubUrl } = Astro.props;
 			rel="noopener noreferrer"
 			class="flex items-center gap-1 hover:underline"
 		>
-			<ExternalLinkIcon class="h-4 w-4" />
+			<HugeiconsIcon icon={ExternalLinkIcon} size={16} strokeWidth={2} />
 			View Project
 		</a>
 		{
