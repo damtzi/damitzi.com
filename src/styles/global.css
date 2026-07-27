@@ -48,11 +48,7 @@ html {
 	--color-baby-powder: #fdfffc;
 	--color-licorice: #1c110a;
 
-	--font-sans: var(--font-hanken-grotesk);
-	--font-serif: var(--font-lora);
-	--font-mono: var(--font-ibm-plex-mono);
-
-	--font-sans: 'Hanken Grotesk Variable', serif;
-	--font-serif: 'Lora Variable', sans-serif;
+	--font-sans: 'Inter Variable', sans-serif;
+	--font-serif: 'Lora Variable', serif;
 	--font-mono: 'IBM Plex Mono', monospace;
 }

@@ -85,7 +85,7 @@
 						href={link.href}
 						style:transition-delay={isOpen ? `${i * 40 + 100}ms` : '0ms'}
 						class={cn(
-							'font-serif font-medium text-gray-400 transition-colors duration-150 ease-out hover:cursor-pointer hover:text-foreground',
+							'font-sans font-medium text-gray-400 transition-colors duration-150 ease-out hover:cursor-pointer hover:text-foreground',
 							link.match(pathname) && 'text-foreground'
 						)}
 					>

@@ -16,12 +16,18 @@ importers:
       '@astrojs/svelte':
         specifier: ^8.1.2
         version: 8.1.2(@types/node@25.0.3)(astro@6.4.2(@types/node@25.0.3)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.61.0)(yaml@2.9.0))(jiti@2.6.1)(lightningcss@1.32.0)(svelte@5.56.6(@typescript-eslint/types@8.51.0))(typescript@5.9.3)(yaml@2.9.0)
+      '@fontsource-variable/geist':
+        specifier: ^5.3.0
+        version: 5.3.0
       '@fontsource-variable/hanken-grotesk':
         specifier: ^5.2.6
         version: 5.2.8
+      '@fontsource-variable/inter':
+        specifier: ^5.3.0
+        version: 5.3.0
       '@fontsource-variable/lora':
-        specifier: ^5.2.6
-        version: 5.2.8
+        specifier: ^5.3.0
+        version: 5.3.0
       '@fontsource/ibm-plex-mono':
         specifier: ^5.2.6
         version: 5.2.7
@@ -1127,16 +1133,28 @@ packages:
       }
     engines: { node: ^18.18.0 || ^20.9.0 || >=21.1.0 }
 
+  '@fontsource-variable/geist@5.3.0':
+    resolution:
+      {
+        integrity: sha512-j0m+vLQuG5XAYoHtGCVu0spvlGreR3EzpECUVzkFmI1mTVnAO38l/NEPDCFgZ177JxzYJCLSmTQibIiYPilGrA==
+      }
+
   '@fontsource-variable/hanken-grotesk@5.2.8':
     resolution:
       {
         integrity: sha512-K7hu09ZKReBc7EifRLeM4K94NZBrxFEg0nGcISmVwlFQOJo4EmYkLXTWEwr5JcNW4z2hr5zy8vLS2sxC8JDmrQ==
       }
 
-  '@fontsource-variable/lora@5.2.8':
+  '@fontsource-variable/inter@5.3.0':
     resolution:
       {
-        integrity: sha512-cxjTJ9BbOWIzusewR4UMBLVePvTSWV6dtNaNsCkF/oKoyA68fJGWfaYCILOOP1BObE4dmjfZ3xo6m9hdHhtYhg==
+        integrity: sha512-OupL48va4JNofb97w6NYeF9S7W/kHNKM0Er8Dem5nqi4jeOLrVJDoE8tZEpnMJmtkvNbB1EIPPwHcdkF6b1oUA==
+      }
+
+  '@fontsource-variable/lora@5.3.0':
+    resolution:
+      {
+        integrity: sha512-2ph8KiZ8Bn141hWuC3ErtpJ+Ui8p2MJQn8TJNRSRmLmnCIOCtHfiBM9R7WLRPeUG/q6hXyHOxWQ8DvRSX+ixvQ==
       }
 
   '@fontsource/ibm-plex-mono@5.2.7':
@@ -6872,9 +6890,13 @@ snapshots:
       '@eslint/core': 0.17.0
       levn: 0.4.1
 
+  '@fontsource-variable/geist@5.3.0': {}
+
   '@fontsource-variable/hanken-grotesk@5.2.8': {}
 
-  '@fontsource-variable/lora@5.2.8': {}
+  '@fontsource-variable/inter@5.3.0': {}
+
+  '@fontsource-variable/lora@5.3.0': {}
 
   '@fontsource/ibm-plex-mono@5.2.7': {}
 
