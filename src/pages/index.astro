@@ -4,6 +4,7 @@ import Link from '@/components/shared/link.astro';
 import { TypographyH1, TypographyH2, TypographyP } from '@/components/typography';
 import VinylPng from '@/assets/black-vinyl.png';
 import CdPng from '@/assets/clear-cd.png';
+import { workExperience } from '@/data/work-experience';
 import { getDiscogsCollection } from '@/lib/discogs';
 
 const collection = await getDiscogsCollection();
@@ -39,6 +40,33 @@ const isVinyl = (formats: { name: string }[]) => formats.some((format) => format
 				<Link href="mailto:damian.tziamtzis@gmail.com">damian.tziamtzis@gmail.com</Link>.
 			</TypographyP>
 		</div>
+
+		<section class="flex flex-col gap-3">
+			<TypographyH2>Experience</TypographyH2>
+			<ul class="flex flex-col gap-2.5">
+				{
+					workExperience.map((entry) => (
+						<li class="flex min-w-0 items-center gap-2">
+							<img
+								src={entry.icon}
+								alt=""
+								width="20"
+								height="20"
+								loading="lazy"
+								class="size-5 shrink-0 rounded-sm border border-foreground/10 object-cover"
+							/>
+							<p class="min-w-0 flex-1 truncate">
+								{entry.role}
+								<span class="text-muted"> at </span>
+								<Link href={entry.website} external class="font-medium">
+									{entry.homepageCompany ?? entry.company}
+								</Link>
+							</p>
+						</li>
+					))
+				}
+			</ul>
+		</section>
 
 		<div class="flex flex-col gap-2">
 			<TypographyH2>Recent pickups</TypographyH2>
@@ -86,6 +114,9 @@ const isVinyl = (formats: { name: string }[]) => formats.some((format) => format
 		}
 		.stagger-animation > :nth-child(2) {
 			animation-delay: 0.3s;
+		}
+		.stagger-animation > :nth-child(3) {
+			animation-delay: 0.5s;
 		}
 
 		@keyframes fadeInDown {
