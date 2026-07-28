@@ -1,23 +1,22 @@
 ---
-import pureBlue from '@/assets/0007fb.png';
+import { Image } from 'astro:assets';
+import coverImage from '@/assets/cover_3.jpeg';
+import profileImage from '@/assets/profile_2.jpeg';
 import MobileNav from '@/components/mobile-nav.svelte';
 ---
 
-<header class="flex items-center justify-between">
-	<div class="flex items-center gap-2">
-		<a href="/">
-			<img
-				src={pureBlue.src}
-				alt="Pure blue, hex code #0007FB."
-				class="rounded-full transition-transform duration-300 hover:scale-110"
-				width={36}
-				height={36}
-			/>
-		</a>
-		<div class="flex flex-col">
-			<span>Damian Tziamtzis</span>
-			<span class="text-muted">Software Engineer</span>
-		</div>
+<header class="relative pb-10">
+	<div class="h-28 overflow-hidden rounded-lg sm:h-32">
+		<Image src={coverImage} alt="" width={1344} class="h-full w-full object-cover" />
 	</div>
-	<MobileNav client:load pathname={Astro.url.pathname} />
+	<a
+		href="/"
+		aria-label="Home"
+		class="absolute bottom-0 left-4 block size-20 overflow-hidden rounded-lg ring-4 ring-background focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+	>
+		<Image src={profileImage} alt="Damian Tziamtzis" width={160} height={160} class="size-20" />
+	</a>
+	<div class="absolute top-2 right-2 rounded-md bg-background/75 backdrop-blur-sm">
+		<MobileNav client:load pathname={Astro.url.pathname} />
+	</div>
 </header>
