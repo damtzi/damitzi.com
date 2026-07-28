@@ -21,11 +21,28 @@ html {
 	mix-blend-mode: normal;
 }
 
+/* Prose links follow the same quiet underline treatment as the shared Link
+   component while retaining the surrounding text color. */
+.prose a {
+	color: inherit;
+	text-decoration-color: color-mix(in oklab, var(--foreground) 25%, transparent);
+	text-decoration-thickness: 1px;
+	text-underline-offset: 2.5px;
+	transition: text-decoration-color 150ms ease-out;
+}
+
+.prose a:hover,
+.prose a:focus-visible {
+	text-decoration-color: color-mix(in oklab, var(--foreground) 60%, transparent);
+}
+
 :root {
 	--background: oklch(0.9938 0.0013 106.4);
 	--foreground: oklch(0.2644 0 0);
 	/* Brand blue for thin text/lines. Light mode is the true #0007fb. */
 	--accent: #0007fb;
+	/* Secondary text that remains comfortably above WCAG AA contrast. */
+	--muted: oklch(0.48 0 0);
 	/* Opaque card surface — consistent regardless of the backdrop behind it. */
 	--surface: oklch(0.975 0.002 264.7);
 }
@@ -35,6 +52,7 @@ html {
 	--foreground: oklch(0.9848 0 0);
 	/* Same hue, lifted so it stays legible on the near-black background. */
 	--accent: oklch(0.72 0.15 264);
+	--muted: oklch(0.72 0 0);
 	--surface: oklch(0.165 0.035 264.7);
 }
 
@@ -42,6 +60,7 @@ html {
 	--color-background: var(--background);
 	--color-foreground: var(--foreground);
 	--color-accent: var(--accent);
+	--color-muted: var(--muted);
 	--color-surface: var(--surface);
 
 	--color-pure-blue: #0007fb;

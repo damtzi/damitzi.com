@@ -40,27 +40,27 @@ const coverImage =
 			/>
 			<div class="flex flex-col gap-4">
 				<div class="flex flex-col">
-					<span class="text-sm text-gray-500">Album</span>
+					<span class="text-sm text-muted">Album</span>
 					<span>{vinyl.title}</span>
 				</div>
 				<div class="flex flex-col">
-					<span class="text-sm text-gray-500">Artist</span>
+					<span class="text-sm text-muted">Artist</span>
 					<span>{vinyl.artists.map((artist) => artist.name).join(', ')}</span>
 				</div>
 				<div class="flex flex-col">
-					<span class="text-sm text-gray-500">Label</span>
+					<span class="text-sm text-muted">Label</span>
 					<span>{vinyl.labels.map((label) => label.name).join(', ')}</span>
 				</div>
 				<div class="flex flex-col">
-					<span class="text-sm text-gray-500">Format</span>
+					<span class="text-sm text-muted">Format</span>
 					<span>{vinyl.formats.map((format) => format.name).join(', ')}</span>
 				</div>
 				<div class="flex flex-col">
-					<span class="text-sm text-gray-500">Genres</span>
+					<span class="text-sm text-muted">Genres</span>
 					<span>{vinyl.genres.join(', ')}</span>
 				</div>
 				<div class="flex flex-col">
-					<span class="text-sm text-gray-500">Released</span>
+					<span class="text-sm text-muted">Released</span>
 					<span>{vinyl.released}</span>
 				</div>
 			</div>
