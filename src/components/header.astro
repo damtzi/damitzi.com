@@ -2,7 +2,6 @@
 import { Image } from 'astro:assets';
 import coverImage from '@/assets/cover_3.jpeg';
 import profileImage from '@/assets/profile_2.jpeg';
-import MobileNav from '@/components/mobile-nav.svelte';
 ---
 
 <header class="relative pb-10">
@@ -16,7 +15,4 @@ import MobileNav from '@/components/mobile-nav.svelte';
 	>
 		<Image src={profileImage} alt="Damian Tziamtzis" width={160} height={160} class="size-20" />
 	</a>
-	<div class="absolute top-2 right-2 rounded-md bg-background/75 backdrop-blur-sm">
-		<MobileNav client:load pathname={Astro.url.pathname} />
-	</div>
 </header>

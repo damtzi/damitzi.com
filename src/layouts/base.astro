@@ -5,9 +5,9 @@ import '@fontsource-variable/lora';
 import '@fontsource/ibm-plex-mono';
 
 import { ClientRouter } from 'astro:transitions';
+import FloatingNav from '@/components/floating-nav.svelte';
 import Footer from '@/components/footer.astro';
 import Header from '@/components/header.astro';
-import SideNav from '@/components/side-nav.astro';
 import Theme from '@/components/theme.astro';
 
 interface Props {
@@ -45,24 +45,19 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin).hr
 		transition:persist
 	>
 		<div
-			class="mx-auto grid min-h-dvh w-full max-w-6xl grid-cols-1 grid-rows-[auto_1fr_auto] gap-y-8 px-4 py-8 lg:grid-cols-[minmax(7rem,1fr)_minmax(0,42rem)_minmax(7rem,1fr)] lg:gap-x-16"
+			class="mx-auto grid min-h-dvh w-full max-w-2xl grid-cols-1 grid-rows-[auto_1fr_auto] gap-y-8 px-4 py-8"
 		>
-			<div class="mx-auto w-full max-w-2xl lg:col-start-2 lg:row-start-1">
+			<div class="mx-auto w-full max-w-2xl">
 				<Header />
 			</div>
-			<aside class="hidden w-28 justify-self-end lg:col-start-1 lg:row-start-2 lg:block">
-				<SideNav />
-			</aside>
-			<main
-				class="mx-auto w-full max-w-2xl lg:col-start-2 lg:row-start-2"
-				transition:animate="fade"
-			>
+			<main class="mx-auto w-full max-w-2xl" transition:animate="fade">
 				<slot />
 			</main>
-			<div class="mx-auto w-full max-w-2xl lg:col-start-2 lg:row-start-3">
+			<div class="mx-auto w-full max-w-2xl">
 				<Footer />
 			</div>
 		</div>
+		<FloatingNav client:load pathname={Astro.url.pathname} />
 	</body>
 </html>
 
