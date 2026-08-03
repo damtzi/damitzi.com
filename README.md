@@ -14,6 +14,17 @@ pnpm install
 pnpm run dev
 ```
 
+## Vinyl collection
+
+The vinyl collection is an Astro content collection. Each record has:
+
+- A JSON entry in `src/content/vinyls/<slug>.json`
+- A square WebP cover in `src/assets/vinyls/<slug>.webp`
+
+To add a record, copy an existing JSON entry, update its metadata and `added`
+date, and add the matching local cover. The JSON filename becomes the record's
+URL under `/music/vinyls/<slug>`.
+
 ## Stack
 
 To build the website, I'm using:

@@ -53,4 +53,19 @@ const projects = defineCollection({
 	})
 });
 
-export const collections = { recipes, topPicks, concerts, projects };
+const vinyls = defineCollection({
+	loader: glob({ pattern: '*.json', base: './src/content/vinyls' }),
+	schema: ({ image }) =>
+		z.object({
+			title: z.string(),
+			artists: z.array(z.string()).min(1),
+			labels: z.array(z.string()),
+			formats: z.array(z.string()).min(1),
+			genres: z.array(z.string()),
+			released: z.string(),
+			added: z.coerce.date(),
+			cover: image()
+		})
+});
+
+export const collections = { recipes, topPicks, concerts, projects, vinyls };

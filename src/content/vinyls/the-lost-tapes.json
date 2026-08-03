@@ -1,0 +1,10 @@
+{
+	"title": "The Lost Tapes",
+	"artists": ["Nas"],
+	"labels": ["Columbia", "Ill Will Records"],
+	"formats": ["Vinyl", "Vinyl", "All Media"],
+	"genres": ["Hip Hop"],
+	"released": "2023-05-26",
+	"added": "2025-02-12T08:06:12-08:00",
+	"cover": "../../assets/vinyls/the-lost-tapes.webp"
+}

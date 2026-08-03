@@ -1,19 +1,17 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '@/layouts/base.astro';
 import Link from '@/components/shared/link.astro';
 import { TypographyH1, TypographyH2, TypographyP } from '@/components/typography';
 import VinylPng from '@/assets/black-vinyl.png';
 import CdPng from '@/assets/clear-cd.png';
 import { workExperience } from '@/data/work-experience';
-import { getDiscogsCollection } from '@/lib/discogs';
 
-const collection = await getDiscogsCollection();
-
-const releases = collection.releases
-	.sort((a, b) => new Date(b.date_added).getTime() - new Date(a.date_added).getTime())
+const releases = (await getCollection('vinyls'))
+	.sort((a, b) => b.data.added.getTime() - a.data.added.getTime())
 	.slice(0, 4);
 
-const isVinyl = (formats: { name: string }[]) => formats.some((format) => format.name === 'Vinyl');
+const isVinyl = (formats: string[]) => formats.includes('Vinyl');
 ---
 
 <BaseLayout title="Home" description="Home page">
@@ -75,18 +73,16 @@ const isVinyl = (formats: { name: string }[]) => formats.some((format) => format
 					releases.map((release) => (
 						<a href={`/music/vinyls/${release.id}`} class="group relative">
 							<img
-								src={release.basic_information.cover_image}
-								alt={release.basic_information.title}
+								src={release.data.cover.src}
+								alt={release.data.title}
 								width={200}
 								height={200}
 								transition:name={`vinyl-cover-${release.id}`}
 								class="relative z-10 aspect-square rounded-xs shadow-lg transition-all duration-300 hover:scale-105 hover:cursor-pointer hover:shadow"
 							/>
 							<img
-								src={isVinyl(release.basic_information.formats) ? VinylPng.src : CdPng.src}
-								alt={
-									isVinyl(release.basic_information.formats) ? 'A black vinyl record' : 'A clear CD'
-								}
+								src={isVinyl(release.data.formats) ? VinylPng.src : CdPng.src}
+								alt={isVinyl(release.data.formats) ? 'A black vinyl record' : 'A clear CD'}
 								width={200}
 								height={200}
 								class="absolute top-0 z-0 opacity-0 transition-all duration-300 group-hover:translate-x-10 group-hover:opacity-100"

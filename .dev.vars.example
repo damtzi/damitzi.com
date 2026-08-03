@@ -1,4 +1,0 @@
-# Local secrets for `pnpm build` and `pnpm dev`. Copy to .dev.vars and fill in
-# real values. Required because prerendered pages fetch live data from Discogs
-# at build time. `pnpm check` and `pnpm lint` do not need these.
-DISCOGS_TOKEN=

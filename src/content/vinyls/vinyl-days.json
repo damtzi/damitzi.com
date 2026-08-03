@@ -1,0 +1,10 @@
+{
+	"title": "Vinyl Days",
+	"artists": ["Logic (27)"],
+	"labels": ["Def Jam Recordings", "Visionary Music Group"],
+	"formats": ["Vinyl"],
+	"genres": ["Hip Hop"],
+	"released": "2022-09-30",
+	"added": "2025-03-22T06:12:37-07:00",
+	"cover": "../../assets/vinyls/vinyl-days.webp"
+}

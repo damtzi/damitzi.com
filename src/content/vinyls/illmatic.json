@@ -1,0 +1,10 @@
+{
+	"title": "Illmatic",
+	"artists": ["Nas"],
+	"labels": ["Columbia"],
+	"formats": ["Vinyl"],
+	"genres": ["Hip Hop"],
+	"released": "2021-03-12",
+	"added": "2025-03-22T06:12:56-07:00",
+	"cover": "../../assets/vinyls/illmatic.webp"
+}

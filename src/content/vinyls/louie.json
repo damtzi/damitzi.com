@@ -1,0 +1,10 @@
+{
+	"title": "Louie",
+	"artists": ["Kenny Beats"],
+	"labels": ["XL Recordings"],
+	"formats": ["Vinyl"],
+	"genres": ["Electronic", "Hip Hop"],
+	"released": "2023-01-27",
+	"added": "2025-05-31T05:56:48-07:00",
+	"cover": "../../assets/vinyls/louie.webp"
+}

@@ -1,0 +1,10 @@
+{
+	"title": "Igor",
+	"artists": ["Tyler, The Creator"],
+	"labels": ["Columbia", "Sony Music"],
+	"formats": ["Vinyl"],
+	"genres": ["Hip Hop", "Funk / Soul"],
+	"released": "2019",
+	"added": "2025-03-22T06:10:25-07:00",
+	"cover": "../../assets/vinyls/igor.webp"
+}

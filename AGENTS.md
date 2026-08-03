@@ -19,13 +19,9 @@
 
 ## Secrets and the build
 
-`pnpm build` and `pnpm dev` prerender pages that fetch live data from the
-Discogs API at build time, so they require a real value for `DISCOGS_TOKEN`
-in `.dev.vars` (see `.dev.vars.example`).
-
-Astro's env schema rejects empty values, so the build cannot complete without
-a real secret. `pnpm check` and `pnpm lint` run without it and are the safe
-verification commands inside an orb.
+The site has no required build-time secrets or external data fetches. The
+vinyl collection and its cover artwork live locally under `src/content/vinyls`
+and `src/assets/vinyls`.
 
 There is no test suite; `pnpm check` + `pnpm lint` are the verification gates
 (matching CI, which runs `pnpm lint` then `pnpm build`).

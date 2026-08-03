@@ -1,0 +1,10 @@
+{
+	"title": "Bo Jackson",
+	"artists": ["Boldy James", "Alchemist"],
+	"labels": ["ALC Records"],
+	"formats": ["Vinyl"],
+	"genres": ["Hip Hop"],
+	"released": "2021-08-27",
+	"added": "2025-02-12T07:51:01-08:00",
+	"cover": "../../assets/vinyls/bo-jackson.webp"
+}

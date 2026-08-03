@@ -9,8 +9,5 @@
 			"binding": "SESSION",
 			"id": "f3fa414508be4f71b059a2e854beee96"
 		}
-	],
-	"secrets": {
-		"required": ["DISCOGS_TOKEN"]
-	}
+	]
 }

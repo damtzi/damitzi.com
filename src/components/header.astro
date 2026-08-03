@@ -1,18 +1,17 @@
 ---
-import { Image } from 'astro:assets';
 import coverImage from '@/assets/cover_3.jpeg';
 import profileImage from '@/assets/profile_2.jpeg';
 ---
 
 <header class="relative pb-10">
 	<div class="h-28 overflow-hidden rounded-lg sm:h-32">
-		<Image src={coverImage} alt="" width={1344} class="h-full w-full object-cover" />
+		<img src={coverImage.src} alt="" width={1344} class="h-full w-full object-cover" />
 	</div>
 	<a
 		href="/"
 		aria-label="Home"
 		class="absolute bottom-0 left-4 block size-20 overflow-hidden rounded-lg ring-4 ring-background focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
 	>
-		<Image src={profileImage} alt="Damian Tziamtzis" width={160} height={160} class="size-20" />
+		<img src={profileImage.src} alt="Damian Tziamtzis" width={160} height={160} class="size-20" />
 	</a>
 </header>

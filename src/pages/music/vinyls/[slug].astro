@@ -1,38 +1,27 @@
 ---
 import type { GetStaticPaths } from 'astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
 import BaseLayout from '@/layouts/base.astro';
 import Breadcrumbs from '@/components/shared/breadcrumbs.astro';
 import { TypographyH1 } from '@/components/typography';
-import { getDiscogsCollection, getVinylDetails } from '@/lib/discogs';
 
 export const getStaticPaths = (async () => {
-	const collection = await getDiscogsCollection();
-
-	// Fetch release details sequentially to stay within Discogs' rate limit.
-	const paths = [];
-	for (const release of collection.releases) {
-		const vinyl = await getVinylDetails(String(release.id));
-		paths.push({ params: { slug: String(vinyl.id) }, props: { vinyl } });
-	}
-
-	return paths;
+	const vinyls = await getCollection('vinyls');
+	return vinyls.map((vinyl) => ({ params: { slug: vinyl.id }, props: { vinyl } }));
 }) satisfies GetStaticPaths;
 
-const { vinyl } = Astro.props;
-
-const coverImage =
-	vinyl.images.find((image) => image.type === 'primary') ??
-	vinyl.images.find((image) => image.type === 'secondary');
+type Props = { vinyl: CollectionEntry<'vinyls'> };
+const { vinyl } = Astro.props as Props;
 ---
 
-<BaseLayout title={vinyl.title} description={`${vinyl.title} details`}>
+<BaseLayout title={vinyl.data.title} description={`${vinyl.data.title} details`}>
 	<div class="flex flex-col gap-2">
-		<TypographyH1>{vinyl.title}</TypographyH1>
-		<Breadcrumbs labels={{ [String(vinyl.id)]: vinyl.title }} />
+		<TypographyH1>{vinyl.data.title}</TypographyH1>
+		<Breadcrumbs labels={{ [vinyl.id]: vinyl.data.title }} />
 		<div class="flex flex-col gap-8 md:flex-row">
 			<img
-				src={coverImage?.uri}
-				alt={`Cover for ${vinyl.title}`}
+				src={vinyl.data.cover.src}
+				alt={`Cover for ${vinyl.data.title}`}
 				width={400}
 				height={400}
 				transition:name={`vinyl-cover-${vinyl.id}`}
@@ -41,27 +30,27 @@ const coverImage =
 			<div class="flex flex-col gap-4">
 				<div class="flex flex-col">
 					<span class="text-sm text-muted">Album</span>
-					<span>{vinyl.title}</span>
+					<span>{vinyl.data.title}</span>
 				</div>
 				<div class="flex flex-col">
 					<span class="text-sm text-muted">Artist</span>
-					<span>{vinyl.artists.map((artist) => artist.name).join(', ')}</span>
+					<span>{vinyl.data.artists.join(', ')}</span>
 				</div>
 				<div class="flex flex-col">
 					<span class="text-sm text-muted">Label</span>
-					<span>{vinyl.labels.map((label) => label.name).join(', ')}</span>
+					<span>{vinyl.data.labels.join(', ')}</span>
 				</div>
 				<div class="flex flex-col">
 					<span class="text-sm text-muted">Format</span>
-					<span>{vinyl.formats.map((format) => format.name).join(', ')}</span>
+					<span>{vinyl.data.formats.join(', ')}</span>
 				</div>
 				<div class="flex flex-col">
 					<span class="text-sm text-muted">Genres</span>
-					<span>{vinyl.genres.join(', ')}</span>
+					<span>{vinyl.data.genres.join(', ')}</span>
 				</div>
 				<div class="flex flex-col">
 					<span class="text-sm text-muted">Released</span>
-					<span>{vinyl.released}</span>
+					<span>{vinyl.data.released}</span>
 				</div>
 			</div>
 		</div>
