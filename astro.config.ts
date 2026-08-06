@@ -15,6 +15,20 @@ export default defineConfig({
 	}),
 
 	vite: {
-		plugins: [tailwindcss()]
+		plugins: [
+			tailwindcss(),
+			{
+				name: 'amp-portal',
+				configureServer(server) {
+					server.httpServer?.prependListener('request', (request) => {
+						delete request.headers['sec-fetch-site'];
+						delete request.headers['sec-fetch-mode'];
+					});
+				}
+			}
+		],
+		server: {
+			allowedHosts: ['.onamp.dev', '.e2b.app']
+		}
 	}
 });

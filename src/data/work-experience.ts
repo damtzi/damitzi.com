@@ -1,6 +1,7 @@
 export type WorkExperience = {
 	company: string;
 	homepageCompany?: string;
+	homepageSection?: 'additional';
 	period: string;
 	location: string;
 	role: string;
@@ -42,6 +43,7 @@ export const workExperience: WorkExperience[] = [
 	},
 	{
 		company: 'SoftMetal',
+		homepageSection: 'additional',
 		period: 'Dec 2025-present',
 		location: 'Remote',
 		role: 'Frontend Engineer',
