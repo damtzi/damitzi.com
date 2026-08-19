@@ -36,6 +36,18 @@ html {
 	text-decoration-color: color-mix(in oklab, var(--foreground) 60%, transparent);
 }
 
+.prose h1 {
+	@apply font-serif text-xl font-medium text-foreground;
+}
+
+.prose h2 {
+	@apply mb-3 font-serif text-lg font-medium text-foreground;
+}
+
+.prose h3 {
+	@apply font-serif text-base font-medium text-foreground;
+}
+
 :root {
 	--background: oklch(0.9938 0.0013 106.4);
 	--foreground: oklch(0.3 0.005 264);
