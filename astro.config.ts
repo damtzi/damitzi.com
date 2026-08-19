@@ -8,6 +8,7 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
 	output: 'static',
 	site: 'https://damitzi.com',
+	compressHTML: true,
 	integrations: [svelte(), mdx()],
 
 	adapter: cloudflare({
