@@ -1,6 +1,5 @@
 export type WorkExperience = {
 	company: string;
-	homepageCompany?: string;
 	homepageSection?: 'additional';
 	period: string;
 	location: string;
@@ -11,20 +10,6 @@ export type WorkExperience = {
 };
 
 export const workExperience: WorkExperience[] = [
-	{
-		company: 'Campy',
-		period: 'Feb 2026-present',
-		location: 'Remote',
-		role: 'Product Engineer',
-		website: 'https://campy.app/',
-		icon: '/company-icons/campy.png',
-		items: [
-			'Led revenue-focused mobile work across campy-app and campy-platform with React Native, Expo, TypeScript, Adapty, GraphQL, and Firebase.',
-			'Owned the Adapty migration for Campy Plus, replacing legacy IAP flows with hosted paywalls, entitlements, promo redemption, offline fallbacks, and purchase recovery.',
-			'Built backend revenue tooling, including support code redemption, legacy entitlement sync, migration scripts, Firestore services, schemas, and API tests.',
-			'Improved attribution reliability across iOS and Android through ATT-aware SDK setup, deep-link routing, SKAN config, tracking permissions, and paywall analytics.'
-		]
-	},
 	{
 		company: 'OKE',
 		period: 'Jan 2026-present',
@@ -39,6 +24,20 @@ export const workExperience: WorkExperience[] = [
 			'Delivered Storyblok-powered editorial and SEO features, including blog pages, author pages, CMS headers, rich text layouts, instant revalidation, and responsive content pages.',
 			'Strengthened BAS, Amadeus, payment/webhook, email, matrix, and pricing integrations with safer errors, validation, and shared service layers.',
 			'Improved D-Connect result accuracy with flight timing, stopover details, sorting, price-check normalization, schema hardening, Redis token fixes, and tested fallbacks.'
+		]
+	},
+	{
+		company: 'Campy',
+		period: 'Feb 2026-Sep 2026',
+		location: 'Remote',
+		role: 'Product Engineer',
+		website: 'https://campy.app/',
+		icon: '/company-icons/campy.png',
+		items: [
+			'Led revenue-focused mobile work across campy-app and campy-platform with React Native, Expo, TypeScript, Adapty, GraphQL, and Firebase.',
+			'Owned the Adapty migration for Campy Plus, replacing legacy IAP flows with hosted paywalls, entitlements, promo redemption, offline fallbacks, and purchase recovery.',
+			'Built backend revenue tooling, including support code redemption, legacy entitlement sync, migration scripts, Firestore services, schemas, and API tests.',
+			'Improved attribution reliability across iOS and Android through ATT-aware SDK setup, deep-link routing, SKAN config, tracking permissions, and paywall analytics.'
 		]
 	},
 	{
@@ -71,8 +70,7 @@ export const workExperience: WorkExperience[] = [
 		]
 	},
 	{
-		company: 'IT Partnering & Innovation at Lancaster University',
-		homepageCompany: 'Lancaster University',
+		company: 'Lancaster University',
 		period: 'Jan 2020-Jul 2020',
 		location: 'Lancaster, UK',
 		role: 'Frontend Engineer',
