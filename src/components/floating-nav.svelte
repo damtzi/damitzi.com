@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { onMount, tick } from 'svelte';
+	import { tick } from 'svelte';
 	import { cn } from '@/lib/utils';
 
 	type NavLink = { href: string; label: string; match: (path: string) => boolean };
@@ -19,6 +19,23 @@
 	let menuElement: HTMLDivElement;
 	let triggerElement: HTMLButtonElement;
 
+	const closeMenu = () => {
+		isOpen = false;
+	};
+	const closeOnEscape = (event: KeyboardEvent) => {
+		if (event.key === 'Escape' && isOpen) {
+			closeMenu();
+			triggerElement.focus();
+		}
+	};
+	const closeOnOutsideClick = (event: PointerEvent) => {
+		if (isOpen && !menuElement.contains(event.target as Node)) closeMenu();
+	};
+	const closeOnNavigation = (document: Document) => {
+		document.addEventListener('astro:before-swap', closeMenu);
+		return () => document.removeEventListener('astro:before-swap', closeMenu);
+	};
+
 	const toggleMenu = async () => {
 		isOpen = !isOpen;
 		if (isOpen) {
@@ -26,32 +43,13 @@
 			menuElement.querySelector<HTMLAnchorElement>('a')?.focus();
 		}
 	};
-
-	onMount(() => {
-		const close = () => {
-			isOpen = false;
-		};
-		const closeOnEscape = (event: KeyboardEvent) => {
-			if (event.key === 'Escape' && isOpen) {
-				close();
-				triggerElement.focus();
-			}
-		};
-		const closeOnOutsideClick = (event: PointerEvent) => {
-			if (isOpen && !menuElement.contains(event.target as Node)) close();
-		};
-
-		document.addEventListener('keydown', closeOnEscape);
-		document.addEventListener('pointerdown', closeOnOutsideClick);
-		document.addEventListener('astro:before-swap', close);
-
-		return () => {
-			document.removeEventListener('keydown', closeOnEscape);
-			document.removeEventListener('pointerdown', closeOnOutsideClick);
-			document.removeEventListener('astro:before-swap', close);
-		};
-	});
 </script>
+
+<svelte:document
+	onkeydown={closeOnEscape}
+	onpointerdown={closeOnOutsideClick}
+	{@attach closeOnNavigation}
+/>
 
 <div
 	bind:this={menuElement}
@@ -76,7 +74,7 @@
 					<a
 						href={link.href}
 						aria-current={isActive ? 'page' : undefined}
-						onclick={() => (isOpen = false)}
+						onclick={closeMenu}
 						class={cn(
 							'flex min-h-11 items-center gap-2 rounded-lg px-3 py-1.5 text-sm font-medium text-muted transition-colors duration-150 ease-out hover:bg-foreground/5 hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-0 focus-visible:outline-accent',
 							isActive && 'text-foreground'
