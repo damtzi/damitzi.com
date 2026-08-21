@@ -1,11 +1,12 @@
 ---
-import coverImage from '@/assets/cover_3.jpeg';
+import coverImage from '@/assets/cover_1.jpeg';
 import profileImage from '@/assets/profile_2.jpeg';
+import ImageDithering from '@/components/image-dithering.svelte';
 ---
 
 <header class="relative pb-10">
 	<div class="h-28 overflow-hidden rounded-lg sm:h-32">
-		<img src={coverImage.src} alt="" width={1344} class="h-full w-full object-cover" />
+		<ImageDithering client:load src={coverImage.src} />
 	</div>
 	<a
 		href="/"

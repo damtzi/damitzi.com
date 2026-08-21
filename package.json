@@ -26,6 +26,7 @@
 		"@fontsource/ibm-plex-mono": "^5.2.6",
 		"@hugeicons/core-free-icons": "^4.2.3",
 		"@hugeicons/svelte": "^1.1.4",
+		"@paper-design/shaders": "0.0.80",
 		"astro": "^7.2.3",
 		"clsx": "^2.1.1",
 		"gsap": "^3.13.0",
