@@ -61,7 +61,7 @@
 		aria-hidden={!isOpen}
 		inert={!isOpen}
 		class={cn(
-			'absolute bottom-[calc(100%+0.5rem)] left-1/2 w-44 -translate-x-1/2 origin-bottom rounded-2xl border border-foreground/10 bg-background/90 p-2 shadow-[0_16px_48px_rgb(0_0_0/0.18)] backdrop-blur-md transition-[opacity,transform] ease-[cubic-bezier(0.19,1,0.22,1)] motion-reduce:translate-y-0 motion-reduce:scale-100 motion-reduce:transition-opacity motion-reduce:duration-150',
+			'absolute bottom-[calc(100%+0.5rem)] left-1/2 w-44 origin-bottom -translate-x-1/2 rounded-2xl border border-foreground/10 bg-background/90 p-2 shadow-[0_16px_48px_rgb(0_0_0/0.18)] backdrop-blur-md transition-[opacity,transform] ease-[cubic-bezier(0.19,1,0.22,1)] motion-reduce:translate-y-0 motion-reduce:scale-100 motion-reduce:transition-opacity motion-reduce:duration-150',
 			isOpen
 				? 'translate-y-0 scale-100 opacity-100 duration-200'
 				: 'pointer-events-none translate-y-2 scale-[0.98] opacity-0 duration-150'
@@ -100,7 +100,7 @@
 		aria-controls="primary-navigation"
 		aria-expanded={isOpen}
 		onclick={toggleMenu}
-		class="flex min-h-11 min-w-20 items-center justify-center rounded-full border border-foreground/10 bg-background/90 px-5 text-sm font-medium text-foreground shadow-[0_8px_32px_rgb(0_0_0/0.16)] backdrop-blur-md transition-[color,background-color,transform] duration-150 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] hover:bg-background motion-safe:active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+		class="flex min-h-11 min-w-20 items-center justify-center rounded-full border border-foreground/10 bg-background/90 px-5 text-sm font-medium text-foreground shadow-[0_8px_32px_rgb(0_0_0/0.16)] backdrop-blur-md transition-[color,background-color,transform] duration-150 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] hover:bg-background focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent motion-safe:active:scale-[0.97]"
 	>
 		{isOpen ? 'Close' : 'Menu'}
 	</button>
