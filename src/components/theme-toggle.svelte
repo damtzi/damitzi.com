@@ -8,12 +8,7 @@
 	};
 </script>
 
-<button
-	type="button"
-	onclick={toggleTheme}
-	aria-label="Toggle Theme"
-	class="relative cursor-pointer"
->
+<button type="button" onclick={toggleTheme} class="relative cursor-pointer">
 	<HugeiconsIcon
 		icon={Sun01Icon}
 		size={16}
