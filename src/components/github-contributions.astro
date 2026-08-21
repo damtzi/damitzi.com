@@ -1,0 +1,173 @@
+---
+import Link from '@/components/shared/link.astro';
+import { TypographyH2 } from '@/components/typography';
+
+type ContributionLevel =
+	| 'NONE'
+	| 'FIRST_QUARTILE'
+	| 'SECOND_QUARTILE'
+	| 'THIRD_QUARTILE'
+	| 'FOURTH_QUARTILE';
+
+type ContributionDay = {
+	date: string;
+	contributionCount: number;
+	contributionLevel: ContributionLevel;
+};
+
+type ContributionCalendar = {
+	totalContributions: number;
+	weeks: Array<{ contributionDays: ContributionDay[] }>;
+};
+
+type GitHubResponse = {
+	data?: {
+		user: {
+			contributionsCollection: {
+				contributionCalendar: ContributionCalendar;
+			};
+		};
+	};
+	errors?: Array<{ message: string }>;
+};
+
+const token = import.meta.env.CONTRIBUTIONS_TOKEN;
+
+if (!token) {
+	throw new Error('CONTRIBUTIONS_TOKEN is required to build the contributions chart.');
+}
+
+const response = await fetch('https://api.github.com/graphql', {
+	method: 'POST',
+	headers: {
+		Authorization: `Bearer ${token}`,
+		'Content-Type': 'application/json',
+		'User-Agent': 'damitzi.com'
+	},
+	body: JSON.stringify({
+		query: `
+			query Contributions {
+				user(login: "damtzi") {
+					contributionsCollection {
+						contributionCalendar {
+							totalContributions
+							weeks {
+								contributionDays {
+									date
+									contributionCount
+									contributionLevel
+								}
+							}
+						}
+					}
+				}
+			}
+		`
+	})
+});
+
+const result = (await response.json()) as GitHubResponse;
+
+if (!response.ok || result.errors || !result.data) {
+	const message = result.errors?.map((error) => error.message).join(', ') ?? response.statusText;
+	throw new Error(`Could not load GitHub contributions: ${message}`);
+}
+
+const calendar = result.data.user.contributionsCollection.contributionCalendar;
+const formattedTotal = new Intl.NumberFormat('en-US').format(calendar.totalContributions);
+---
+
+<section class="flex flex-col gap-3">
+	<TypographyH2>Contributions</TypographyH2>
+	<div class="contribution-calendar" aria-hidden="true">
+		{
+			calendar.weeks.map((week) => (
+				<div class="contribution-week">
+					{week.contributionDays.map((day) => (
+						<span
+							class:list={['contribution-day', day.contributionLevel.toLowerCase()]}
+							title={`${day.contributionCount} contribution${day.contributionCount === 1 ? '' : 's'} on ${day.date}`}
+						/>
+					))}
+				</div>
+			))
+		}
+	</div>
+	<div class="flex items-center justify-between gap-4 text-sm text-muted">
+		<p>
+			<Link href="https://github.com/damtzi" external>{formattedTotal} contributions</Link> in the past
+			year
+		</p>
+		<div class="hidden items-center gap-1.5 sm:flex" aria-hidden="true">
+			<span>Less</span>
+			<span class="contribution-day none"></span>
+			<span class="contribution-day first_quartile"></span>
+			<span class="contribution-day second_quartile"></span>
+			<span class="contribution-day third_quartile"></span>
+			<span class="contribution-day fourth_quartile"></span>
+			<span>More</span>
+		</div>
+	</div>
+</section>
+
+<style>
+	.contribution-calendar {
+		display: grid;
+		grid-auto-flow: column;
+		grid-template-columns: repeat(28, minmax(0, 1fr));
+		gap: 0.1875rem;
+		overflow: hidden;
+	}
+
+	.contribution-week {
+		display: grid;
+		gap: 0.1875rem;
+	}
+
+	.contribution-week:nth-child(-n + 25) {
+		display: none;
+	}
+
+	.contribution-day {
+		display: block;
+		width: 0.5rem;
+		height: 0.5rem;
+		border-radius: 0.125rem;
+	}
+
+	.contribution-calendar .contribution-day {
+		width: 100%;
+		height: auto;
+		aspect-ratio: 1;
+	}
+
+	.none {
+		background: color-mix(in oklab, var(--foreground) 7%, transparent);
+	}
+
+	.first_quartile {
+		background: color-mix(in oklab, var(--accent) 22%, transparent);
+	}
+
+	.second_quartile {
+		background: color-mix(in oklab, var(--accent) 45%, transparent);
+	}
+
+	.third_quartile {
+		background: color-mix(in oklab, var(--accent) 70%, transparent);
+	}
+
+	.fourth_quartile {
+		background: var(--accent);
+	}
+
+	@media (min-width: 40rem) {
+		.contribution-calendar {
+			grid-template-columns: repeat(53, minmax(0, 1fr));
+		}
+
+		.contribution-week:nth-child(-n + 25) {
+			display: grid;
+		}
+	}
+</style>

@@ -6,6 +6,7 @@ import { TypographyH1, TypographyH2, TypographyP } from '@/components/typography
 import VinylPng from '@/assets/black-vinyl.png';
 import CdPng from '@/assets/clear-cd.png';
 import { workExperience } from '@/data/work-experience';
+import GitHubContributions from '@/components/github-contributions.astro';
 
 const releases = (await getCollection('vinyls'))
 	.sort((a, b) => b.data.added.getTime() - a.data.added.getTime())
@@ -58,6 +59,8 @@ const workSections = [
 				<Link href="mailto:damian.tziamtzis@gmail.com">email</Link>.
 			</TypographyP>
 		</section>
+
+		<GitHubContributions />
 
 		{
 			workSections.map((section) => (
@@ -143,6 +146,9 @@ const workSections = [
 		}
 		.stagger-animation > :nth-child(4) {
 			animation-delay: 0.7s;
+		}
+		.stagger-animation > :nth-child(5) {
+			animation-delay: 0.9s;
 		}
 
 		@keyframes fadeInDown {
