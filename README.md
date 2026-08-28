@@ -37,9 +37,16 @@ The vinyl collection is an Astro content collection. Each record has:
 - A JSON entry in `src/content/vinyls/<slug>.json`
 - A square WebP cover in `src/assets/vinyls/<slug>.webp`
 
-To add a record, copy an existing JSON entry, update its metadata and `added`
-date, and add the matching local cover. The JSON filename becomes the record's
-URL under `/music/vinyls/<slug>`.
+Run `pnpm vinyls:sync` after adding records to Discogs. The script compares the
+live collection with local content and downloads possible clean covers for only
+the missing records into `.vinyl-sync/`. Review the candidates, then add the
+generated JSON and selected cover to the content and asset directories above.
+The JSON filename becomes the record's URL under `/music/vinyls/<slug>`.
+
+Set `DISCOGS_TOKEN` in the environment or `.dev.vars` for authenticated Discogs
+requests. Public collections also work without a token at a lower rate limit.
+`pnpm vinyls:check` validates that every record has a matching square WebP cover
+no larger than 1000×1000 or 500 KiB. It runs as part of `pnpm lint` and CI.
 
 ## Stack
 

@@ -57,6 +57,7 @@ const vinyls = defineCollection({
 	loader: glob({ pattern: '*.json', base: './src/content/vinyls' }),
 	schema: ({ image }) =>
 		z.object({
+			discogsReleaseId: z.number().int().positive().optional(),
 			title: z.string(),
 			artists: z.array(z.string()).min(1),
 			labels: z.array(z.string()),

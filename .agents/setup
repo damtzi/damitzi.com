@@ -32,13 +32,4 @@ echo "setup: pnpm $(pnpm --version)"
 # --- Dependencies ----------------------------------------------------------
 pnpm install --frozen-lockfile
 
-# --- Local secrets ---------------------------------------------------------
-# `pnpm build` and `pnpm dev` prerender pages that fetch live data from Discogs,
-# so they require a real DISCOGS_TOKEN in .dev.vars. `pnpm check` and `pnpm lint`
-# work without it. Seed .dev.vars from the committed template so the env schema
-# is satisfied once a real value is filled in.
-if [ ! -f .dev.vars ] && [ -f .dev.vars.example ]; then
-  cp -- .dev.vars.example .dev.vars
-fi
-
 echo "setup: done"

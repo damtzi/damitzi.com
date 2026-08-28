@@ -1,5 +1,6 @@
 ---
 import type { GetStaticPaths } from 'astro';
+import { Image } from 'astro:assets';
 import { getCollection, type CollectionEntry } from 'astro:content';
 import BaseLayout from '@/layouts/base.astro';
 import Breadcrumbs from '@/components/shared/breadcrumbs.astro';
@@ -19,11 +20,16 @@ const { vinyl } = Astro.props as Props;
 		<TypographyH1>{vinyl.data.title}</TypographyH1>
 		<Breadcrumbs labels={{ [vinyl.id]: vinyl.data.title }} />
 		<div class="flex flex-col gap-8 md:flex-row">
-			<img
-				src={vinyl.data.cover.src}
+			<Image
+				src={vinyl.data.cover}
 				alt={`Cover for ${vinyl.data.title}`}
 				width={400}
 				height={400}
+				widths={[400, 800]}
+				sizes="(min-width: 400px) 400px, 100vw"
+				format="webp"
+				quality={82}
+				priority
 				transition:name={`vinyl-cover-${vinyl.id}`}
 				class="rounded-xs shadow-lg"
 			/>

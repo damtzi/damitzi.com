@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import BaseLayout from '@/layouts/base.astro';
 import Breadcrumbs from '@/components/shared/breadcrumbs.astro';
@@ -19,21 +20,30 @@ const isVinyl = (formats: string[]) => formats.includes('Vinyl');
 		<Breadcrumbs />
 		<div class="grid grid-cols-2 gap-4 sm:grid-cols-4 md:gap-10">
 			{
-				releases.map((release) => (
+				releases.map((release, index) => (
 					<a href={`/music/vinyls/${release.id}`} class="group relative">
-						<img
-							src={release.data.cover.src}
+						<Image
+							src={release.data.cover}
 							alt={release.data.title}
 							width={200}
 							height={200}
+							widths={[200, 400]}
+							sizes="(min-width: 200px) 200px, 100vw"
+							format="webp"
+							quality={82}
+							priority={index === 0}
 							transition:name={`vinyl-cover-${release.id}`}
 							class="relative z-10 aspect-square rounded-xs shadow-lg transition-all duration-300 hover:scale-105 hover:cursor-pointer hover:shadow"
 						/>
-						<img
-							src={isVinyl(release.data.formats) ? VinylPng.src : CdPng.src}
+						<Image
+							src={isVinyl(release.data.formats) ? VinylPng : CdPng}
 							alt={isVinyl(release.data.formats) ? 'A black vinyl record' : 'A clear CD'}
 							width={200}
 							height={200}
+							widths={[200, 400]}
+							sizes="(min-width: 200px) 200px, 100vw"
+							format="webp"
+							quality={82}
 							class="absolute top-0 z-0 opacity-0 transition-all duration-300 group-hover:translate-x-10 group-hover:opacity-100"
 						/>
 					</a>

@@ -10,10 +10,12 @@
 		"preview": "astro preview",
 		"astro": "astro",
 		"check": "astro check",
+		"vinyls:sync": "node --env-file-if-exists=.dev.vars scripts/sync-vinyls.mjs",
+		"vinyls:check": "node scripts/check-vinyl-covers.mjs",
 		"format": "oxfmt && prettier --write \"**/*.astro\"",
 		"format:check": "oxfmt --check && prettier --check \"**/*.astro\"",
 		"prepare": "husky",
-		"lint": "oxlint && eslint . && astro check && pnpm format:check",
+		"lint": "oxlint && eslint . && astro check && pnpm vinyls:check && pnpm format:check",
 		"lint:fix": "oxlint --fix && eslint . --fix",
 		"lint-staged": "lint-staged"
 	},
