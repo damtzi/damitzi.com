@@ -28,5 +28,6 @@ There is no test suite; `pnpm check` + `pnpm lint` are the verification gates
 
 ## Conventions
 
-- Conventional Commits enforced via commitlint (`.husky/commit-msg`).
+- Use Conventional Commits with sentence-case commit messages. Enforced via
+  commitlint (`.husky/commit-msg`).
 - lint-staged runs on pre-commit (`.husky/pre-commit`).
