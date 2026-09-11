@@ -112,9 +112,13 @@ jobs:
           name: worker-build
           path: dist/client
 
+      - name: Read commit message
+        id: commit
+        run: echo "message=$(git log -1 --pretty=%s)" >> "$GITHUB_OUTPUT"
+
       - name: Deploy Worker
         uses: cloudflare/wrangler-action@v4
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: deploy --config dist/client/wrangler.json --message "GitHub commit ${{ github.sha }}"
+          command: deploy --config dist/client/wrangler.json --message "${{ steps.commit.outputs.message }}"
