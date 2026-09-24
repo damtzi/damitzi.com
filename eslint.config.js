@@ -14,7 +14,7 @@ const gitignorePath = fileURLToPath(new URL('./.gitignore', import.meta.url));
 
 export default defineConfig(
 	includeIgnoreFile(gitignorePath),
-	{ ignores: ['worker-configuration.d.ts'] },
+	{ ignores: ['env.d.ts', 'worker-configuration.d.ts'] },
 	js.configs.recommended,
 	...ts.configs.recommended,
 	...eslintPluginAstro.configs.recommended,

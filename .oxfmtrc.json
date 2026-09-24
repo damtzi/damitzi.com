@@ -13,6 +13,7 @@
 		".agents/",
 		"**/*.astro",
 		"pnpm-lock.yaml",
+		"env.d.ts",
 		"worker-configuration.d.ts",
 		"dist/",
 		".astro/",
@@ -23,6 +24,8 @@
 		"pnpm-debug.log*",
 		".env",
 		".env.production",
+		".env.local",
+		".env.*.local",
 		".DS_Store",
 		".idea/"
 	]

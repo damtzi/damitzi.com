@@ -3,13 +3,14 @@ import svelte from '@astrojs/svelte';
 import { defineConfig } from 'astro/config';
 import cloudflare from '@astrojs/cloudflare';
 import tailwindcss from '@tailwindcss/vite';
+import varlockAstroIntegration from '@varlock/astro-integration';
 
 // https://astro.build/config
 export default defineConfig({
 	output: 'static',
 	site: 'https://damitzi.com',
 	compressHTML: true,
-	integrations: [svelte(), mdx()],
+	integrations: [varlockAstroIntegration(), svelte(), mdx()],
 
 	adapter: cloudflare({
 		imageService: 'compile'

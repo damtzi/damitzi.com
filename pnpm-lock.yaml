@@ -34,6 +34,12 @@ importers:
       '@paper-design/shaders':
         specifier: 0.0.80
         version: 0.0.80
+      '@varlock/astro-integration':
+        specifier: 1.4.2
+        version: 1.4.2(@varlock/cloudflare-integration@1.6.0(@cloudflare/vite-plugin@1.39.0(vite@7.3.5(@types/node@25.0.3)(jiti@2.6.1)(lightningcss@1.33.0)(yaml@2.9.0))(workerd@1.20260526.1)(wrangler@4.95.0(@cloudflare/workers-types@4.20260601.1)))(varlock@1.20.0)(vite@7.3.5(@types/node@25.0.3)(jiti@2.6.1)(lightningcss@1.33.0)(yaml@2.9.0))(wrangler@4.95.0(@cloudflare/workers-types@4.20260601.1)))(astro@7.2.3(@astrojs/markdown-remark@7.2.3)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@25.0.3)(jiti@2.6.1)(yaml@2.9.0))(varlock@1.20.0)
+      '@varlock/cloudflare-integration':
+        specifier: 1.6.0
+        version: 1.6.0(@cloudflare/vite-plugin@1.39.0(vite@7.3.5(@types/node@25.0.3)(jiti@2.6.1)(lightningcss@1.33.0)(yaml@2.9.0))(workerd@1.20260526.1)(wrangler@4.95.0(@cloudflare/workers-types@4.20260601.1)))(varlock@1.20.0)(vite@7.3.5(@types/node@25.0.3)(jiti@2.6.1)(lightningcss@1.33.0)(yaml@2.9.0))(wrangler@4.95.0(@cloudflare/workers-types@4.20260601.1))
       astro:
         specifier: ^7.2.3
         version: 7.2.3(@astrojs/markdown-remark@7.2.3)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@25.0.3)(jiti@2.6.1)(yaml@2.9.0)
@@ -55,6 +61,9 @@ importers:
       tailwindcss:
         specifier: ^4.3.0
         version: 4.3.0
+      varlock:
+        specifier: 1.20.0
+        version: 1.20.0
     devDependencies:
       '@astrojs/check':
         specifier: ^0.9.10
@@ -3100,6 +3109,70 @@ packages:
       {
         integrity: sha512-mUFwbeTqrVgDQxFveS+df2yfap6iuP20NAKAsBt5jDEoOTDew+zwLAOilHCeQJOVSvmgCX4ogqIrA0mnyr08yQ==
       }
+
+  '@varlock/astro-integration@1.4.2':
+    resolution:
+      {
+        integrity: sha512-eCM/FVlIxE8CzbD+l5BPudd0XBrcrQmFjA90OIt4LHIuO65z6sRz2IqynhYrkE6OpWeza9s/TgFTIblFWL7HHA==
+      }
+    engines: { node: '>=22' }
+    peerDependencies:
+      '@varlock/cloudflare-integration': ^1.5.2
+      astro: '>=4'
+      varlock: ^1.19.0
+    peerDependenciesMeta:
+      '@varlock/cloudflare-integration':
+        optional: true
+
+  '@varlock/cloudflare-integration@1.6.0':
+    resolution:
+      {
+        integrity: sha512-HPtAQRVQ3AZRMzmnmHBZQaxZS/1tT0bmjbW+J4iALtuKXp8tI3X8EitlXlq4Kv23c2f8qpua4DSUUPxsylIRTw==
+      }
+    engines: { node: '>=22' }
+    hasBin: true
+    peerDependencies:
+      '@cloudflare/vite-plugin': '>=1'
+      varlock: ^1.20.0
+      vite: '>=5'
+      wrangler: '>=3'
+    peerDependenciesMeta:
+      '@cloudflare/vite-plugin':
+        optional: true
+      vite:
+        optional: true
+      wrangler:
+        optional: true
+
+  '@varlock/native-helper-darwin@1.20.0':
+    resolution:
+      {
+        integrity: sha512-+AidNOGpJ63+CifPsg0wCPLaCwOunoHCazWIPekTnujzk4HTVB1iowLsWBOaAfLq6TDeSKSis2gk7M9oSlcKNA==
+      }
+    os: [darwin]
+
+  '@varlock/native-helper-linux-arm64@1.20.0':
+    resolution:
+      {
+        integrity: sha512-W7dxyWkEuzFf+qOKNHqs5j0QOy0vW/zXrusS9i0Zt4l4oP6u0hwWqS8xV2ww6KiG2SrV+Dvrn/23fh4kTE/cCA==
+      }
+    cpu: [arm64]
+    os: [linux]
+
+  '@varlock/native-helper-linux-x64@1.20.0':
+    resolution:
+      {
+        integrity: sha512-6N6w87D4ByujoVRz0hxFH/VXNOmr9rXnp+WDdzxHa2FZirmy31wW3LoiPjIXrmriNZ9p2C5JseECEDBKsnwQcg==
+      }
+    cpu: [x64]
+    os: [linux]
+
+  '@varlock/native-helper-win32-x64@1.20.0':
+    resolution:
+      {
+        integrity: sha512-mDH00lx2h+dWmbARTnfmRu321SuZigKslUdX7dAn0/7+psShiFCx6QEWLjjyZgDPSCGVNbIM3JArC40vCTXJjw==
+      }
+    os: [win32, linux]
 
   '@volar/kit@2.4.28':
     resolution:
@@ -7029,6 +7102,14 @@ packages:
       }
     hasBin: true
 
+  varlock@1.20.0:
+    resolution:
+      {
+        integrity: sha512-MA5idJKpaQ36d90OxY4gWwWzdVKle6YUq3OI58o/j5ImCz3m8DFmonGbvixyFRhmm7sQeGcNyo8hBHc3kVLNqw==
+      }
+    engines: { bun: '>=1.3.3', node: '>=22.3.0' }
+    hasBin: true
+
   vfile-location@5.0.3:
     resolution:
       {
@@ -7789,6 +7870,20 @@ snapshots:
       unenv: 2.0.0-rc.24
     optionalDependencies:
       workerd: 1.20260526.1
+
+  '@cloudflare/vite-plugin@1.39.0(vite@7.3.5(@types/node@25.0.3)(jiti@2.6.1)(lightningcss@1.33.0)(yaml@2.9.0))(workerd@1.20260526.1)(wrangler@4.95.0(@cloudflare/workers-types@4.20260601.1))':
+    dependencies:
+      '@cloudflare/unenv-preset': 2.16.1(unenv@2.0.0-rc.24)(workerd@1.20260526.1)
+      miniflare: 4.20260526.0
+      unenv: 2.0.0-rc.24
+      vite: 7.3.5(@types/node@25.0.3)(jiti@2.6.1)(lightningcss@1.33.0)(yaml@2.9.0)
+      wrangler: 4.95.0(@cloudflare/workers-types@4.20260601.1)
+      ws: 8.20.1
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
+      - workerd
+    optional: true
 
   '@cloudflare/vite-plugin@1.39.0(vite@8.2.1(@types/node@25.0.3)(esbuild@0.28.2)(jiti@2.6.1)(yaml@2.9.0))(workerd@1.20260526.1)(wrangler@4.95.0(@cloudflare/workers-types@4.20260601.1))':
     dependencies:
@@ -8991,6 +9086,33 @@ snapshots:
       eslint-visitor-keys: 4.2.1
 
   '@ungap/structured-clone@1.3.1': {}
+
+  '@varlock/astro-integration@1.4.2(@varlock/cloudflare-integration@1.6.0(@cloudflare/vite-plugin@1.39.0(vite@7.3.5(@types/node@25.0.3)(jiti@2.6.1)(lightningcss@1.33.0)(yaml@2.9.0))(workerd@1.20260526.1)(wrangler@4.95.0(@cloudflare/workers-types@4.20260601.1)))(varlock@1.20.0)(vite@7.3.5(@types/node@25.0.3)(jiti@2.6.1)(lightningcss@1.33.0)(yaml@2.9.0))(wrangler@4.95.0(@cloudflare/workers-types@4.20260601.1)))(astro@7.2.3(@astrojs/markdown-remark@7.2.3)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@25.0.3)(jiti@2.6.1)(yaml@2.9.0))(varlock@1.20.0)':
+    dependencies:
+      astro: 7.2.3(@astrojs/markdown-remark@7.2.3)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@25.0.3)(jiti@2.6.1)(yaml@2.9.0)
+      varlock: 1.20.0
+    optionalDependencies:
+      '@varlock/cloudflare-integration': 1.6.0(@cloudflare/vite-plugin@1.39.0(vite@7.3.5(@types/node@25.0.3)(jiti@2.6.1)(lightningcss@1.33.0)(yaml@2.9.0))(workerd@1.20260526.1)(wrangler@4.95.0(@cloudflare/workers-types@4.20260601.1)))(varlock@1.20.0)(vite@7.3.5(@types/node@25.0.3)(jiti@2.6.1)(lightningcss@1.33.0)(yaml@2.9.0))(wrangler@4.95.0(@cloudflare/workers-types@4.20260601.1))
+
+  '@varlock/cloudflare-integration@1.6.0(@cloudflare/vite-plugin@1.39.0(vite@7.3.5(@types/node@25.0.3)(jiti@2.6.1)(lightningcss@1.33.0)(yaml@2.9.0))(workerd@1.20260526.1)(wrangler@4.95.0(@cloudflare/workers-types@4.20260601.1)))(varlock@1.20.0)(vite@7.3.5(@types/node@25.0.3)(jiti@2.6.1)(lightningcss@1.33.0)(yaml@2.9.0))(wrangler@4.95.0(@cloudflare/workers-types@4.20260601.1))':
+    dependencies:
+      varlock: 1.20.0
+    optionalDependencies:
+      '@cloudflare/vite-plugin': 1.39.0(vite@7.3.5(@types/node@25.0.3)(jiti@2.6.1)(lightningcss@1.33.0)(yaml@2.9.0))(workerd@1.20260526.1)(wrangler@4.95.0(@cloudflare/workers-types@4.20260601.1))
+      vite: 7.3.5(@types/node@25.0.3)(jiti@2.6.1)(lightningcss@1.33.0)(yaml@2.9.0)
+      wrangler: 4.95.0(@cloudflare/workers-types@4.20260601.1)
+
+  '@varlock/native-helper-darwin@1.20.0':
+    optional: true
+
+  '@varlock/native-helper-linux-arm64@1.20.0':
+    optional: true
+
+  '@varlock/native-helper-linux-x64@1.20.0':
+    optional: true
+
+  '@varlock/native-helper-win32-x64@1.20.0':
+    optional: true
 
   '@volar/kit@2.4.28(typescript@5.9.3)':
     dependencies:
@@ -11734,6 +11856,13 @@ snapshots:
   util-deprecate@1.0.2: {}
 
   uuid@11.1.0: {}
+
+  varlock@1.20.0:
+    optionalDependencies:
+      '@varlock/native-helper-darwin': 1.20.0
+      '@varlock/native-helper-linux-arm64': 1.20.0
+      '@varlock/native-helper-linux-x64': 1.20.0
+      '@varlock/native-helper-win32-x64': 1.20.0
 
   vfile-location@5.0.3:
     dependencies:

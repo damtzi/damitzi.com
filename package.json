@@ -10,7 +10,8 @@
 		"preview": "astro preview",
 		"astro": "astro",
 		"check": "astro check",
-		"vinyls:sync": "node --env-file-if-exists=.dev.vars scripts/sync-vinyls.mjs",
+		"env:check": "varlock load --agent",
+		"vinyls:sync": "varlock run --inject vars -- node scripts/sync-vinyls.mjs",
 		"vinyls:check": "node scripts/check-vinyl-covers.mjs",
 		"format": "oxfmt && prettier --write \"**/*.astro\"",
 		"format:check": "oxfmt --check && prettier --check \"**/*.astro\"",
@@ -29,13 +30,16 @@
 		"@hugeicons/core-free-icons": "^4.2.3",
 		"@hugeicons/svelte": "^1.1.4",
 		"@paper-design/shaders": "0.0.80",
+		"@varlock/astro-integration": "1.4.2",
+		"@varlock/cloudflare-integration": "1.6.0",
 		"astro": "^7.2.3",
 		"clsx": "^2.1.1",
 		"gsap": "^3.13.0",
 		"sharp": "^0.34.3",
 		"svelte": "^5.56.6",
 		"tailwind-merge": "^3.3.1",
-		"tailwindcss": "^4.3.0"
+		"tailwindcss": "^4.3.0",
+		"varlock": "1.20.0"
 	},
 	"devDependencies": {
 		"@astrojs/check": "^0.9.10",

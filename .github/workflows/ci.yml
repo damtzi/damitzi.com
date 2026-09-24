@@ -37,6 +37,9 @@ jobs:
       - name: Install dependencies
         run: pnpm i
 
+      - name: Validate environment schema
+        run: pnpm env:check
+
       - name: Check for lint and formatting errors
         run: pnpm lint
 
@@ -67,6 +70,9 @@ jobs:
 
       - name: Install dependencies
         run: pnpm i
+
+      - name: Validate environment schema
+        run: pnpm env:check
 
       - name: Build site
         run: pnpm build

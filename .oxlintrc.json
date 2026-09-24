@@ -8,7 +8,7 @@
 		"browser": true,
 		"node": true
 	},
-	"ignorePatterns": ["worker-configuration.d.ts"],
+	"ignorePatterns": ["env.d.ts", "worker-configuration.d.ts"],
 	"rules": {
 		"constructor-super": "error",
 		"for-direction": "error",

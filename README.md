@@ -10,9 +10,17 @@ To run the site locally, follow these steps:
 # install dependencies
 pnpm install
 
+# add the GitHub token used to render the contributions chart
+printf 'CONTRIBUTIONS_TOKEN=your-token\n' > .env.local
+
 # run development server
 pnpm run dev
 ```
+
+Environment variables are declared in `.env.schema` and loaded by
+[Varlock](https://varlock.dev/). Run `pnpm env:check` to validate the schema and
+local values. `.env.local` is gitignored; it can also contain the optional
+`DISCOGS_TOKEN` used by the vinyl sync script.
 
 ## Code quality
 
@@ -43,7 +51,7 @@ the missing records into `.vinyl-sync/`. Review the candidates, then add the
 generated JSON and selected cover to the content and asset directories above.
 The JSON filename becomes the record's URL under `/music/vinyls/<slug>`.
 
-Set `DISCOGS_TOKEN` in the environment or `.dev.vars` for authenticated Discogs
+Set `DISCOGS_TOKEN` in the environment or `.env.local` for authenticated Discogs
 requests. Public collections also work without a token at a lower rate limit.
 `pnpm vinyls:check` validates that every record has a matching square WebP cover
 no larger than 1000×1000 or 500 KiB. It runs as part of `pnpm lint` and CI.
