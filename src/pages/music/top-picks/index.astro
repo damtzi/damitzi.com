@@ -21,14 +21,10 @@ const topPicks = (await getCollection('topPicks', ({ data }) => data.published))
 		</TypographyP>
 		<Breadcrumbs />
 		<ul class="w-fit space-y-2">
-			{
-				topPicks.map((topPick) => (
-					<li class="group flex items-center gap-2">
-						<Arrow />
-						<Link href={`/music/top-picks/${topPick.id}`}>{topPick.data.title}</Link>
-					</li>
-				))
-			}
+			{topPicks.map((topPick) => <li class="group flex items-center gap-2">
+				<Arrow />
+				<Link href={`/music/top-picks/${topPick.id}`}>{topPick.data.title}</Link>
+			</li>)}
 		</ul>
 	</div>
 </BaseLayout>

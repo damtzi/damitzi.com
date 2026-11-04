@@ -8,10 +8,12 @@
 	"sortTailwindcss": {
 		"stylesheet": "./src/styles/global.css"
 	},
+	"astro": {
+		"compressHTML": "html"
+	},
 	"svelte": {},
 	"ignorePatterns": [
 		".agents/",
-		"**/*.astro",
 		"pnpm-lock.yaml",
 		"env.d.ts",
 		"worker-configuration.d.ts",

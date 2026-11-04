@@ -80,23 +80,19 @@ const formattedTotal = new Intl.NumberFormat('en-US').format(calendar.totalContr
 <section class="flex flex-col gap-3">
 	<TypographyH2>Contributions</TypographyH2>
 	<div class="contribution-calendar" aria-hidden="true">
-		{
-			calendar.weeks.map((week) => (
-				<div class="contribution-week">
-					{week.contributionDays.map((day) => (
-						<span
-							class:list={['contribution-day', day.contributionLevel.toLowerCase()]}
-							title={`${day.contributionCount} contribution${day.contributionCount === 1 ? '' : 's'} on ${day.date}`}
-						/>
-					))}
-				</div>
-			))
-		}
+		{calendar.weeks.map((week) => <div class="contribution-week">
+			{week.contributionDays.map((day) => (
+				<span
+					class:list={['contribution-day', day.contributionLevel.toLowerCase()]}
+					title={`${day.contributionCount} contribution${day.contributionCount === 1 ? '' : 's'} on ${day.date}`}
+				/>
+			))}
+		</div>)}
 	</div>
 	<div class="flex items-center justify-between gap-4 text-sm text-muted">
 		<p>
-			<Link href="https://github.com/damtzi" external>{formattedTotal} contributions</Link> in the past
-			year
+			<Link href="https://github.com/damtzi" external>{formattedTotal} contributions</Link> in the
+			past year
 		</p>
 		<div class="hidden items-center gap-1.5 sm:flex" aria-hidden="true">
 			<span>Less</span>

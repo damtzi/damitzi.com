@@ -20,16 +20,12 @@ const socialLinks = [
 		<TypographyH1>Socials</TypographyH1>
 		<TypographyP>You can find me on:</TypographyP>
 		<ul class="w-fit space-y-2">
-			{
-				socialLinks.map((link) => (
-					<li class="group flex items-center gap-2">
-						<Arrow />
-						<Link href={link.href} external={link.href.startsWith('http')}>
-							{link.text}
-						</Link>
-					</li>
-				))
-			}
+			{socialLinks.map((link) => <li class="group flex items-center gap-2">
+				<Arrow />
+				<Link href={link.href} external={link.href.startsWith('http')}>
+					{link.text}
+				</Link>
+			</li>)}
 		</ul>
 	</div>
 </BaseLayout>

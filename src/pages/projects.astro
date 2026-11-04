@@ -22,17 +22,15 @@ const workProjects = projects.filter((project) => project.data.category === 'wor
 				These are some of my side projects I've been working on in my free time.
 			</TypographyP>
 			<div class="flex flex-col gap-4">
-				{
-					personalProjects.map((project) => (
-						<ProjectCard
-							title={project.data.title}
-							description={project.data.description}
-							link={project.data.link}
-							tech={project.data.tech}
-							githubUrl={project.data.githubUrl}
-						/>
-					))
-				}
+				{personalProjects.map((project) => (
+					<ProjectCard
+						title={project.data.title}
+						description={project.data.description}
+						link={project.data.link}
+						tech={project.data.tech}
+						githubUrl={project.data.githubUrl}
+					/>
+				))}
 			</div>
 		</div>
 
@@ -50,19 +48,15 @@ const workProjects = projects.filter((project) => project.data.category === 'wor
 				confidential computing, meaning we prioritized data security and privacy at every step.
 			</TypographyP>
 			<div class="flex flex-col gap-4">
-				{
-					workProjects
-						.toReversed()
-						.map((project) => (
-							<ProjectCard
-								title={project.data.title}
-								description={project.data.description}
-								link={project.data.link}
-								tech={project.data.tech}
-								githubUrl={project.data.githubUrl}
-							/>
-						))
-				}
+				{workProjects.toReversed().map((project) => (
+					<ProjectCard
+						title={project.data.title}
+						description={project.data.description}
+						link={project.data.link}
+						tech={project.data.tech}
+						githubUrl={project.data.githubUrl}
+					/>
+				))}
 			</div>
 		</div>
 	</div>

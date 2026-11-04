@@ -24,15 +24,15 @@ local values. `.env.local` is gitignored; it can also contain the optional
 
 ## Code quality
 
-The project uses a hybrid setup until Oxc fully supports Astro:
+The project uses Oxc for linting and formatting, with ESLint for template checks:
 
 - [Oxlint](https://oxc.rs/docs/guide/usage/linter) lints JavaScript, TypeScript, and
   script blocks in Astro and Svelte files.
 - ESLint keeps the Astro and Svelte template rules that Oxlint does not support.
   Rules handled by Oxlint are disabled in ESLint.
 - [Oxfmt](https://oxc.rs/docs/guide/usage/formatter) formats supported files,
-  including JavaScript, TypeScript, Svelte, JSON, CSS, Markdown, MDX, and YAML.
-- Prettier formats Astro files because Oxfmt does not support them yet.
+  including JavaScript, TypeScript, Astro, Svelte, JSON, CSS, Markdown, MDX, and
+  YAML. Astro formatting requires the `@astrojs/compiler-rs` development dependency.
 - `astro check` provides Astro, Svelte, and TypeScript diagnostics.
 
 Use `pnpm lint` to run all checks, `pnpm lint:fix` to fix lint issues, and

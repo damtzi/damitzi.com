@@ -14,14 +14,10 @@ const recipes = await getCollection('recipes', ({ data }) => data.published);
 		<TypographyH1>Bread Recipes</TypographyH1>
 		<Breadcrumbs />
 		<ul class="w-fit space-y-2">
-			{
-				recipes.map((recipe) => (
-					<li class="group flex items-center gap-2">
-						<Arrow />
-						<Link href={`/bread/${recipe.id}`}>{recipe.data.title}</Link>
-					</li>
-				))
-			}
+			{recipes.map((recipe) => <li class="group flex items-center gap-2">
+				<Arrow />
+				<Link href={`/bread/${recipe.id}`}>{recipe.data.title}</Link>
+			</li>)}
 		</ul>
 	</div>
 </BaseLayout>

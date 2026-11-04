@@ -34,26 +34,22 @@ const years = Object.keys(concertsByYear)
 		<TypographyH1>My Concerts</TypographyH1>
 		<Breadcrumbs />
 		<div class="w-full space-y-6">
-			{
-				years.map((year) => (
-					<div class="space-y-2">
-						<h2 class="border-b border-foreground/10 pb-1 font-mono text-lg font-semibold text-muted">
-							{year}
-						</h2>
-						<ul class="w-full space-y-2">
-							{concertsByYear[year].map((concert) => (
-								<li class="group flex flex-col md:flex-row md:items-center md:justify-between">
-									<span>{concert.artist}</span>
-									<span>
-										{dateFormatter(concert.date)} @ {concert.location}
-										{concert.festival && ` [${concert.festival} Festival]`}
-									</span>
-								</li>
-							))}
-						</ul>
-					</div>
-				))
-			}
+			{years.map((year) => <div class="space-y-2">
+				<h2 class="border-b border-foreground/10 pb-1 font-mono text-lg font-semibold text-muted">
+					{year}
+				</h2>
+				<ul class="w-full space-y-2">
+					{concertsByYear[year].map((concert) => <li
+						class="group flex flex-col md:flex-row md:items-center md:justify-between"
+					>
+						<span>{concert.artist}</span>
+						<span>
+							{dateFormatter(concert.date)} @ {concert.location}
+							{concert.festival && ` [${concert.festival} Festival]`}
+						</span>
+					</li>)}
+				</ul>
+			</div>)}
 		</div>
 	</div>
 </BaseLayout>

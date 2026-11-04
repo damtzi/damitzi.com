@@ -25,27 +25,23 @@ breadcrumbPaths.unshift({ name: 'home', href: '/', capitalize: true });
 
 <nav aria-label="Breadcrumb" class="py-3">
 	<ol class="flex flex-wrap items-center text-sm">
-		{
-			breadcrumbPaths.map((path, index) => (
-				<li class="flex items-center">
-					{index > 0 && <div class="mx-3 h-1.5 w-1.5 rounded-full bg-pure-blue" />}
-					{index === breadcrumbPaths.length - 1 ? (
-						<span class:list={['text-foreground', { capitalize: path.capitalize }]}>
-							{path.name}
-						</span>
-					) : (
-						<a
-							href={path.href}
-							class:list={[
-								'text-muted transition-colors duration-150 ease-out hover:text-accent focus-visible:rounded-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent',
-								{ capitalize: path.capitalize }
-							]}
-						>
-							{path.name}
-						</a>
-					)}
-				</li>
-			))
-		}
+		{breadcrumbPaths.map((path, index) => <li class="flex items-center">
+			{index > 0 && <div class="mx-3 h-1.5 w-1.5 rounded-full bg-pure-blue" />}
+			{index === breadcrumbPaths.length - 1 ? (
+				<span class:list={['text-foreground', { capitalize: path.capitalize }]}>
+					{path.name}
+				</span>
+			) : (
+				<a
+					href={path.href}
+					class:list={[
+						'text-muted transition-colors duration-150 ease-out hover:text-accent focus-visible:rounded-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent',
+						{ capitalize: path.capitalize }
+					]}
+				>
+					{path.name}
+				</a>
+			)}
+		</li>)}
 	</ol>
 </nav>

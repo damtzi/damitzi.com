@@ -13,9 +13,9 @@
 - `pnpm dev` — local dev server
 - `pnpm build` — production build (static export for Cloudflare)
 - `pnpm check` — Astro/TypeScript typecheck (no secrets needed)
-- `pnpm lint` — eslint + `astro check` + prettier (no secrets needed)
-- `pnpm format` / `pnpm format:check` — prettier
-- `pnpm lint:fix` — eslint --fix
+- `pnpm lint` — oxlint + eslint + `astro check` + vinyl cover validation + oxfmt
+- `pnpm format` / `pnpm format:check` — oxfmt (including Astro and Svelte)
+- `pnpm lint:fix` — oxlint --fix + eslint --fix
 
 ## Secrets and the build
 

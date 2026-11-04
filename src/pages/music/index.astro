@@ -17,14 +17,10 @@ const links = [
 		<TypographyH1>Music</TypographyH1>
 		<Breadcrumbs />
 		<ul class="w-fit space-y-2">
-			{
-				links.map((link) => (
-					<li class="group flex items-center gap-2">
-						<Arrow />
-						<Link href={link.href}>{link.text}</Link>
-					</li>
-				))
-			}
+			{links.map((link) => <li class="group flex items-center gap-2">
+				<Arrow />
+				<Link href={link.href}>{link.text}</Link>
+			</li>)}
 		</ul>
 	</div>
 </BaseLayout>

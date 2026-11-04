@@ -42,9 +42,10 @@ const workSections = [
 			<TypographyH1>Welcome</TypographyH1>
 			<TypographyP class="text-sm text-muted">Cześć, γεια σου, hello</TypographyP>
 			<TypographyP>
-				I'm Damian, an engineer who builds <Link href="/projects">products</Link> with effort and care.
-				I pay attention to the finer details, aesthetics, and how people interact with technology. I'm
-				interested in design and web development, and I keep learning as AI reshapes how we build.
+				I'm Damian, an engineer who builds <Link href="/projects">products</Link> with effort and
+				care. I pay attention to the finer details, aesthetics, and how people interact with
+				technology. I'm interested in design and web development, and I keep learning as AI reshapes
+				how we build.
 			</TypographyP>
 			<TypographyP>
 				Away from the screen, I <Link href="/music/vinyls">collect vinyl records</Link> and
@@ -65,72 +66,64 @@ const workSections = [
 			<GitHubContributions />
 		</div>
 
-		{
-			workSections.map((section) => (
-				<section class="flex flex-col gap-3">
-					<TypographyH2>{section.title}</TypographyH2>
-					<ul class="flex flex-col gap-2.5">
-						{section.entries.map((entry) => (
-							<li class="flex min-w-0 items-start gap-2">
-								<img
-									src={entry.icon}
-									alt=""
-									width="20"
-									height="20"
-									loading="lazy"
-									class="size-5 shrink-0 rounded-sm border border-foreground/10 object-cover"
-								/>
-								<div class="flex min-w-0 flex-1 flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
-									<p class="min-w-0 truncate">
-										{entry.role}
-										<span class="text-muted"> at </span>
-										<Link href={entry.website} external class="font-medium">
-											{entry.company}
-										</Link>
-									</p>
-									<p class="shrink-0 text-sm text-muted">{entry.period}</p>
-								</div>
-							</li>
-						))}
-					</ul>
-				</section>
-			))
-		}
+		{workSections.map((section) => <section class="flex flex-col gap-3">
+			<TypographyH2>{section.title}</TypographyH2>
+			<ul class="flex flex-col gap-2.5">
+				{section.entries.map((entry) => <li class="flex min-w-0 items-start gap-2">
+					<img
+						src={entry.icon}
+						alt=""
+						width="20"
+						height="20"
+						loading="lazy"
+						class="size-5 shrink-0 rounded-sm border border-foreground/10 object-cover"
+					/>
+					<div
+						class="flex min-w-0 flex-1 flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4"
+					>
+						<p class="min-w-0 truncate">
+							{entry.role}
+							<span class="text-muted"> at </span>
+							<Link href={entry.website} external class="font-medium">
+								{entry.company}
+							</Link>
+						</p>
+						<p class="shrink-0 text-sm text-muted">{entry.period}</p>
+					</div>
+				</li>)}
+			</ul>
+		</section>)}
 
 		<section class="flex flex-col gap-2">
 			<TypographyH2>Recent Pickups</TypographyH2>
 			<ul class="grid grid-cols-2 gap-4 sm:grid-cols-4 md:gap-10">
-				{
-					releases.map((release) => (
-						<li>
-							<a href={`/music/vinyls/${release.id}`} class="group relative block">
-								<Image
-									src={release.data.cover}
-									alt={release.data.title}
-									width={200}
-									height={200}
-									widths={[200, 400]}
-									sizes="(min-width: 200px) 200px, 100vw"
-									format="webp"
-									quality={82}
-									transition:name={`vinyl-cover-${release.id}`}
-									class="relative z-10 aspect-square rounded-xs shadow-lg transition-all duration-300 hover:scale-105 hover:cursor-pointer hover:shadow"
-								/>
-								<Image
-									src={isVinyl(release.data.formats) ? VinylPng : CdPng}
-									alt={isVinyl(release.data.formats) ? 'A black vinyl record' : 'A clear CD'}
-									width={200}
-									height={200}
-									widths={[200, 400]}
-									sizes="(min-width: 200px) 200px, 100vw"
-									format="webp"
-									quality={82}
-									class="absolute top-0 z-0 opacity-0 transition-all duration-300 group-hover:translate-x-10 group-hover:opacity-100"
-								/>
-							</a>
-						</li>
-					))
-				}
+				{releases.map((release) => <li>
+					<a href={`/music/vinyls/${release.id}`} class="group relative block">
+						<Image
+							src={release.data.cover}
+							alt={release.data.title}
+							width={200}
+							height={200}
+							widths={[200, 400]}
+							sizes="(min-width: 200px) 200px, 100vw"
+							format="webp"
+							quality={82}
+							transition:name={`vinyl-cover-${release.id}`}
+							class="relative z-10 aspect-square rounded-xs shadow-lg transition-all duration-300 hover:scale-105 hover:cursor-pointer hover:shadow"
+						/>
+						<Image
+							src={isVinyl(release.data.formats) ? VinylPng : CdPng}
+							alt={isVinyl(release.data.formats) ? 'A black vinyl record' : 'A clear CD'}
+							width={200}
+							height={200}
+							widths={[200, 400]}
+							sizes="(min-width: 200px) 200px, 100vw"
+							format="webp"
+							quality={82}
+							class="absolute top-0 z-0 opacity-0 transition-all duration-300 group-hover:translate-x-10 group-hover:opacity-100"
+						/>
+					</a>
+				</li>)}
 			</ul>
 		</section>
 	</div>
