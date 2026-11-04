@@ -61,7 +61,7 @@ no larger than 1000×1000 or 500 KiB. It runs as part of `pnpm lint` and CI.
 To build the website, I'm using:
 
 - [Astro](https://astro.build/)
-- [React](https://react.dev/)
+- [Svelte](https://svelte.dev/)
 - [TypeScript](https://www.typescriptlang.org/)
 - [Tailwind CSS](https://tailwindcss.com/)
 - [pnpm](https://pnpm.io/)
