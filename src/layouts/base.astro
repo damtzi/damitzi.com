@@ -6,6 +6,7 @@ import '@fontsource/ibm-plex-mono';
 
 import { ClientRouter } from 'astro:transitions';
 import FloatingNav from '@/components/floating-nav.svelte';
+import FloatingNavPrototype from '@/components/floating-nav-prototype/floating-nav-prototype.svelte'; // PROTOTYPE — dev only
 import Footer from '@/components/footer.astro';
 import Header from '@/components/header.astro';
 import Theme from '@/components/theme.astro';
@@ -57,7 +58,11 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin).hr
 				<Footer />
 			</div>
 		</div>
-		<FloatingNav client:load pathname={Astro.url.pathname} />
+		{import.meta.env.DEV ? (
+			<FloatingNavPrototype client:load pathname={Astro.url.pathname} />
+		) : (
+			<FloatingNav client:load pathname={Astro.url.pathname} />
+		)}
 	</body>
 </html>
 
