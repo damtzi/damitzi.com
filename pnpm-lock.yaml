@@ -85,6 +85,9 @@ importers:
       '@commitlint/config-conventional':
         specifier: ^21.2.3
         version: 21.2.3
+      '@commitlint/types':
+        specifier: ^21.2.3
+        version: 21.2.3
       '@eslint/compat':
         specifier: ^2.1.1
         version: 2.1.1(eslint@9.39.5(jiti@2.7.0))
