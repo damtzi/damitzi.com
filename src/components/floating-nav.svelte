@@ -77,7 +77,7 @@
 	class="menu fixed bottom-[max(1.5rem,env(safe-area-inset-bottom))] left-1/2 z-50"
 	data-open={isOpen}
 >
-	<div class="surface bg-background text-foreground">
+	<div class="surface bg-elevated text-foreground">
 		<nav
 			id="primary-navigation"
 			aria-label="Primary"
@@ -94,7 +94,7 @@
 							aria-current={isActive ? 'page' : undefined}
 							onclick={closeMenu}
 							class={cn(
-								'flex min-h-11 items-center gap-2 rounded-lg px-3 py-1.5 text-sm font-medium text-muted transition-colors duration-150 ease-out hover:bg-foreground/5 hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-0 focus-visible:outline-accent',
+								'flex min-h-11 items-center gap-2 rounded-lg px-3 py-1.5 text-sm font-medium text-muted transition-colors duration-150 ease-out hover:bg-foreground/5 hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-0 focus-visible:outline-accent dark:hover:bg-foreground/7',
 								isActive && 'text-foreground'
 							)}
 						>
@@ -212,8 +212,16 @@
 		--pill-h: 44px;
 
 		translate: -50% var(--gutter);
-		/* drop-shadow, not box-shadow: it follows the clipped shape */
-		filter: drop-shadow(0 10px 24px rgb(0 0 0 / 0.16));
+		/* drop-shadow, not box-shadow: it follows the clipped shape. clip-path
+		   also eats borders, so the hairline rim is a tight drop-shadow too:
+		   rim, contact shadow that anchors it, ambient lift. */
+		filter: drop-shadow(0 0 0.5px rgb(0 0 0 / 0.4)) drop-shadow(0 2px 4px rgb(0 0 0 / 0.08))
+			drop-shadow(0 12px 28px rgb(0 0 0 / 0.14));
+	}
+	/* A black shadow vanishes on the near-black page, so dark mode leans on a
+	   light rim instead. */
+	:global(.dark) .menu {
+		filter: drop-shadow(0 0 0.5px rgb(255 255 255 / 0.45)) drop-shadow(0 12px 28px rgb(0 0 0 / 0.6));
 	}
 
 	.surface {
