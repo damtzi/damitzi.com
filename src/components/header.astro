@@ -1,18 +1,33 @@
 ---
 import coverImage from '@/assets/cover_1.jpeg';
-import profileImage from '@/assets/profile_2.jpeg';
+import coverImageDark from '@/assets/cover_dark.webp';
+import profileImage from '@/assets/profile_light.webp';
+import profileImageDark from '@/assets/profile_dark.webp';
 import ImageDithering from '@/components/image-dithering.svelte';
 ---
 
 <header class="relative pb-10">
 	<div class="h-28 overflow-hidden rounded-lg sm:h-32">
-		<ImageDithering client:load src={coverImage.src} />
+		<ImageDithering client:load src={coverImage.src} darkSrc={coverImageDark.src} />
 	</div>
 	<a
 		href="/"
 		aria-label="Home"
 		class="absolute bottom-0 left-4 block size-20 overflow-hidden rounded-lg ring-4 ring-background focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
 	>
-		<img src={profileImage.src} alt="Damian Tziamtzis" width={160} height={160} class="size-20" />
+		<img
+			src={profileImage.src}
+			alt="Damian Tziamtzis"
+			width={160}
+			height={160}
+			class="size-20 dark:hidden"
+		/>
+		<img
+			src={profileImageDark.src}
+			alt="Damian Tziamtzis"
+			width={160}
+			height={160}
+			class="hidden size-20 dark:block"
+		/>
 	</a>
 </header>
