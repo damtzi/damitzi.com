@@ -15,19 +15,17 @@ import ImageDithering from '@/components/image-dithering.svelte';
 		aria-label="Home"
 		class="absolute bottom-0 left-4 block size-20 overflow-hidden rounded-lg ring-4 ring-background focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
 	>
-		<img
-			src={profileImage.src}
-			alt="Damian Tziamtzis"
-			width={160}
-			height={160}
-			class="size-20 dark:hidden"
-		/>
+		<img src={profileImage.src} alt="Damian Tziamtzis" width={160} height={160} class="size-20" />
+		<!-- Fades in over the light photo, which stays opaque underneath so the
+			background never shows through mid-fade. Decorative duplicate: the
+			light img carries the alt text. -->
 		<img
 			src={profileImageDark.src}
-			alt="Damian Tziamtzis"
+			alt=""
+			aria-hidden="true"
 			width={160}
 			height={160}
-			class="hidden size-20 dark:block"
+			class="absolute inset-0 size-20 opacity-0 transition-opacity duration-300 ease-out dark:opacity-100"
 		/>
 	</a>
 </header>

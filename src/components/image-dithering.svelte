@@ -10,29 +10,13 @@
 
 	let { src, darkSrc }: { src: string; darkSrc?: string } = $props();
 
-	function mountDithering(src: string, darkSrc = src): Attachment<HTMLDivElement> {
+	// Each theme gets its own static shader layer; the dark layer crossfades in
+	// on top of the light one, so the theme swap is a CSS opacity transition
+	// rather than an instant texture swap.
+	function mountDithering(src: string): Attachment<HTMLDivElement> {
 		return (host) => {
-			const root = document.documentElement;
-			const currentSrc = () => (root.classList.contains('dark') ? darkSrc : src);
-			let image = new Image();
+			const image = new Image();
 			let shader: ShaderMount | undefined;
-
-			// Swap the shader's texture when the theme class changes.
-			const swapImage = () => {
-				const next = currentSrc();
-				if (!shader || image.src.endsWith(next)) return;
-				const nextImage = new Image();
-				nextImage.addEventListener(
-					'load',
-					() => {
-						image = nextImage;
-						shader?.setUniforms({ u_image: nextImage });
-					},
-					{ once: true }
-				);
-				nextImage.src = next;
-			};
-			const observer = new MutationObserver(swapImage);
 
 			const mountShader = () => {
 				const uniforms: ImageDitheringUniforms = {
@@ -58,19 +42,15 @@
 
 				try {
 					shader = new ShaderMount(host, imageDitheringFragmentShader, uniforms);
-					observer.observe(root, { attributes: true, attributeFilter: ['class'] });
-					// The theme may have changed while the first image was loading.
-					swapImage();
 				} catch {
 					// Keep the image fallback when WebGL is unavailable.
 				}
 			};
 
 			image.addEventListener('load', mountShader, { once: true });
-			image.src = currentSrc();
+			image.src = src;
 
 			return () => {
-				observer.disconnect();
 				image.removeEventListener('load', mountShader);
 				shader?.dispose();
 			};
@@ -79,9 +59,16 @@
 </script>
 
 <div class="relative size-full">
-	<img {src} alt="" width="1344" class={['size-full object-cover', darkSrc && 'dark:hidden']} />
+	<div class="absolute inset-0">
+		<img {src} alt="" width="1344" class="size-full object-cover" />
+		<div {@attach mountDithering(src)} aria-hidden="true" class="absolute inset-0"></div>
+	</div>
 	{#if darkSrc}
-		<img src={darkSrc} alt="" width="1344" class="hidden size-full object-cover dark:block" />
+		<div
+			class="absolute inset-0 opacity-0 transition-opacity duration-300 ease-out dark:opacity-100"
+		>
+			<img src={darkSrc} alt="" width="1344" class="size-full object-cover" />
+			<div {@attach mountDithering(darkSrc)} aria-hidden="true" class="absolute inset-0"></div>
+		</div>
 	{/if}
-	<div {@attach mountDithering(src, darkSrc)} aria-hidden="true" class="absolute inset-0"></div>
 </div>
