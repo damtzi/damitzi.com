@@ -62,3 +62,18 @@ const { vinyl } = Astro.props as Props;
 		</div>
 	</div>
 </BaseLayout>
+
+<script>
+	import { isVinylListingPath } from '@/lib/vinyls';
+
+	// Listing pages link here with ?from=<listing path> so the "Vinyls"
+	// breadcrumb returns to the same sort + page. Only known listing paths
+	// are accepted.
+	document.addEventListener('astro:page-load', () => {
+		const from = new URLSearchParams(window.location.search).get('from');
+		if (!from || !isVinylListingPath(from)) return;
+
+		const link = document.querySelector<HTMLAnchorElement>('a[data-breadcrumb="vinyls"]');
+		if (link) link.href = from;
+	});
+</script>

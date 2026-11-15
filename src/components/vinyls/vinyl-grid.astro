@@ -1,0 +1,51 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import VinylPng from '@/assets/black-vinyl.png';
+import CdPng from '@/assets/clear-cd.png';
+import { VINYLS_BASE_PATH } from '@/lib/vinyls';
+
+interface Props {
+	releases: CollectionEntry<'vinyls'>[];
+	// Listing page the grid lives on, passed to detail pages so their
+	// breadcrumb can link back to it.
+	from: string;
+}
+
+const { releases, from } = Astro.props;
+
+const isVinyl = (formats: string[]) => formats.includes('Vinyl');
+const detailHref = (id: string) =>
+	from === VINYLS_BASE_PATH
+		? `${VINYLS_BASE_PATH}/${id}`
+		: `${VINYLS_BASE_PATH}/${id}?from=${encodeURIComponent(from)}`;
+---
+
+<div class="grid grid-cols-2 gap-4 sm:grid-cols-4 md:gap-10">
+	{releases.map((release, index) => <a href={detailHref(release.id)} class="group relative">
+		<Image
+			src={release.data.cover}
+			alt={release.data.title}
+			width={200}
+			height={200}
+			widths={[200, 400]}
+			sizes="(min-width: 200px) 200px, 100vw"
+			format="webp"
+			quality={82}
+			priority={index === 0}
+			transition:name={`vinyl-cover-${release.id}`}
+			class="relative z-10 aspect-square rounded-xs shadow-lg transition-all duration-300 hover:scale-105 hover:cursor-pointer hover:shadow"
+		/>
+		<Image
+			src={isVinyl(release.data.formats) ? VinylPng : CdPng}
+			alt={isVinyl(release.data.formats) ? 'A black vinyl record' : 'A clear CD'}
+			width={200}
+			height={200}
+			widths={[200, 400]}
+			sizes="(min-width: 200px) 200px, 100vw"
+			format="webp"
+			quality={82}
+			class="absolute top-0 z-0 opacity-0 transition-all duration-300 group-hover:translate-x-10 group-hover:opacity-100"
+		/>
+	</a>)}
+</div>

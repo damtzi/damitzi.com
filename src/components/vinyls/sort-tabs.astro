@@ -1,0 +1,29 @@
+---
+import { VINYL_SORTS, vinylListingPath, type VinylSortId } from '@/lib/vinyls';
+
+interface Props {
+	current: VinylSortId;
+}
+
+const { current } = Astro.props;
+---
+
+<nav aria-label="Sort records" class="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm">
+	<span class="text-muted">Sort by</span>
+	<ul class="flex flex-wrap items-center gap-x-4 gap-y-1">
+		{VINYL_SORTS.map((sort) => <li>
+			<a
+				href={vinylListingPath(sort.id)}
+				aria-current={sort.id === current ? 'page' : undefined}
+				class:list={[
+					'underline-offset-[2.5px] transition-colors duration-150 ease-out focus-visible:rounded-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent',
+					sort.id === current
+						? 'text-foreground underline decoration-pure-blue decoration-2'
+						: 'text-muted hover:text-accent'
+				]}
+			>
+				{sort.label}
+			</a>
+		</li>)}
+	</ul>
+</nav>

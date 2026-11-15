@@ -1,0 +1,63 @@
+---
+import { vinylListingPath, type VinylSortId } from '@/lib/vinyls';
+
+interface Props {
+	sort: VinylSortId;
+	currentPage: number;
+	lastPage: number;
+	start: number;
+	end: number;
+	total: number;
+}
+
+const { sort, currentPage, lastPage, start, end, total } = Astro.props;
+
+const pages = Array.from({ length: lastPage }, (_, index) => index + 1);
+const prevHref = currentPage > 1 ? vinylListingPath(sort, currentPage - 1) : undefined;
+const nextHref = currentPage < lastPage ? vinylListingPath(sort, currentPage + 1) : undefined;
+
+const linkClass =
+	'rounded-xs px-2 py-1 transition-colors duration-150 ease-out focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent';
+---
+
+<div class="flex flex-col items-center gap-3 text-sm sm:flex-row sm:justify-between">
+	<p class="text-muted">Showing {start}–{end} of {total}</p>
+	{lastPage > 1 && <nav aria-label="Pagination">
+		<ul class="flex items-center gap-1">
+			<li>
+				{prevHref ? (
+					<a href={prevHref} rel="prev" class:list={[linkClass, 'text-muted hover:text-accent']}>
+						Previous
+					</a>
+				) : (
+					<span class:list={[linkClass, 'text-muted opacity-40']} aria-hidden="true">
+						Previous
+					</span>
+				)}
+			</li>
+			{pages.map((page) => <li>
+				<a
+					href={vinylListingPath(sort, page)}
+					aria-current={page === currentPage ? 'page' : undefined}
+					aria-label={`Page ${page}`}
+					class:list={[
+						linkClass,
+						'tabular-nums',
+						page === currentPage ? 'bg-pure-blue text-baby-powder' : 'text-muted hover:text-accent'
+					]}
+				>
+					{page}
+				</a>
+			</li>)}
+			<li>
+				{nextHref ? (
+					<a href={nextHref} rel="next" class:list={[linkClass, 'text-muted hover:text-accent']}>
+						Next
+					</a>
+				) : (
+					<span class:list={[linkClass, 'text-muted opacity-40']} aria-hidden="true"> Next </span>
+				)}
+			</li>
+		</ul>
+	</nav>}
+</div>

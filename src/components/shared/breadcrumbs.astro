@@ -2,11 +2,14 @@
 interface Props {
 	// Map a URL segment to a display label, e.g. a vinyl id to its album title.
 	labels?: Record<string, string>;
+	// Build the trail from this path instead of the current URL, e.g. to hide
+	// pagination segments.
+	path?: string;
 }
 
-const { labels = {} } = Astro.props;
+const { labels = {}, path = Astro.url.pathname } = Astro.props;
 
-const currentPath = Astro.url.pathname;
+const currentPath = path;
 const segments = currentPath.split('/').filter((segment) => segment !== '');
 
 const breadcrumbPaths = segments.map((segment, index) => {
@@ -15,12 +18,13 @@ const breadcrumbPaths = segments.map((segment, index) => {
 	return {
 		name: labels[segment] ?? segment,
 		href,
+		segment,
 		// Only auto-capitalize raw URL segments, never custom labels (e.g. titles).
 		capitalize: !(segment in labels)
 	};
 });
 
-breadcrumbPaths.unshift({ name: 'home', href: '/', capitalize: true });
+breadcrumbPaths.unshift({ name: 'home', href: '/', segment: '', capitalize: true });
 ---
 
 <nav aria-label="Breadcrumb" class="py-3">
@@ -34,6 +38,7 @@ breadcrumbPaths.unshift({ name: 'home', href: '/', capitalize: true });
 			) : (
 				<a
 					href={path.href}
+					data-breadcrumb={path.segment}
 					class:list={[
 						'text-muted transition-colors duration-150 ease-out hover:text-accent focus-visible:rounded-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent',
 						{ capitalize: path.capitalize }

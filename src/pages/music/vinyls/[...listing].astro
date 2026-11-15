@@ -1,0 +1,76 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { getCollection } from 'astro:content';
+import BaseLayout from '@/layouts/base.astro';
+import Breadcrumbs from '@/components/shared/breadcrumbs.astro';
+import { TypographyH1 } from '@/components/typography';
+import Pagination from '@/components/vinyls/pagination.astro';
+import SortTabs from '@/components/vinyls/sort-tabs.astro';
+import VinylGrid from '@/components/vinyls/vinyl-grid.astro';
+import {
+	VINYL_SORTS,
+	VINYLS_BASE_PATH,
+	VINYLS_PAGE_SIZE,
+	assertNoReservedSlugs,
+	vinylListingParam,
+	vinylListingPath
+} from '@/lib/vinyls';
+
+// Every sort × page is prerendered:
+//   /music/vinyls                 artist, page 1
+//   /music/vinyls/page/2          artist, page 2
+//   /music/vinyls/recent/page/3   recently added, page 3
+export const getStaticPaths = (async () => {
+	const vinyls = await getCollection('vinyls');
+	assertNoReservedSlugs(vinyls);
+
+	const total = vinyls.length;
+	const lastPage = Math.max(1, Math.ceil(total / VINYLS_PAGE_SIZE));
+
+	return VINYL_SORTS.flatMap((sort) => {
+		const sorted = vinyls.toSorted(sort.compare);
+
+		return Array.from({ length: lastPage }, (_, index) => {
+			const currentPage = index + 1;
+			const offset = index * VINYLS_PAGE_SIZE;
+			const releases = sorted.slice(offset, offset + VINYLS_PAGE_SIZE);
+
+			return {
+				params: { listing: vinylListingParam(sort.id, currentPage) },
+				props: {
+					sort: sort.id,
+					releases,
+					currentPage,
+					lastPage,
+					total,
+					start: total === 0 ? 0 : offset + 1,
+					end: offset + releases.length
+				}
+			};
+		});
+	});
+}) satisfies GetStaticPaths;
+
+const { sort, releases, currentPage, lastPage, total, start, end } = Astro.props;
+
+const pageSuffix = currentPage > 1 ? ` (page ${currentPage})` : '';
+---
+
+<BaseLayout title={`Vinyls${pageSuffix}`} description="My vinyl and CD collection">
+	<div class="flex flex-col gap-2">
+		<TypographyH1>Music</TypographyH1>
+		<Breadcrumbs path={VINYLS_BASE_PATH} />
+		<div class="flex flex-col gap-6">
+			<SortTabs current={sort} />
+			<VinylGrid releases={releases} from={vinylListingPath(sort, currentPage)} />
+			<Pagination
+				sort={sort}
+				currentPage={currentPage}
+				lastPage={lastPage}
+				start={start}
+				end={end}
+				total={total}
+			/>
+		</div>
+	</div>
+</BaseLayout>
