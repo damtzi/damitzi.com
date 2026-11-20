@@ -18,8 +18,8 @@ const additionalWork = [
 	...workExperience.filter((entry) => entry.homepageSection === 'additional'),
 	{
 		company: 'Fundacja Kompetencji Cyfrowych',
-		period: 'Jan 2026-present',
-		role: 'Frontend Engineer',
+		period: 'Jan 2026 — present',
+		role: 'Software Engineer',
 		website: 'https://www.cyfrowe.org/',
 		icon: '/company-icons/cyfrowe.png'
 	}
@@ -69,7 +69,7 @@ const workSections = [
 		{workSections.map((section) => <section class="flex flex-col gap-3">
 			<TypographyH2>{section.title}</TypographyH2>
 			<ul class="flex flex-col gap-2.5">
-				{section.entries.map((entry) => <li class="flex min-w-0 items-start gap-2">
+				{section.entries.map((entry) => <li class="flex min-w-0 items-center gap-2">
 					<img
 						src={entry.icon}
 						alt=""

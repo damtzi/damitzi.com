@@ -12,7 +12,7 @@ export type WorkExperience = {
 export const workExperience: WorkExperience[] = [
 	{
 		company: 'OKE',
-		period: 'Jan 2026-present',
+		period: 'Jan 2026 — present',
 		location: 'Remote',
 		role: 'Frontend Engineer',
 		website: 'https://oke.pl/',
@@ -28,7 +28,7 @@ export const workExperience: WorkExperience[] = [
 	},
 	{
 		company: 'Campy',
-		period: 'Feb 2026-Sep 2026',
+		period: 'Feb 2026 — Sep 2026',
 		location: 'Remote',
 		role: 'Product Engineer',
 		website: 'https://campy.app/',
@@ -43,9 +43,9 @@ export const workExperience: WorkExperience[] = [
 	{
 		company: 'SoftMetal',
 		homepageSection: 'additional',
-		period: 'Dec 2025-present',
+		period: 'Dec 2025 — present',
 		location: 'Remote',
-		role: 'Frontend Engineer',
+		role: 'Software Engineer',
 		website: 'https://softmetal.ch/',
 		icon: '/company-icons/softmetal.png',
 		items: [
@@ -55,9 +55,9 @@ export const workExperience: WorkExperience[] = [
 	},
 	{
 		company: 'Secretarium',
-		period: 'Sep 2020-Nov 2025',
+		period: 'Sep 2020 — Nov 2025',
 		location: 'London, UK + Remote',
-		role: 'Frontend Engineer',
+		role: 'Software Engineer',
 		website: 'https://secretarium.com/',
 		icon: '/company-icons/secretarium.png',
 		items: [
@@ -71,9 +71,9 @@ export const workExperience: WorkExperience[] = [
 	},
 	{
 		company: 'Lancaster University',
-		period: 'Jan 2020-Jul 2020',
+		period: 'Jan 2020 — Jul 2020',
 		location: 'Lancaster, UK',
-		role: 'Frontend Engineer',
+		role: 'Software Engineer',
 		website: 'https://www.lancaster.ac.uk/',
 		icon: '/company-icons/lancaster.png',
 		items: [
