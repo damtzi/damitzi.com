@@ -13,9 +13,13 @@ export const getStaticPaths = (async () => {
 
 type Props = { vinyl: CollectionEntry<'vinyls'> };
 const { vinyl } = Astro.props as Props;
+const { title, artists, released, formats } = vinyl.data;
 ---
 
-<BaseLayout title={vinyl.data.title} description={`${vinyl.data.title} details`}>
+<BaseLayout
+	title={title}
+	description={`${title} by ${artists.join(', ')} (${released.slice(0, 4)}), ${formats.join(', ')}. From my record collection.`}
+>
 	<div class="flex flex-col gap-2">
 		<TypographyH1>{vinyl.data.title}</TypographyH1>
 		<Breadcrumbs labels={{ [vinyl.id]: vinyl.data.title }} />

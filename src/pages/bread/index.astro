@@ -9,7 +9,7 @@ import { getCollection } from 'astro:content';
 const recipes = await getCollection('recipes', ({ data }) => data.published);
 ---
 
-<BaseLayout title="Recipes" description="Browse my recipes for bread and other baked goods">
+<BaseLayout title="Bread" description="Sourdough recipes I bake at home.">
 	<div class="flex flex-col gap-2">
 		<TypographyH1>Bread Recipes</TypographyH1>
 		<Breadcrumbs />
